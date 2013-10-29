@@ -24,6 +24,7 @@ describe "Projects" do
           "projects" => [
             {
               "id" => project1.id,
+              "name" => "Apples",
               "harvest_id" => project1.harvest_id,
               "guaranteed_weekly_hours" => 10,
               "current_weekly_hours" => 6.0,
@@ -31,6 +32,7 @@ describe "Projects" do
             },
             {
               "id" => project2.id,
+              "name" => "Oranges",
               "harvest_id" => project2.harvest_id,
               "guaranteed_weekly_hours" => 20,
               "current_weekly_hours" => 24.0,
