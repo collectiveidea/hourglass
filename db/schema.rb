@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131029155417) do
+ActiveRecord::Schema.define(version: 20131029165144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "days", force: true do |t|
+    t.integer  "project_id"
+    t.date     "date"
+    t.decimal  "hours",      precision: 5, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "days", ["date"], name: "index_days_on_date", using: :btree
+  add_index "days", ["project_id", "date"], name: "index_days_on_project_id_and_date", unique: true, using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "name"
