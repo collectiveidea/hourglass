@@ -1,3 +1,5 @@
 HARVEST_SUBDOMAIN: "subdomain"
 HARVEST_USERNAME: "username"
 HARVEST_PASSWORD: "password"
+# BASIC_AUTH_USERNAME: "username"
+# BASIC_AUTH_PASSWORD: "password"
