@@ -4,8 +4,21 @@
   <%= link_to "Add Project", new_project_path %>
 </nav>
 
-<ul>
-  <% @projects.each do |project| %>
-    <li><%= project.name %></li>
-  <% end %>
-</ul>
+<table id="projects">
+  <thead>
+    <tr>
+      <th><%= t("activerecord.project.attributes.name") %></th>
+      <th><%= t("activerecord.project.attributes.harvest_id") %></th>
+      <th><%= t("activerecord.project.attributes.guaranteed_hours") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr class="project">
+        <td class="name"><%= project.name %></td>
+        <td class="harvest-id"><%= project.harvest_id %></td>
+        <td class="guaranteed-hours"><%= project.guaranteed_hours %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
