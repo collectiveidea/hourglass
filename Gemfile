@@ -13,6 +13,9 @@ gem "harvested", "~> 1.0"
 gem "jbuilder", "~> 1.5"
 gem "jquery-rails", "~> 3.0"
 gem "turbolinks", "~> 1.3"
+gem "twitter-bootstrap-rails",
+  github: "seyhunak/twitter-bootstrap-rails",
+  branch: "bootstrap3"
 
 group :development, :test do
   gem "capybara", "~> 2.1"

@@ -1,24 +1,36 @@
-<h2>Projects</h2>
+<div class="page-header">
+  <%= link_to "Add Project", new_project_path, class: "btn btn-success btn-lg pull-right" %>
+  <h1>Projects</h1>
+</div>
 
-<nav>
-  <%= link_to "Add Project", new_project_path %>
-</nav>
-
-<table id="projects">
-  <thead>
-    <tr>
-      <th><%= t("activerecord.project.attributes.name") %></th>
-      <th><%= t("activerecord.project.attributes.harvest_id") %></th>
-      <th><%= t("activerecord.project.attributes.guaranteed_weekly_hours") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr class="project">
-        <td class="name"><%= project.name %></td>
-        <td class="harvest-id"><%= project.harvest_id %></td>
-        <td class="guaranteed-weekly-hours"><%= project.guaranteed_weekly_hours %></td>
+<div class="table-responsive">
+  <table id="projects" class="table">
+    <thead>
+      <tr>
+        <th><%= t("activerecord.attributes.project.name") %></th>
+        <th><%= t("activerecord.attributes.project.harvest_id") %></th>
+        <th><%= t("activerecord.attributes.project.guaranteed_weekly_hours") %></th>
+        <th>Progress</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr class="project">
+          <td class="name"><%= project.name %></td>
+          <td class="harvest-id"><%= project.harvest_id %></td>
+          <td class="guaranteed-weekly-hours"><%= project.guaranteed_weekly_hours %></td>
+          <td class="weekly-progress">
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" style="width: <%= project.current_weekly_percentage.round(3) %>%"></div>
+            </div>
+          </td>
+          <td class="actions">
+            <%= link_to "Update", "#update", class: "btn btn-xs btn-primary" %>
+            <%= link_to "Remove", "#remove", class: "btn btn-xs btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
