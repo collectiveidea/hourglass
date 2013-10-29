@@ -4,6 +4,6 @@ module Dom
 
     attribute :name
     attribute :harvest_id, &:to_i
-    attribute :guaranteed_weekly_hours, &:to_i
+    attribute :expected_weekly_hours, &:to_i
   end
 end

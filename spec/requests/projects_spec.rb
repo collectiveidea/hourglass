@@ -4,9 +4,9 @@ describe "Projects" do
   describe "GET /projects" do
     let!(:monday) { Date.current.beginning_of_week }
     let!(:sunday) { monday + 6.days }
-    let!(:project1) { create(:project, name: "Apples", guaranteed_weekly_hours: 10) }
-    let!(:project2) { create(:project, name: "Oranges", guaranteed_weekly_hours: 20) }
-    let!(:project3) { create(:project, name: "Bananas", guaranteed_weekly_hours: 30) }
+    let!(:project1) { create(:project, name: "Apples", expected_weekly_hours: 10) }
+    let!(:project2) { create(:project, name: "Oranges", expected_weekly_hours: 20) }
+    let!(:project3) { create(:project, name: "Bananas", expected_weekly_hours: 30) }
 
     before do
       create(:day, project: project1, date: monday, hours: 2)
@@ -27,7 +27,7 @@ describe "Projects" do
               "id" => project1.id,
               "name" => "Apples",
               "harvest_id" => project1.harvest_id,
-              "guaranteed_weekly_hours" => 10,
+              "expected_weekly_hours" => 10,
               "current_weekly_hours" => 6.0,
               "weekly_hours_met" => false
             },
@@ -35,7 +35,7 @@ describe "Projects" do
               "id" => project2.id,
               "name" => "Oranges",
               "harvest_id" => project2.harvest_id,
-              "guaranteed_weekly_hours" => 20,
+              "expected_weekly_hours" => 20,
               "current_weekly_hours" => 24.0,
               "weekly_hours_met" => true
             },
@@ -43,7 +43,7 @@ describe "Projects" do
               "id" => project3.id,
               "name" => "Bananas",
               "harvest_id" => project3.harvest_id,
-              "guaranteed_weekly_hours" => 30,
+              "expected_weekly_hours" => 30,
               "current_weekly_hours" => 0.0,
               "weekly_hours_met" => false
             }
