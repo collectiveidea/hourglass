@@ -17,4 +17,12 @@ class Project < ActiveRecord::Base
   def weekly_hours_met
     current_weekly_hours >= guaranteed_weekly_hours
   end
+
+  def current_weekly_ratio
+    current_weekly_hours / guaranteed_weekly_hours
+  end
+
+  def current_weekly_percentage
+    current_weekly_ratio * 100
+  end
 end
