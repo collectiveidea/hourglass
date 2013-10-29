@@ -10,6 +10,18 @@ body {
   margin-top: 40px;
 }
 
+.navbar-header {
+  float: none;
+  text-align: center;
+}
+
+.navbar-brand {
+  display: block;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .progress {
   height: 26px;
   margin: 0;

@@ -12,18 +12,7 @@
     <div class="navbar navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to "&#x231B;".html_safe, root_path, class: "navbar-brand" %>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Projects", projects_path %></li>
-            <li><%= link_to "New Project", new_project_path %></li>
-          </ul>
+          <%= link_to "&#x231B;".html_safe, projects_path, class: "navbar-brand" %>
         </div>
       </div>
     </div>
