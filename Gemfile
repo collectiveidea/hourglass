@@ -22,5 +22,5 @@ group :development, :test do
   gem "pry"
   gem "rspec-rails", "~> 2.14"
   gem "vcr", "~> 2.6"
-  gem "webmock", "~> 1.15"
+  gem "webmock", "~> 1.15", require: false
 end
