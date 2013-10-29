@@ -8,6 +8,7 @@ gem "coffee-rails", "~> 4.0"
 gem "sass-rails", "~> 4.0"
 gem "uglifier", "~> 2.3"
 
+gem "figaro", "~> 0.7"
 gem "jbuilder", "~> 1.5"
 gem "jquery-rails", "~> 3.0"
 gem "turbolinks", "~> 1.3"
