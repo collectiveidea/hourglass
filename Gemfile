@@ -9,6 +9,7 @@ gem "sass-rails", "~> 4.0"
 gem "uglifier", "~> 2.3"
 
 gem "figaro", "~> 0.7"
+gem "harvested", "~> 1.0"
 gem "jbuilder", "~> 1.5"
 gem "jquery-rails", "~> 3.0"
 gem "turbolinks", "~> 1.3"
@@ -20,4 +21,6 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.2"
   gem "pry"
   gem "rspec-rails", "~> 2.14"
+  gem "vcr", "~> 2.6"
+  gem "webmock", "~> 1.15"
 end
