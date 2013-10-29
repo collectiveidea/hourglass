@@ -3,5 +3,5 @@
   meter_length = 50
 %>
 <% @projects.each do |project| %>
-<%= project.name.ljust(max_project_name_length) %> |<%= ("=" * ([project.current_weekly_ratio, 1].min * meter_length)).ljust(meter_length) %>| <%= number_to_percentage(project.current_weekly_percentage, precision: 0) %>
+<%= project.name.ljust(max_project_name_length) %> |<%= ("=" * ([project.current_weekly_ratio, 1].min * meter_length).round).ljust(meter_length) %>| <%= number_to_percentage(project.current_weekly_percentage, precision: 0) %>
 <% end %>
