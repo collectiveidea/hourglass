@@ -6,6 +6,7 @@ describe "Projects" do
     let!(:sunday) { monday + 6.days }
     let!(:project1) { create(:project, name: "Apples", guaranteed_weekly_hours: 10) }
     let!(:project2) { create(:project, name: "Oranges", guaranteed_weekly_hours: 20) }
+    let!(:project3) { create(:project, name: "Bananas", guaranteed_weekly_hours: 30) }
 
     before do
       create(:day, project: project1, date: monday, hours: 2)
@@ -37,6 +38,14 @@ describe "Projects" do
               "guaranteed_weekly_hours" => 20,
               "current_weekly_hours" => 24.0,
               "weekly_hours_met" => true
+            },
+            {
+              "id" => project3.id,
+              "name" => "Bananas",
+              "harvest_id" => project3.harvest_id,
+              "guaranteed_weekly_hours" => 30,
+              "current_weekly_hours" => 0.0,
+              "weekly_hours_met" => false
             }
           ]
         )
@@ -52,6 +61,7 @@ describe "Projects" do
         expect(response.body).to eq(<<-ASCII.strip_heredoc
           Apples  |==============================                    | 60%
           Oranges |==================================================| 120%
+          Bananas |                                                  | 0%
           ASCII
         )
       end
