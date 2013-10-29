@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://collectiveidea.harvestapp.com/projects/3192065/entries?from=20131029&to=20131029
+    uri: https://<%= ENV["HARVEST_SUBDOMAIN"] %>.harvestapp.com/projects/3192065/entries?from=20131029&to=20131029
     body:
       encoding: US-ASCII
       string: ''
@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 29 Oct 2013 17:51:16 GMT
+      - Tue, 29 Oct 2013 18:30:24 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -35,158 +35,30 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Served-From:
-      - https://collectiveidea.harvestapp.com/projects/3192065/en
+      - https://<%= ENV["HARVEST_SUBDOMAIN"] %>.harvestapp.com/projects/3192065/en
       X-Ua-Compatible:
       - IE=Edge,chrome=1
       Set-Cookie:
       - _feature_flags_new_nav=; path=/; expires=Thu, 01-Jan-1970 00:00:00 GMT
-      - _harvest_sess=BAh7BkkiD3Nlc3Npb25faWQGOgZFRkkiJWMyZDNlMTllOTBlZTZmNjVhYjYyZDcxM2Q5ZWNiMTNlBjsAVA%3D%3D--99fff0bc76b2d8cf27c7a4a9d50fba8558e16eb4;
+      - _harvest_sess=BAh7BkkiD3Nlc3Npb25faWQGOgZFRkkiJTRjMDMxM2U3ZmE0NGU4MjFiYjYxMTYxZGRhYzQ3ZjgwBjsAVA%3D%3D--31532c40cd0da600669f2d0d85f0b0d0cf127fb2;
         domain=.harvestapp.com; path=/; HttpOnly
       X-Request-Id:
-      - 33be4ce2-1cf3-43d3-9425-7820bd6d9970
+      - 61572a89-8ae0-448f-916b-f1354fc5690d
       X-Runtime:
-      - '0.288281'
+      - '0.286139'
       X-Powered-By:
       - Phusion Passenger
       X-Harvest-Box:
-      - rails5
+      - rails4
       X-Harvest-Fe:
       - lb2
     body:
       encoding: UTF-8
       string: '[{"day_entry":{"adjustment_record":false,"created_at":"2013-10-29T14:04:53Z","hours":0.42,"id":180758712,"is_closed":false,"notes":"invoices","project_id":3192065,"spent_at":"2013-10-29","task_id":20410,"timer_started_at":null,"updated_at":"2013-10-29T15:29:27Z","user_id":290854,"is_billed":false}},{"day_entry":{"adjustment_record":false,"created_at":"2013-10-29T14:46:06Z","hours":2.13,"id":180773582,"is_closed":false,"notes":"Invoice
-        filtering (comboboxes)","project_id":3192065,"spent_at":"2013-10-29","task_id":20410,"timer_started_at":null,"updated_at":"2013-10-29T15:37:29Z","user_id":179841,"is_billed":false}}]'
+        filtering (comboboxes)","project_id":3192065,"spent_at":"2013-10-29","task_id":20410,"timer_started_at":null,"updated_at":"2013-10-29T15:37:29Z","user_id":179841,"is_billed":false}},{"day_entry":{"adjustment_record":false,"created_at":"2013-10-29T18:25:40Z","hours":0.5,"id":180848637,"is_closed":false,"notes":"Google
+        Hangout with Jeff","project_id":3192065,"spent_at":"2013-10-29","task_id":20721,"timer_started_at":null,"updated_at":"2013-10-29T18:25:40Z","user_id":555330,"is_billed":false}},{"day_entry":{"adjustment_record":false,"created_at":"2013-10-29T18:27:13Z","hours":0.75,"id":180849085,"is_closed":false,"notes":"Researching
+        existing system for adding users","project_id":3192065,"spent_at":"2013-10-29","task_id":2308485,"timer_started_at":null,"updated_at":"2013-10-29T18:27:13Z","user_id":555330,"is_billed":false}},{"day_entry":{"adjustment_record":false,"created_at":"2013-10-29T18:27:29Z","hours":0.5,"id":180849154,"is_closed":false,"notes":"Pulling
+        together new screens for sign up (clinic)","project_id":3192065,"spent_at":"2013-10-29","task_id":2308485,"timer_started_at":null,"updated_at":"2013-10-29T18:27:29Z","user_id":555330,"is_billed":false}}]'
     http_version: 
-  recorded_at: Tue, 29 Oct 2013 17:51:16 GMT
-- request:
-    method: get
-    uri: https://brian%40collectiveidea.com:pleasechangeme@collectiveidea.harvestapp.com/projects/12345/entries?from=20131029&to=20131029
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json; charset=utf-8
-      User-Agent:
-      - Harvestable/1.0.1
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Tue, 29 Oct 2013 17:53:55 GMT
-      Content-Type:
-      - text/html
-      Content-Length:
-      - '3094'
-      Connection:
-      - keep-alive
-      Etag:
-      - '"526fd507-c16"'
-    body:
-      encoding: UTF-8
-      string: "<!DOCTYPE html>\n<html>\n<head>\n  <meta http-equiv=\"content-type\"
-        content=\"text/html; charset=utf-8\" />\n  <meta http-equiv=\"Pragma\" content=\"no-cache\"
-        />\n  <title>HARVEST: Can't find page</title>\n  <script type=\"text/javascript\">\n
-        \   <!--\n    \n    var accounturl = null;\n    \n    function url_test()
-        {\n      accounturl = window.location.href.substr(0, window.location.href.search(/\\.com/)+4);\n
-        \     if(window.location.port) accounturl += \":\" + window.location.port;\n
-        \     accounturl += \"/\";      \n      \n      var host = window.location.hostname;\n
-        \     var wwwexp = /www/;\n      \n      if(!wwwexp.test(host)){      \n        var
-        re = new RegExp(/^([^.]+)\\..*$/);\n        var m = re.exec(host);\n        if
-        (m != null && m[1]!=\"www\" && m[1]!=\"localhost\"){\n          document.getElementById('account404').style.display
-        = 'list-item';\n          document.getElementById('market404').style.display
-        = 'none';\n        }\n      }\n    }\n    \n    // End -->\n  </script>\n
-        \ <style type=\"text/css\">\n    body {\n      font: 12px/16px \"Lucida Grande\",
-        Helvetica, Arial, Verdana, sans-serif;\n      background:#e7e7e7;\n      color:
-        #333;\n    }\n\n    a {color: #F60;}\n    a:hover { color: #F60; text-decoration:
-        none;}\n\n    div#header {height:36px; border-bottom: 1px solid #bbb; margin-bottom:20px;
-        }\n    h1 { float:left; height:24px; line-height:24px; margin: 0 10px 0 0;
-        width:128px; }\n    h1 a {font-size: 0px; text-indent: -9999px; display:block;
-        height: 24px; width: 128px; background: transparent url(\"https://harvestpublic.s3.amazonaws.com/logo/harvest_logo_128x24.gif\")
-        no-repeat; }\n    h1 a:hover { background-color:#FFF; }\n    h2 {font-size:
-        16px; line-height: 1.4em; color: #000; margin: 0;}\n\n    .container {background-color:
-        #ddd; padding: 3px; width:450px; margin: 50px auto 20px auto; -webkit-border-radius:
-        10px; -moz-border-radius: 10px; border-radius: 12px }\n    .content {background-color:
-        #ffffff; border: 1px solid #aaa; padding: 30px; -webkit-border-radius: 8px;
-        -moz-border-radius: 8px; border-radius: 8px}\n\n    p {margin: 1em 0;}\n  \n
-        \   ul { text-indent:0; margin: 1em 0 0 0; padding:0; list-style:none; }\n
-        \   ul li { margin: 0 0 .7em; font-size:130%; }\n\n    \n  </style>\n</head>\n<body>\n
-        \ <div class=\"container\">\n    <div class=\"content\">\n      <div id=\"header\">\n
-        \       <h1><a href=\"http://www.getharvest.com/\">HARVEST</a></h1>\n      </div>\n
-        \     <h2>We can't find the page you're looking for.</h2>\n\n      <p> \n
-        \       Sorry about that! The page you were looking for may have been moved
-        or the address misspelled.\n      </p>\n      \n      <ul>\n        <li id=\"market404\">Go
-        to the <a href=\"http://www.getharvest.com/\">Harvest home page</a> or <a
-        href=\"https://www.getharvest.com/help/contact\">Contact Support</a></li>\n
-        \       <li id=\"account404\" style=\"display:none;\">Go to <a href=\"/\"
-        onClick=\"window.location = accounturl; return false;\">Your Harvest Account</a>
-        or <a href=\"https://www.getharvest.com/help/contact\">Contact Support</a></li>\n
-        \     </ul>\n      <script type=\"text/javascript\">\n       <!--\n        url_test();\n
-        \      //-->\n      </script>\n    </div>\n  </div>\n</body>\n</html>\n\n\n\n\n\n"
-    http_version: 
-  recorded_at: Tue, 29 Oct 2013 17:53:55 GMT
-- request:
-    method: get
-    uri: https://brian%40collectiveidea.com:pleasechangeme@collectiveidea.harvestapp.com/projects/3192065/entries?from=20131029&to=20131029
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json; charset=utf-8
-      User-Agent:
-      - Harvestable/1.0.1
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Tue, 29 Oct 2013 17:54:02 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Status:
-      - 200 OK
-      Cache-Control:
-      - private, no-store, no-cache, max-age=0, must-revalidate
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Served-From:
-      - https://collectiveidea.harvestapp.com/projects/3192065/en
-      X-Ua-Compatible:
-      - IE=Edge,chrome=1
-      Set-Cookie:
-      - _feature_flags_new_nav=; path=/; expires=Thu, 01-Jan-1970 00:00:00 GMT
-      - _harvest_sess=BAh7BkkiD3Nlc3Npb25faWQGOgZFRkkiJWI0NGY0NjgyNDYwNTliZWYxNjY5MzliZWM3MWRmNWE3BjsAVA%3D%3D--0ccf6c9ea68d740b6ffba5dbe3aac760d18cffdf;
-        domain=.harvestapp.com; path=/; HttpOnly
-      X-Request-Id:
-      - 69f5a0fc-97e0-4dbd-b0c1-9c9d21f43f1f
-      X-Runtime:
-      - '0.303725'
-      X-Powered-By:
-      - Phusion Passenger
-      X-Harvest-Box:
-      - rails16
-      X-Harvest-Fe:
-      - lb1
-    body:
-      encoding: UTF-8
-      string: '[{"day_entry":{"adjustment_record":false,"created_at":"2013-10-29T14:04:53Z","hours":0.42,"id":180758712,"is_closed":false,"notes":"invoices","project_id":3192065,"spent_at":"2013-10-29","task_id":20410,"timer_started_at":null,"updated_at":"2013-10-29T15:29:27Z","user_id":290854,"is_billed":false}},{"day_entry":{"adjustment_record":false,"created_at":"2013-10-29T14:46:06Z","hours":2.13,"id":180773582,"is_closed":false,"notes":"Invoice
-        filtering (comboboxes)","project_id":3192065,"spent_at":"2013-10-29","task_id":20410,"timer_started_at":null,"updated_at":"2013-10-29T15:37:29Z","user_id":179841,"is_billed":false}}]'
-    http_version: 
-  recorded_at: Tue, 29 Oct 2013 17:54:02 GMT
+  recorded_at: Tue, 29 Oct 2013 18:30:24 GMT
 recorded_with: VCR 2.6.0

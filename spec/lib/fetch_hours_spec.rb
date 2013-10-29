@@ -12,7 +12,7 @@ describe FetchHours, vcr: { cassette_name: "time_by_project", match_requests_on:
           FetchHours.perform
         }.to change {
           day.reload.hours
-        }.from("1.00".to_d).to("2.55".to_d)
+        }.from("1.00".to_d).to("4.30".to_d)
       end
     end
 
@@ -27,7 +27,7 @@ describe FetchHours, vcr: { cassette_name: "time_by_project", match_requests_on:
         day = Day.last
         expect(day.project).to eq(project)
         expect(day.date).to eq(Date.current)
-        expect(day.hours).to eq("2.55".to_d)
+        expect(day.hours).to eq("4.30".to_d)
       end
     end
   end
