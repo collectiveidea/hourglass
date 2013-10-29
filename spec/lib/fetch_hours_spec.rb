@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe FetchHours, vcr: { cassette_name: "time_by_project" } do
+describe FetchHours, vcr: { cassette_name: "time_by_project", match_requests_on: [:method, :host, :path] } do
   describe ".perform" do
     let!(:project) { create(:project, id: 3192065) }
 
