@@ -8,7 +8,7 @@ feature "Project Registration" do
     expect {
       fill_in "Name", with: "Project X"
       fill_in "Harvest ID", with: "12345"
-      fill_in "Guaranteed Hours", with: "123"
+      fill_in "Guaranteed Weekly Hours", with: "123"
       click_button "Save"
     }.to change {
       Project.count
@@ -17,6 +17,6 @@ feature "Project Registration" do
     project = Project.last
     expect(project.name).to eq("Project X")
     expect(project.harvest_id).to eq(12345)
-    expect(project.guaranteed_hours).to eq(123)
+    expect(project.guaranteed_weekly_hours).to eq(123)
   end
 end

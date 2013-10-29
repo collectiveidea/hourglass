@@ -12,7 +12,7 @@ feature "Project List" do
     projects.each_with_index do |project, i|
       expect(dom_projects[i].name).to eq(project.name)
       expect(dom_projects[i].harvest_id).to eq(project.harvest_id)
-      expect(dom_projects[i].guaranteed_hours).to eq(project.guaranteed_hours)
+      expect(dom_projects[i].guaranteed_weekly_hours).to eq(project.guaranteed_weekly_hours)
     end
   end
 end

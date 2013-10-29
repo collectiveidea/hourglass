@@ -25,7 +25,7 @@ en:
       project:
         name: "Name"
         harvest_id: "Harvest ID"
-        guaranteed_hours: "Guaranteed Hours"
+        guaranteed_weekly_hours: "Guaranteed Weekly Hours"
   helpers:
     submit:
       create: "Save"

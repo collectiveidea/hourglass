@@ -20,6 +20,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :harvest_id, :guaranteed_hours)
+    params.require(:project).permit(:name, :harvest_id, :guaranteed_weekly_hours)
   end
 end

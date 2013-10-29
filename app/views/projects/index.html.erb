@@ -9,7 +9,7 @@
     <tr>
       <th><%= t("activerecord.project.attributes.name") %></th>
       <th><%= t("activerecord.project.attributes.harvest_id") %></th>
-      <th><%= t("activerecord.project.attributes.guaranteed_hours") %></th>
+      <th><%= t("activerecord.project.attributes.guaranteed_weekly_hours") %></th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +17,7 @@
       <tr class="project">
         <td class="name"><%= project.name %></td>
         <td class="harvest-id"><%= project.harvest_id %></td>
-        <td class="guaranteed-hours"><%= project.guaranteed_hours %></td>
+        <td class="guaranteed-weekly-hours"><%= project.guaranteed_weekly_hours %></td>
       </tr>
     <% end %>
   </tbody>
