@@ -20,4 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      project:
+        name: "Name"
+        harvest_id: "Harvest ID"
+        guaranteed_hours: "Guaranteed Hours"
+  helpers:
+    submit:
+      create: "Save"
+      update: "Save"
