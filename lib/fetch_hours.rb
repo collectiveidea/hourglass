@@ -5,7 +5,7 @@ class FetchHours
 
   def perform
     Project.find_each do |project|
-      reports = harvest.reports.time_by_project(project.id, today, today)
+      reports = harvest.reports.time_by_project(project.harvest_id, today, today)
       project.days.save_for_date(today, reports.sum(&:hours))
     end
   end
