@@ -1,19 +1,19 @@
 <div class="form-group">
   <%= form.label :name, class: "col-lg-3 control-label" %>
   <div class="col-lg-3">
-    <%= form.text_field :name, class: "form-control" %>
+    <%= form.text_field :name, class: "form-control", required: true, autofocus: true %>
   </div>
 </div>
 <div class="form-group">
   <%= form.label :harvest_id, class: "col-lg-3 control-label" %>
   <div class="col-lg-3">
-    <%= form.text_field :harvest_id, class: "form-control" %>
+    <%= form.text_field :harvest_id, class: "form-control", required: true, pattern: '\d*' %>
   </div>
 </div>
 <div class="form-group">
   <%= form.label :expected_weekly_hours, class: "col-lg-3 control-label" %>
   <div class="col-lg-3">
-    <%= form.text_field :expected_weekly_hours, class: "form-control" %>
+    <%= form.text_field :expected_weekly_hours, class: "form-control", required: true, pattern: '\d*' %>
   </div>
 </div>
 <div class="form-group">
