@@ -1,5 +1,5 @@
 Hourglass::Application.routes.draw do
-  resources :projects, only: [:index, :new, :create, :edit, :update]
+  resources :projects, except: :show
 
   root to: redirect("/projects")
 end

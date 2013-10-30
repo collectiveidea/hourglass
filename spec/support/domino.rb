@@ -9,6 +9,10 @@ module Dom
     def update
       node.click_link("Update")
     end
+
+    def remove
+      node.click_link("Remove")
+    end
   end
 
   class ProjectForm < Domino
