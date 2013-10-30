@@ -3,7 +3,7 @@ require "spec_helper"
 feature "Project Registration" do
   scenario "A user can register a project" do
     visit root_path
-    click_link "Add Project"
+    click_link "Add a Project"
 
     expect {
       fill_in "Name", with: "Project X"

@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to "Add Project", new_project_path, class: "btn btn-success btn-lg pull-right" %>
+  <%= link_to "Add a Project", new_project_path, class: "btn btn-success btn-lg pull-right" %>
   <h1>Projects</h1>
 </div>
 
@@ -26,7 +26,7 @@
             </div>
           </td>
           <td class="actions">
-            <%= link_to "Update", "#update", class: "btn btn-xs btn-primary" %>
+            <%= link_to "Update", edit_project_path(project), class: "btn btn-xs btn-primary" %>
             <%= link_to "Remove", "#remove", class: "btn btn-xs btn-danger" %>
           </td>
         </tr>

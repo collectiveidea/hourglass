@@ -1,10 +1,23 @@
-<%= form.label :name %>
-<%= form.text_field :name %>
-
-<%= form.label :harvest_id %>
-<%= form.text_field :harvest_id %>
-
-<%= form.label :expected_weekly_hours %>
-<%= form.text_field :expected_weekly_hours %>
-
-<%= form.submit %>
+<div class="form-group">
+  <%= form.label :name, class: "col-lg-3 control-label" %>
+  <div class="col-lg-3">
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group">
+  <%= form.label :harvest_id, class: "col-lg-3 control-label" %>
+  <div class="col-lg-3">
+    <%= form.text_field :harvest_id, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group">
+  <%= form.label :expected_weekly_hours, class: "col-lg-3 control-label" %>
+  <div class="col-lg-3">
+    <%= form.text_field :expected_weekly_hours, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-lg-offset-3 col-lg-3">
+    <%= form.submit class: "btn #{form.object.persisted? ? "btn-primary" : "btn-success"}" %>
+  </div>
+</div>
