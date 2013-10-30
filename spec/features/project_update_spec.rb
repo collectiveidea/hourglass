@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "Project Updation" do
+feature "Project Update" do
   let!(:project) {
     create(:project,
       name: "Project X",
