@@ -27,7 +27,7 @@
           </td>
           <td class="actions">
             <%= link_to "Update", edit_project_path(project), class: "btn btn-xs btn-primary" %>
-            <%= link_to "Remove", project_path(project), method: :delete, class: "btn btn-xs btn-danger" %>
+            <%= link_to "Remove", project_path(project), method: :delete, class: "btn btn-xs btn-danger", data: { confirm: "Are you sure?" } %>
           </td>
         </tr>
       <% end %>
