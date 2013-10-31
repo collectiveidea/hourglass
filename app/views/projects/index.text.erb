@@ -7,9 +7,7 @@
   meter_length = ([project.current_weekly_ratio, 1].min * max_meter_length).round
 %>
 <%= project.name.ljust(max_project_name_length) -%>
- <%= meter_length == 0 ? "│" : "╞" -%>
-<%= ("═" * meter_length).ljust(max_meter_length) -%>
-<%= meter_length == max_meter_length ? "╡" : "│" -%>
- <%= number_to_percentage(project.current_weekly_percentage, precision: 0).ljust(4) -%>
+ │<%= ("•" * meter_length).ljust(max_meter_length) -%>
+│ <%= number_to_percentage(project.current_weekly_percentage, precision: 0).ljust(4) -%>
  (<%= project.current_weekly_hours.round %>/<%= project.expected_weekly_hours %>)
 <% end %>
