@@ -3,7 +3,7 @@ class Day < ActiveRecord::Base
 
   validates :project_id, :date, presence: true, strict: true
   validates :date, uniqueness: { scope: :project_id }, strict: true
-  validates :hours, numericality: { greater_than: 0 }, strict: true
+  validates :hours, numericality: { greater_than_or_equal_to: 0 }, strict: true
 
   def self.save_for_date(date, hours)
     day = find_or_initialize_by(date: date)
