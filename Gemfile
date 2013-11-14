@@ -24,6 +24,7 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.2"
   gem "pry"
   gem "rspec-rails", "~> 2.14"
+  gem "timecop", "~> 0.6"
   gem "vcr", "~> 2.6"
   gem "webmock", "~> 1.15", require: false
 end
