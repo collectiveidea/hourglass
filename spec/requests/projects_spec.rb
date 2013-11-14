@@ -59,8 +59,8 @@ describe "Projects" do
         expect(response.status).to eq(200)
 
         expect(response.body).to eq(<<-ASCII.strip_heredoc
-          Apples  ╞══════════════════════════════                    │ 60%  (6/10)
-          Oranges ╞══════════════════════════════════════════════════╡ 120% (24/20)
+          Apples  │••••••••••••••••••••••••••••••                    │ 60%  (6/10)
+          Oranges │••••••••••••••••••••••••••••••••••••••••••••••••••│ 120% (24/20)
           Bananas │                                                  │ 0%   (0/30)
           ASCII
         )
