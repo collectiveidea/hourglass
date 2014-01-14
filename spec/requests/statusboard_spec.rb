@@ -26,11 +26,11 @@ describe "Statusboard" do
                 "datapoints" => [
                   {
                     "title" => yesterday.to_s,
-                    "value" => "4.0",
+                    "value" => 4.00,
                   },
                   {
                     "title" => today.to_s,
-                    "value" => "2.0",
+                    "value" => 2.00,
                   },
                 ]
               },
