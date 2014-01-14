@@ -19,10 +19,10 @@ describe "Statusboard" do
         expect(JSON.load(response.body)).to eq(
           "graph" => {
             "title" => "Time Tracking",
-            "refreshEveryNSeconds" => 3600,
             "datasequences" => [
               {
                 "title" => "Billable Hours",
+                "refreshEveryNSeconds" => 3600,
                 "datapoints" => [
                   {
                     "title" => yesterday.to_s,
