@@ -4,7 +4,10 @@ class FetchWeek
   end
 
   def perform
-    week.each { |d| FetchDay.perform(d) }
+    week.each do |date|
+      FetchDay.perform(date)
+      FetchTotals.perform(date)
+    end
   end
 
   private
