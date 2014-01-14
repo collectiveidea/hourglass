@@ -1,5 +1,8 @@
 class StatusboardsController < ApplicationController
   def show
-    @date_totals = DateTotal.where(date: Date.current-10..Date.current).order('date')
+    days = ENV['STATUSBOARD_DAYS'] || 10
+    # we need an integer, subtract one since we'll use today
+    days = days.to_i - 1 
+    @date_totals = DateTotal.where(date: Date.current-days..Date.current).order('date')
   end
 end
