@@ -5,8 +5,8 @@ class StatusboardsController < ApplicationController
     days = days.to_i - 1 
     date_totals = DateTotal.where(date: Date.current-days..Date.current).order('date')
     @sequences = [
-      {title: "Billable Hours",  key: :billable_hours, date_totals: date_totals},
-      {title: "Unbillable Hours", key: :unbillable_hours, date_totals: date_totals},
+      Sequence.new(title: "Billable Hours",  key: :billable_hours, date_totals: date_totals),
+      Sequence.new(title: "Unbillable Hours", key: :unbillable_hours, date_totals: date_totals),
     ]
   end
 end
