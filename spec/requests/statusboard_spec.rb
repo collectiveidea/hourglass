@@ -23,7 +23,7 @@ describe "Statusboard" do
             "title" => "Time Tracking",
             "datasequences" => [
               {
-                "title" => "Billable Hours",
+                "title" => "Billable",
                 "datapoints" => [
                   {
                     "title" => day_before.strftime('%A'),
@@ -40,7 +40,7 @@ describe "Statusboard" do
                 ]
               },
               {
-                "title" => "Unbillable Hours",
+                "title" => "Unbillable",
                 "datapoints" => [
                   {
                     "title" => day_before.strftime('%A'),
