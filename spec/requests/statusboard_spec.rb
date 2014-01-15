@@ -24,6 +24,7 @@ describe "Statusboard" do
             "datasequences" => [
               {
                 "title" => "Billable",
+                "color" => "green",
                 "datapoints" => [
                   {
                     "title" => day_before.strftime('%A'),
@@ -41,6 +42,7 @@ describe "Statusboard" do
               },
               {
                 "title" => "Unbillable",
+                "color" => "blue",
                 "datapoints" => [
                   {
                     "title" => day_before.strftime('%A'),
