@@ -24,7 +24,6 @@ describe "Statusboard" do
             "datasequences" => [
               {
                 "title" => "Billable Hours",
-                "refreshEveryNSeconds" => 3600,
                 "datapoints" => [
                   {
                     "title" => day_before.strftime('%A'),
