@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113233449) do
+ActiveRecord::Schema.define(version: 20140115155235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "date_totals", force: true do |t|
     t.date     "date"
-    t.decimal  "billable_hours", precision: 5, scale: 2
+    t.decimal  "billable_hours",   precision: 5, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "unbillable_hours", precision: 5, scale: 2
   end
 
   create_table "days", force: true do |t|

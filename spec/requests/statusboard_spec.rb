@@ -7,9 +7,9 @@ describe "Statusboard" do
     let!(:day_before) { today - 2 }
 
     before do
-      create(:date_total, date: today, billable_hours: 2)
-      create(:date_total, date: yesterday, billable_hours: 4)
-      create(:date_total, date: day_before, billable_hours: 7)
+      create(:date_total, date: today,      billable_hours: 2, unbillable_hours: 1)
+      create(:date_total, date: yesterday,  billable_hours: 4, unbillable_hours: 3)
+      create(:date_total, date: day_before, billable_hours: 7, unbillable_hours: 6)
     end
 
     context "JSON" do
@@ -23,7 +23,8 @@ describe "Statusboard" do
             "title" => "Time Tracking",
             "datasequences" => [
               {
-                "title" => "Billable Hours",
+                "title" => "Billable",
+                "color" => "green",
                 "datapoints" => [
                   {
                     "title" => day_before.strftime('%A'),
@@ -36,6 +37,24 @@ describe "Statusboard" do
                   {
                     "title" => "Today",
                     "value" => 2.00,
+                  },
+                ]
+              },
+              {
+                "title" => "Unbillable",
+                "color" => "blue",
+                "datapoints" => [
+                  {
+                    "title" => day_before.strftime('%A'),
+                    "value" => 6.00,
+                  },
+                  {
+                    "title" => "Yesterday",
+                    "value" => 3.00,
+                  },
+                  {
+                    "title" => "Today",
+                    "value" => 1.00,
                   },
                 ]
               },
