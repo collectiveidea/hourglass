@@ -23,7 +23,7 @@ describe "Statusboard" do
             "title" => "Time Tracking",
             "datasequences" => [
               {
-                "title" => "Billable",
+                "title" => "Client",
                 "color" => "green",
                 "datapoints" => [
                   {
@@ -41,7 +41,7 @@ describe "Statusboard" do
                 ]
               },
               {
-                "title" => "Unbillable",
+                "title" => "Internal",
                 "color" => "blue",
                 "datapoints" => [
                   {

@@ -2,7 +2,7 @@ json.graph do
   json.title "Time Tracking"
   json.datasequences do
     json.child! do
-      json.title "Billable"
+      json.title "Client"
       json.color "green"
       json.datapoints @date_totals do |date_total|
         json.title friendly_weekday(date_total.date)
@@ -10,7 +10,7 @@ json.graph do
       end
     end
     json.child! do
-      json.title "Unbillable"
+      json.title "Internal"
       json.color "blue"
       json.datapoints @date_totals do |date_total|
         json.title friendly_weekday(date_total.date)
