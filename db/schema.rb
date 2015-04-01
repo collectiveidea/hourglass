@@ -11,11 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150401175728) do
+ActiveRecord::Schema.define(version: 20150401180329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "days", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.uuid     "user_id",                                              null: false
+    t.date     "date",                                                 null: false
+    t.string   "month_number",                                         null: false
+    t.string   "week_number",                                          null: false
+    t.decimal  "client_hours",   precision: 4, scale: 2, default: 0.0, null: false
+    t.decimal  "internal_hours", precision: 4, scale: 2, default: 0.0, null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+  end
+
+  add_index "days", ["date"], name: "index_days_on_date", using: :btree
+  add_index "days", ["month_number"], name: "index_days_on_month_number", using: :btree
+  add_index "days", ["user_id"], name: "index_days_on_user_id", using: :btree
+  add_index "days", ["week_number"], name: "index_days_on_week_number", using: :btree
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name",          null: false
