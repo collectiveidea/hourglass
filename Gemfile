@@ -9,6 +9,8 @@ gem "pg"
 gem "date_validator"
 gem "email_validator"
 gem "figaro"
+gem "harvested"
+gem "interactor"
 
 group :development, :test do
   gem "accept_values_for"

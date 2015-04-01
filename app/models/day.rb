@@ -6,6 +6,16 @@ class Day < ActiveRecord::Base
   before_create :set_month_number
   before_create :set_week_number
 
+  def self.ensure(user:, date:, client_hours:, internal_hours:)
+    find_or_initialize_by(
+      user: user,
+      date: date
+    ).update!(
+      client_hours: client_hours,
+      internal_hours: internal_hours
+    )
+  end
+
   private
 
   def set_month_number
