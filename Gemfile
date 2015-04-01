@@ -8,6 +8,7 @@ gem "pg"
 
 gem "date_validator"
 gem "email_validator"
+gem "figaro"
 
 group :development, :test do
   gem "accept_values_for"
