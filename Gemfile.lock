@@ -1,6 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    accept_values_for (0.7.2)
+      activemodel (>= 3, < 5)
+      rspec (>= 2.0, < 4.0)
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
       actionview (= 4.2.1)
@@ -41,6 +44,8 @@ GEM
     coderay (1.1.0)
     database_cleaner (1.4.1)
     diff-lcs (1.2.5)
+    email_validator (1.5.0)
+      activemodel
     erubis (2.7.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -96,6 +101,10 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    rspec (3.2.0)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
     rspec-core (3.2.2)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
@@ -133,7 +142,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  accept_values_for
   database_cleaner
+  email_validator
   factory_girl_rails
   pg
   pry
