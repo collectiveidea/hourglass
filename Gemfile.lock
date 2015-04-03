@@ -39,6 +39,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (6.0.0)
     builder (3.2.2)
     coderay (1.1.0)
@@ -46,6 +47,9 @@ GEM
     date_validator (0.7.1)
       activemodel
     diff-lcs (1.2.5)
+    email_spec (1.6.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     email_validator (1.5.0)
       activemodel
     erubis (2.7.0)
@@ -70,6 +74,8 @@ GEM
     i18n (0.7.0)
     interactor (3.1.0)
     json (1.8.2)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -160,6 +166,7 @@ DEPENDENCIES
   accept_values_for
   database_cleaner
   date_validator
+  email_spec
   email_validator
   factory_girl_rails
   figaro
