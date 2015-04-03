@@ -16,6 +16,10 @@ class Day < ActiveRecord::Base
     )
   end
 
+  def self.last_week
+    where(week_number: 1.week.ago.strftime("%G%V")).order(:date)
+  end
+
   private
 
   def set_month_number

@@ -149,6 +149,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    timecop (0.7.3)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
 
@@ -168,3 +169,4 @@ DEPENDENCIES
   pry
   rails (= 4.2.1)
   rspec-rails
+  timecop
