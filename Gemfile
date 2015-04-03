@@ -12,6 +12,10 @@ gem "figaro"
 gem "harvested"
 gem "interactor"
 
+group :production do
+  gem "rails_12factor"
+end
+
 group :development, :test do
   gem "accept_values_for"
   gem "database_cleaner"
