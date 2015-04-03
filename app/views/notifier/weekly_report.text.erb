@@ -1,0 +1,8 @@
+<%= @user.name %>,
+
+Last week, you spent <%= pluralize(number_with_precision(@client_hours, precision: 1), "hour") %> on client work and <%= pluralize(number_with_precision(@internal_hours, precision: 1), "hour") %> on internal work, for a total of <%= pluralize(number_with_precision(@total_hours, precision: 1), "hour") %>.
+
+
+Happy tracking,
+
+Hourglass
