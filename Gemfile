@@ -11,6 +11,7 @@ gem "email_validator"
 gem "figaro"
 gem "harvested"
 gem "interactor"
+gem "jbuilder"
 
 group :production do
   gem "rails_12factor"
