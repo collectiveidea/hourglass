@@ -10,8 +10,8 @@ Dir.chdir(File.expand_path("../..", __FILE__)) do
   puts
 
   puts "== Copying example files =="
-  unless File.exist?("config/database.yml")
-    system "cp config/database{.example,}.yml"
+  %w(application database).each do |name|
+    system "cp -n config/#{name}{.example,}.yml"
   end
   puts
 

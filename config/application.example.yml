@@ -1,0 +1,17 @@
+# The address from which to send all application emails
+EMAIL_FROM: "Hourglass <hourglass@example.com>"
+
+# Harvest credentials and configuration
+HARVEST_INTERNAL_CLIENT: "Internal" # The client in Harvest to consider internal
+HARVEST_PASSWORD: "secret"
+HARVEST_SUBDOMAIN: "example"
+HARVEST_TIME_ZONE: "Eastern Time (US & Canada)" # rake time:zones:all
+HARVEST_USERNAME: "jane@example.com" # Must be an admin
+
+# Mandrill SMPT credentials and configuration
+MANDRILL_DOMAIN: "example.com"
+MANDRILL_PASSWORD: "hTgvuxadFPSYJ4RMmapnoA" # Fake; must generate API key
+MANDRILL_USERNAME: "hourglass@example.com"
+
+# The number of days (including today) to display on the Panic Status Board
+STATUSBOARD_DAYS: "7"
