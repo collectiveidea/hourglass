@@ -1,0 +1,12 @@
+before_install:
+  - gem update bundler rake
+before_script:
+  - bin/setup
+branches:
+  only:
+    - master
+cache: bundler
+language: ruby
+rvm:
+  - 2.2.1
+sudo: false
