@@ -26,7 +26,7 @@ group :development, :test do
   gem "email_spec"
   gem "factory_girl_rails"
   gem "foreman"
-  gem "pry"
+  gem "pry-rails"
   gem "rspec-rails"
   gem "timecop"
 end
