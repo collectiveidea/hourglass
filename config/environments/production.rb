@@ -68,7 +68,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: "smtp.mandrillapp.com",
-    authentication: "login",
+    authentication: :plain,
     domain: ENV["MANDRILL_DOMAIN"],
     enable_starttls_auto: true,
     password: ENV["MANDRILL_PASSWORD"],
