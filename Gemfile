@@ -12,6 +12,7 @@ gem "figaro"
 gem "harvested"
 gem "interactor"
 gem "jbuilder"
+gem "puma"
 
 group :production do
   gem "rails_12factor"
@@ -23,6 +24,7 @@ group :development, :test do
   gem "database_cleaner"
   gem "email_spec"
   gem "factory_girl_rails"
+  gem "foreman"
   gem "pry"
   gem "rspec-rails"
   gem "timecop"
