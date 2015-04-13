@@ -20,10 +20,6 @@ class Day < ActiveRecord::Base
     where(week_number: 1.week.ago.strftime("%G%V")).order(:date)
   end
 
-  def total_hours
-    client_hours + internal_hours
-  end
-
   private
 
   def set_month_number

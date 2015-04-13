@@ -3,32 +3,27 @@ class FetchDailyHours
 
   before do
     context.date ||= Date.current
-    context.from ||= context.date
-    context.to ||= context.date
-    context.range ||= context.from..context.to
   end
 
   def call
     User.all.each do |user|
-      context.range.each do |date|
-        time_entries = harvest.time.all(date, user.harvest_id)
-        client_hours, internal_hours = 0, 0
+      time_entries = harvest.time.all(context.date, user.harvest_id)
+      client_hours, internal_hours = 0, 0
 
-        time_entries.each do |time_entry|
-          if internal?(time_entry)
-            internal_hours += time_entry.hours.to_d
-          else
-            client_hours += time_entry.hours.to_d
-          end
+      time_entries.each do |time_entry|
+        if internal?(time_entry)
+          internal_hours += time_entry.hours.to_d
+        else
+          client_hours += time_entry.hours.to_d
         end
-
-        Day.ensure(
-          user: user,
-          date: date,
-          client_hours: client_hours,
-          internal_hours: internal_hours
-        )
       end
+
+      Day.ensure(
+        user: user,
+        date: context.date,
+        client_hours: client_hours,
+        internal_hours: internal_hours
+      )
     end
   end
 
