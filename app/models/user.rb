@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :days, inverse_of: :user, dependent: :restrict_with_exception
-  has_many :months, inverse_of: :user, dependent: :restrict_with_exception
+  has_many :days, -> { order(:date) }, inverse_of: :user,
+    dependent: :restrict_with_exception
+  has_many :months, -> { order(:number) }, inverse_of: :user,
+    dependent: :restrict_with_exception
 
   validates :name, presence: true
   validates :email, presence: true, email: true

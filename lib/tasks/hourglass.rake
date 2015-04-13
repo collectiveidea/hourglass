@@ -4,6 +4,11 @@ namespace :hourglass do
     FetchDailyHours.call
   end
 
+  desc "Fetch hours for this week from Harvest for every user"
+  task :fetch_weekly_hours => :environment do
+    FetchWeeklyHours.call
+  end
+
   desc "Send weekly report emails to every user"
   task :send_weekly_reports => :environment do
     SendWeeklyReports.call if Date.current.monday?
