@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <body>
+    <table>
+      <tr>
+        <td>
+          <p>
+            Hi <%= @user.name %>,
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="70%" height="180px" style="vertical-align: top;">
+          Your breakdown for last week:
+
+          <p>
+            <table width="50%">
+              <tr>
+                <td>Client</td>
+                <td><%= pluralize_hours(@client_hours) %></td>
+              </tr>
+              <tr>
+                <td>Internal</td>
+                <td><%= pluralize_hours(@internal_hours) %></td>
+              </tr>
+              <tr>
+                <td colspan=2><hr/></td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td><%= pluralize_hours(@total_hours) %></td>
+              </tr>
+            </table>
+          </p>
+        </td>
+
+        <td>
+          <img src="https://chart.googleapis.com/chart?cht=p&chd=t:<%= @client_hours %>,<%= @internal_hours %>&chs=180x180&chdl=Client|Internal&chdlp=b"></img>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>
+            Happy tracking,<br/>
+            Hourglass ⏳
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
