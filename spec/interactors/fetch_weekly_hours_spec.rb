@@ -63,7 +63,7 @@ describe FetchWeeklyHours do
       Day.count
     }.from(0).to(14)
 
-    monday_1, _t, _w, _t, _f, _s, sunday_1 = user_1.days.order(:date)
+    monday_1, _t, _w, _t, _f, _s, sunday_1 = user_1.days
     expect(monday_1.date).to eq(monday)
     expect(monday_1.client_hours).to eq("6.0".to_d)
     expect(monday_1.internal_hours).to eq("10.0".to_d)
@@ -71,7 +71,7 @@ describe FetchWeeklyHours do
     expect(sunday_1.client_hours).to eq("8.0".to_d)
     expect(sunday_1.internal_hours).to eq("12.0".to_d)
 
-    monday_2, _t, _w, _t, _f, _s, sunday_2 = user_2.days.order(:date)
+    monday_2, _t, _w, _t, _f, _s, sunday_2 = user_2.days
     expect(monday_2.date).to eq(monday)
     expect(monday_2.client_hours).to eq("0.6".to_d)
     expect(monday_2.internal_hours).to eq("1.0".to_d)
