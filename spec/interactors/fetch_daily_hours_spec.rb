@@ -139,4 +139,80 @@ describe FetchDailyHours do
     expect(day_2.client_hours).to eq("0.5".to_d)
     expect(day_2.internal_hours).to eq("1.0".to_d)
   end
+
+  it "accepts a date range" do
+    user = create(:user)
+    monday, sunday = Date.current.monday, Date.current.sunday
+
+    expect(harvest_time).to receive(:all).
+      with(monday, user.harvest_id) {
+        [
+          create(:harvest_time_entry, :client,   hours: 1.0),
+          create(:harvest_time_entry, :internal, hours: 1.0)
+        ]
+      }
+
+    expect(harvest_time).to receive(:all).
+      with(monday + 1.day, user.harvest_id) {
+        [
+          create(:harvest_time_entry, :client,   hours: 2.0),
+          create(:harvest_time_entry, :internal, hours: 2.0)
+        ]
+      }
+
+    expect(harvest_time).to receive(:all).
+      with(monday + 2.days, user.harvest_id) {
+        [
+          create(:harvest_time_entry, :client,   hours: 3.0),
+          create(:harvest_time_entry, :internal, hours: 3.0)
+        ]
+      }
+
+    expect(harvest_time).to receive(:all).
+      with(monday + 3.days, user.harvest_id) {
+        [
+          create(:harvest_time_entry, :client,   hours: 4.0),
+          create(:harvest_time_entry, :internal, hours: 4.0)
+        ]
+      }
+
+    expect(harvest_time).to receive(:all).
+      with(monday + 4.days, user.harvest_id) {
+        [
+          create(:harvest_time_entry, :client,   hours: 5.0),
+          create(:harvest_time_entry, :internal, hours: 5.0)
+        ]
+      }
+
+    expect(harvest_time).to receive(:all).
+      with(monday + 5.days, user.harvest_id) {
+        [
+          create(:harvest_time_entry, :client,   hours: 6.0),
+          create(:harvest_time_entry, :internal, hours: 6.0)
+        ]
+      }
+
+    expect(harvest_time).to receive(:all).
+      with(sunday, user.harvest_id) {
+        [
+          create(:harvest_time_entry, :client,   hours: 7.0),
+          create(:harvest_time_entry, :internal, hours: 7.0)
+        ]
+      }
+
+    expect {
+      FetchDailyHours.call(from: monday, to: sunday)
+    }.to change {
+      Day.count
+    }.from(0).to(7)
+
+    days = Day.order(:date)
+    expect(days[0].total_hours).to eq(2)
+    expect(days[1].total_hours).to eq(4)
+    expect(days[2].total_hours).to eq(6)
+    expect(days[3].total_hours).to eq(8)
+    expect(days[4].total_hours).to eq(10)
+    expect(days[5].total_hours).to eq(12)
+    expect(days[6].total_hours).to eq(14)
+  end
 end
