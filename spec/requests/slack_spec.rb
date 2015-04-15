@@ -35,7 +35,10 @@ describe "Slack Command" do
 
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
-        April 3: 6.4 client + 1.6 internal = 8.0 total hours
+        Hours for April 3
+        6.4 client
+        1.6 internal
+        8.0 total
         MSG
     end
 
@@ -44,7 +47,10 @@ describe "Slack Command" do
 
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
-        March 30 – April 5: 19.2 client + 4.8 internal = 24.0 total hours
+        Hours for March 30 – April 5
+        19.2 client
+        4.8 internal
+        24.0 total
         MSG
     end
 
@@ -53,7 +59,10 @@ describe "Slack Command" do
 
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
-        April 1 – 30: 12.8 client + 3.2 internal = 16.0 total hours
+        Hours for April 1 – 30
+        12.8 client
+        3.2 internal
+        16.0 total
         MSG
     end
   end
