@@ -50,6 +50,7 @@ describe "Panic Status Board" do
       expect(JSON.load(response.body)).to eq(
         "graph" => {
           "title" => "Time Tracking",
+          "total" => true,
           "datasequences" => [
             {
               "title" => "Client",

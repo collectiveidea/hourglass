@@ -1,5 +1,6 @@
 json.graph do
   json.title "Time Tracking"
+  json.total true
   json.datasequences do
     json.child! do
       json.title "Client"
