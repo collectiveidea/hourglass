@@ -30,8 +30,8 @@ describe "Slack Command" do
       })
     end
 
-    it "returns the user's hours for the day" do
-      get "/slack", { text: "day", user_id: user.slack_id }
+    it "returns the user's hours for today" do
+      get "/slack", { text: "today", user_id: user.slack_id }
 
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
@@ -42,8 +42,8 @@ describe "Slack Command" do
         MSG
     end
 
-    it "returns the user's hours for the week" do
-      get "/slack", { text: "week", user_id: user.slack_id }
+    it "returns the user's hours for this week" do
+      get "/slack", { text: "this week", user_id: user.slack_id }
 
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
@@ -54,8 +54,8 @@ describe "Slack Command" do
         MSG
     end
 
-    it "returns the user's hours for the month" do
-      get "/slack", { text: "month", user_id: user.slack_id }
+    it "returns the user's hours for this month" do
+      get "/slack", { text: "this month", user_id: user.slack_id }
 
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
