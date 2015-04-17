@@ -14,7 +14,7 @@ the organization in such a way as to promote better time management.
 ```
 $ git clone git@github.com:collectiveidea/hourglass.git
 $ cd hourglass
-$ rvm 2.2.1@hourglass --create --ruby-version
+$ rvm 2.2.2@hourglass --create --ruby-version
 $ bin/setup
 $ rspec
 ```
