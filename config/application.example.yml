@@ -1,6 +1,10 @@
 # The address from which to send all application emails
 EMAIL_FROM: "Hourglass <hourglass@example.com>"
 
+# In a perfect world, how many hours per person per week
+EXPECTED_WEEKLY_CLIENT_HOURS: "32"
+EXPECTED_WEEKLY_INTERNAL_HOURS: "8"
+
 # Harvest credentials and configuration
 HARVEST_INTERNAL_CLIENT: "Internal" # The client in Harvest to consider internal
 HARVEST_PASSWORD: "secret"

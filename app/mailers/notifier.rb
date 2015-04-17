@@ -10,6 +10,9 @@ class Notifier < ActionMailer::Base
     @internal_hours = user.internal_hours_last_week
     @total_hours = @client_hours + @internal_hours
 
+    @expected_client_hours = ENV["EXPECTED_WEEKLY_CLIENT_HOURS"].to_d
+    @expected_internal_hours = ENV["EXPECTED_WEEKLY_INTERNAL_HOURS"].to_d
+
     mail to: user.email
   end
 
