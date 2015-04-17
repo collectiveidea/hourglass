@@ -3,30 +3,50 @@ describe "Slack Command" do
     let!(:user) { create(:user) }
 
     before do
-      Timecop.travel(Date.new(2015, 4, 3))
+      Timecop.travel(Date.new(2015, 4, 10))
       today = Date.current
 
       create(:day, {
         user: user,
-        date: today,
-        client_hours: 6.4,
+        date: today, # 2015-04-10
+        client_hours: 0.1,
+        internal_hours: 0.1
+      })
+      create(:day, {
+        user: user,
+        date: today - 1.day, # 2015-04-09
+        client_hours: 0.2,
+        internal_hours: 0.2
+      })
+      create(:day, {
+        user: user,
+        date: today.monday, # 2015-04-06
+        client_hours: 0.4,
+        internal_hours: 0.4
+      })
+      create(:day, {
+        user: user,
+        date: today.monday - 1.week, # 2015-03-30
+        client_hours: 0.8,
+        internal_hours: 0.8
+      })
+      create(:day, {
+        user: user,
+        date: today.beginning_of_month, # 2015-04-01
+        client_hours: 1.6,
         internal_hours: 1.6
       })
       create(:day, {
         user: user,
-        date: today.monday,
-        client_hours: 6.4,
-        internal_hours: 1.6
+        date: today.beginning_of_month - 1.month, # 2015-03-01
+        client_hours: 3.2,
+        internal_hours: 3.2
       })
       create(:day, {
         user: user,
-        date: today.beginning_of_month,
+        date: today.beginning_of_month - 1.month - 1.day, # 2015-02-28
         client_hours: 6.4,
-        internal_hours: 1.6
-      })
-      create(:day, {
-        user: user,
-        date: today.beginning_of_month - 1.day
+        internal_hours: 6.4
       })
     end
 
@@ -35,10 +55,22 @@ describe "Slack Command" do
 
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
-        Hours for April 3
-        6.4 client
-        1.6 internal
-        8.0 total
+        Hours for April 10
+        0.1 client
+        0.1 internal
+        0.2 total
+        MSG
+    end
+
+    it "returns the user's hours for yesterday" do
+      get "/slack", { text: "yesterday", user_id: user.slack_id }
+
+      expect(response.status).to eq(200)
+      expect(response.body).to eq(<<-MSG.strip_heredoc)
+        Hours for April 9
+        0.2 client
+        0.2 internal
+        0.4 total
         MSG
     end
 
@@ -47,10 +79,22 @@ describe "Slack Command" do
 
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
+        Hours for April 6 – 12
+        0.7 client
+        0.7 internal
+        1.4 total
+        MSG
+    end
+
+    it "returns the user's hours for last week" do
+      get "/slack", { text: "last week", user_id: user.slack_id }
+
+      expect(response.status).to eq(200)
+      expect(response.body).to eq(<<-MSG.strip_heredoc)
         Hours for March 30 – April 5
-        19.2 client
-        4.8 internal
-        24.0 total
+        2.4 client
+        2.4 internal
+        4.8 total
         MSG
     end
 
@@ -60,9 +104,21 @@ describe "Slack Command" do
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
         Hours for April 1 – 30
-        12.8 client
-        3.2 internal
-        16.0 total
+        2.3 client
+        2.3 internal
+        4.6 total
+        MSG
+    end
+
+    it "returns the user's hours for last month" do
+      get "/slack", { text: "last month", user_id: user.slack_id }
+
+      expect(response.status).to eq(200)
+      expect(response.body).to eq(<<-MSG.strip_heredoc)
+        Hours for March 1 – 31
+        4.0 client
+        4.0 internal
+        8.0 total
         MSG
     end
   end
