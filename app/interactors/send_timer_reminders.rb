@@ -1,5 +1,6 @@
 class SendTimerReminders
   include Interactor
+  include HasHarvest
 
   before do
     context.date ||= Date.current
@@ -11,15 +12,5 @@ class SendTimerReminders
 
       Notifier.timer_reminder(user).deliver_now if time_entries.none?
     end
-  end
-
-  private
-
-  def harvest
-    @harvest ||= Harvest.hardy_client(
-      subdomain: ENV["HARVEST_SUBDOMAIN"],
-      username: ENV["HARVEST_USERNAME"],
-      password: ENV["HARVEST_PASSWORD"]
-    )
   end
 end
