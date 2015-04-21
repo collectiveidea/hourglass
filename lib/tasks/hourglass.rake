@@ -32,4 +32,9 @@ namespace :hourglass do
       SendTimerReminders.call!
     end
   end
+
+  desc "Sync PTO from the Zenefits calendar"
+  task :sync_pto => :environment do
+    SyncPTO.call!
+  end
 end
