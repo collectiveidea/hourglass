@@ -1,21 +1,10 @@
 class SendTimerReminders
   include Interactor
-  include HasHarvest
-
-  before do
-    context.date ||= Date.current
-  end
 
   def call
-    User.all.each do |user|
-      next if user.timer_reminder_sent_on == context.date
-
-      day = user.days.find_by(date: context.date)
-      next if day.try(:pto?)
-
-      time_entries = harvest.time.all(context.date, user.harvest_id)
-      Notifier.timer_reminder(user).deliver_now if time_entries.none?
-      user.update!(timer_reminder_sent_on: context.date)
+    User.for_timer_reminder.each do |user|
+      Notifier.timer_reminder(user).deliver_now
+      user.timer_reminder_sent!
     end
   end
 end
