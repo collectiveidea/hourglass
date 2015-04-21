@@ -8,7 +8,7 @@ class SendTimerReminders
 
   def call
     User.all.each do |user|
-      next if user.timer_reminder_sent_on.try(:today?)
+      next if user.timer_reminder_sent_on == context.date
 
       day = user.days.find_by(date: context.date)
       next if day.try(:pto?)
