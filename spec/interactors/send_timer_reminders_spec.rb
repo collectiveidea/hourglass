@@ -32,4 +32,23 @@ describe SendTimerReminders do
     open_last_email_for(user_2.email)
     expect(current_email).to have_i18n_subject_for("timer_reminder")
   end
+
+  it "only sends one reminder per day" do
+    today = Date.current
+    user = create(:user)
+
+    expect(harvest_time).to receive(:all).with(today, user.harvest_id) { [] }
+
+    expect {
+      SendTimerReminders.call
+    }.to change {
+      mailbox_for(user.email).size
+    }.from(0).to(1)
+
+    expect {
+      SendTimerReminders.call
+    }.not_to change {
+      mailbox_for(user.email).size
+    }
+  end
 end
