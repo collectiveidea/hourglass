@@ -5,6 +5,8 @@ describe SyncPTO do
   let(:vacation) { Date.new(2015, 5, 26) } # Personal vacation
 
   before do
+    Timecop.travel(Date.new(2015, 5, 1))
+
     stub_request(:get, ENV["ZENEFITS_PTO_CALENDAR_URL"]).
       to_return(Rails.root.join("spec/fixtures/pto.ics").read)
   end
@@ -39,5 +41,15 @@ describe SyncPTO do
 
     expect(monday_1.reload).to be_pto
     expect(monday_2.reload).to be_pto
+  end
+
+  it "ignores events earlier than one month ago" do
+    Timecop.travel(Date.new(2015, 7, 27))
+
+    expect {
+      SyncPTO.call
+    }.not_to change {
+      Day.count
+    }
   end
 end
