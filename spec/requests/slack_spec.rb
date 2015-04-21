@@ -121,5 +121,12 @@ describe "Slack Command" do
         8.0 total
         MSG
     end
+
+    it "returns nothing for an invalid command" do
+      get "/slack", { text: "tomorrow", user_id: user.slack_id }
+
+      expect(response.status).to eq(204)
+      expect(response.body).to be_blank
+    end
   end
 end
