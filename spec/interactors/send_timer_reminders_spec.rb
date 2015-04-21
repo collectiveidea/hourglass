@@ -1,6 +1,7 @@
 describe SendTimerReminders do
   let(:harvest) { double(Harvest::HardyClient) }
   let(:harvest_time) { double(Harvest::API::Time) }
+  let(:today) { Date.current }
 
   before do
     allow(Harvest).to receive(:hardy_client).with(
@@ -13,7 +14,6 @@ describe SendTimerReminders do
   end
 
   it "sends a reminder for any user who hasn't started a timer yet today" do
-    today = Date.current
     user_1 = create(:user, email: "john@example.com")
     user_2 = create(:user, email: "jane@example.com")
 
@@ -34,7 +34,6 @@ describe SendTimerReminders do
   end
 
   it "only sends one reminder per day" do
-    today = Date.current
     user = create(:user)
 
     expect(harvest_time).to receive(:all).with(today, user.harvest_id) { [] }
@@ -44,6 +43,23 @@ describe SendTimerReminders do
     }.to change {
       mailbox_for(user.email).size
     }.from(0).to(1)
+
+    expect {
+      SendTimerReminders.call
+    }.not_to change {
+      mailbox_for(user.email).size
+    }
+  end
+
+  it "doesn't send a reminder on a PTO day" do
+    user = create(:user)
+    create(:day, user: user, date: today, pto: true)
+
+    allow(harvest_time).to receive(:all).with(today, user.harvest_id) {
+      [
+        create(:harvest_time_entry, :in_progress, hours_without_timer: 0.0)
+      ]
+    }
 
     expect {
       SendTimerReminders.call
