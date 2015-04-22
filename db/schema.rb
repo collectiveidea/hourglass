@@ -11,22 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421163745) do
+ActiveRecord::Schema.define(version: 20150422171320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
   create_table "days", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.uuid     "user_id",                                                null: false
-    t.date     "date",                                                   null: false
-    t.string   "month_number",                                           null: false
-    t.string   "week_number",                                            null: false
-    t.decimal  "client_hours",   precision: 4, scale: 2, default: 0.0,   null: false
-    t.decimal  "internal_hours", precision: 4, scale: 2, default: 0.0,   null: false
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
-    t.boolean  "pto",                                    default: false, null: false
+    t.uuid     "user_id",                                                     null: false
+    t.date     "date",                                                        null: false
+    t.string   "month_number",                                                null: false
+    t.string   "week_number",                                                 null: false
+    t.decimal  "client_hours",        precision: 4, scale: 2, default: 0.0,   null: false
+    t.decimal  "internal_hours",      precision: 4, scale: 2, default: 0.0,   null: false
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+    t.boolean  "pto",                                         default: false, null: false
+    t.boolean  "timer_reminder_sent",                         default: false, null: false
   end
 
   add_index "days", ["date"], name: "index_days_on_date", using: :btree
@@ -47,15 +48,14 @@ ActiveRecord::Schema.define(version: 20150421163745) do
   add_index "months", ["user_id"], name: "index_months_on_user_id", using: :btree
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",                   null: false
-    t.string   "email",                  null: false
-    t.string   "harvest_id",             null: false
-    t.string   "zenefits_name",          null: false
-    t.string   "time_zone",              null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",          null: false
+    t.string   "email",         null: false
+    t.string   "harvest_id",    null: false
+    t.string   "zenefits_name", null: false
+    t.string   "time_zone",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.string   "slack_id"
-    t.date     "timer_reminder_sent_on"
   end
 
   add_index "users", ["slack_id"], name: "index_users_on_slack_id", unique: true, using: :btree
