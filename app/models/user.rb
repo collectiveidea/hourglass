@@ -11,23 +11,8 @@ class User < ActiveRecord::Base
   validates :time_zone, presence: true,
     inclusion: { in: ActiveSupport::TimeZone::MAPPING.keys }
 
-  def self.for_timer_reminder
-    today = Date.current
-
-    joins(:days).
-      where(
-        arel_table[:timer_reminder_sent_on].eq(nil).or(
-          arel_table[:timer_reminder_sent_on].lt(today)
-        )
-      ).
-      where(
-        days: {
-          date: today,
-          client_hours: 0,
-          internal_hours: 0,
-          pto: false
-        }
-      )
+  def self.for_timer_reminder(date: Date.current)
+    joins(:days).merge(Day.for_timer_reminder(date: date))
   end
 
   def client_hours_last_week
@@ -46,7 +31,7 @@ class User < ActiveRecord::Base
     days.where(date: date_range).sum(:internal_hours)
   end
 
-  def timer_reminder_sent!
-    update!(timer_reminder_sent_on: Date.current)
+  def timer_reminder_sent!(date: Date.current)
+    days.find_by!(date: date).update!(timer_reminder_sent: true)
   end
 end
