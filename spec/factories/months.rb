@@ -5,6 +5,7 @@ FactoryGirl.define do
     end
 
     user
-    number { date.strftime("%Y%m") }
+    year { date.year }
+    number { date.month }
   end
 end
