@@ -19,3 +19,6 @@ MANDRILL_USERNAME: "hourglass@example.com"
 
 # The number of days (including today) to display on the Panic Status Board
 STATUSBOARD_DAYS: "7"
+
+# A secure URL to the PTO calendar provided by Zenefits
+ZENEFITS_PTO_CALENDAR_URL: "https://secure.zenefits.com/pto_calendar/784045?token=WLltlFOzjp" # Fake

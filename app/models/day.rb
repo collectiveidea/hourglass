@@ -6,18 +6,22 @@ class Day < ActiveRecord::Base
   before_create :set_month_number
   before_create :set_week_number
 
-  def self.ensure(user:, date:, client_hours:, internal_hours:)
-    find_or_initialize_by(
-      user: user,
-      date: date
-    ).update!(
-      client_hours: client_hours,
-      internal_hours: internal_hours
-    )
+  def self.ensure(user:, date:, **attributes)
+    find_or_initialize_by(user: user, date: date).update!(attributes)
   end
 
   def self.last_week
     where(week_number: 1.week.ago.strftime("%G%V")).order(:date)
+  end
+
+  def self.for_timer_reminder(date: Date.current)
+    where(
+      date: date,
+      client_hours: 0,
+      internal_hours: 0,
+      pto: false,
+      timer_reminder_sent: false
+    )
   end
 
   private

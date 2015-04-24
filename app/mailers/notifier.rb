@@ -16,6 +16,12 @@ class Notifier < ActionMailer::Base
     mail to: user.email
   end
 
+  def timer_reminder(user)
+    @user = user
+
+    mail to: user.email
+  end
+
   private
 
   def pluralize_hours(hours)

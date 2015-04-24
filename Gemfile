@@ -11,6 +11,7 @@ gem "email_validator"
 gem "figaro"
 gem "harvested"
 gem "honeybadger"
+gem "icalendar"
 gem "interactor"
 gem "jbuilder"
 gem "puma"
@@ -29,4 +30,5 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails"
   gem "timecop"
+  gem "webmock", require: false
 end

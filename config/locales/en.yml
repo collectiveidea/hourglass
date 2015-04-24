@@ -23,3 +23,5 @@ en:
   notifier:
     weekly_report:
       subject: "Weekly Time Report"
+    timer_reminder:
+      subject: "Timer Reminder"

@@ -1,0 +1,37 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 21 Apr 2015 17:31:12 GMT
+Content-Type: text/calendar; charset=utf8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Cookie
+Set-Cookie: sessionid=vck7cmctkox8049oxkgzelm4lrys3xw5; expires=Tue, 05-May-2015 17:31:12 GMT; httponly; Max-Age=1209600; Path=/
+X-Frame-Options: SAMEORIGIN
+
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//zenefits.com//Zenefits//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALDESC:
+X-WR-CALNAME:Example PTO calendar
+BEGIN:VEVENT
+SUMMARY:John Doe: Vacation
+DTSTART;VALUE=DATE:20150526
+DTEND;VALUE=DATE:20150527
+DTSTAMP;VALUE=DATE-TIME:20150421T095633Z
+UID:uK2-1bM44cBVhpjOc_yuLzCJyI3EKQ19qcsYHw==-vacation-item-66354@zenefits.
+ com
+DESCRIPTION:Road Trip
+URL:http://zenefits.com
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Memorial Day
+DTSTART;VALUE=DATE:20150525
+DTEND;VALUE=DATE:20150526
+DTSTAMP;VALUE=DATE-TIME:20150421T095633Z
+UID:holiday-item-Memorial Day2015-05-252015-05-25@zenefits.com
+DESCRIPTION:Holiday
+URL:http://zenefits.com
+END:VEVENT
+END:VCALENDAR

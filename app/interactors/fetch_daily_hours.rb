@@ -1,5 +1,6 @@
 class FetchDailyHours
   include Interactor
+  include HasHarvest
 
   before do
     context.date ||= Date.current
@@ -28,14 +29,6 @@ class FetchDailyHours
   end
 
   private
-
-  def harvest
-    @harvest ||= Harvest.hardy_client(
-      subdomain: ENV["HARVEST_SUBDOMAIN"],
-      username: ENV["HARVEST_USERNAME"],
-      password: ENV["HARVEST_PASSWORD"]
-    )
-  end
 
   def internal?(time_entry)
     time_entry.client == ENV["HARVEST_INTERNAL_CLIENT"]
