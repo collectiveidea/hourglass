@@ -3,15 +3,12 @@ class Day < ActiveRecord::Base
 
   validates :date, presence: true, date: true, uniqueness: { scope: :user_id }
 
-  before_create :set_month_number
-  before_create :set_week_number
-
   def self.ensure(user:, date:, **attributes)
     find_or_initialize_by(user: user, date: date).update!(attributes)
   end
 
   def self.last_week
-    where(week_number: 1.week.ago.strftime("%G%V")).order(:date)
+    where(date: 1.week.ago.to_date.all_week).order(:date)
   end
 
   def self.for_timer_reminder(date: Date.current)
@@ -22,15 +19,5 @@ class Day < ActiveRecord::Base
       pto: false,
       timer_reminder_sent: false
     )
-  end
-
-  private
-
-  def set_month_number
-    self.month_number = date.strftime("%Y%m")
-  end
-
-  def set_week_number
-    self.week_number = date.strftime("%G%V")
   end
 end
