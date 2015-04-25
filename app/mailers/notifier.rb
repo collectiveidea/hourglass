@@ -5,9 +5,11 @@ class Notifier < ActionMailer::Base
   default from: ENV["EMAIL_FROM"]
 
   def weekly_report(user)
+    last_week = 1.week.ago.to_date.all_week
+
     @user = user
-    @client_hours = user.client_hours_last_week
-    @internal_hours = user.internal_hours_last_week
+    @client_hours = user.client_hours_for_date_range(last_week)
+    @internal_hours = user.internal_hours_for_date_range(last_week)
     @total_hours = @client_hours + @internal_hours
 
     @expected_client_hours = ENV["EXPECTED_WEEKLY_CLIENT_HOURS"].to_d

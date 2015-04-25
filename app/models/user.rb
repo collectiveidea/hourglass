@@ -11,24 +11,11 @@ class User < ActiveRecord::Base
   validates :time_zone, presence: true,
     inclusion: { in: ActiveSupport::TimeZone::MAPPING.keys }
 
+  delegate :client_hours_for_date_range, :internal_hours_for_date_range,
+    to: :days
+
   def self.for_timer_reminder(date: Date.current)
     joins(:days).merge(Day.for_timer_reminder(date: date))
-  end
-
-  def client_hours_last_week
-    days.last_week.sum(:client_hours)
-  end
-
-  def internal_hours_last_week
-    days.last_week.sum(:internal_hours)
-  end
-
-  def client_hours_for_date_range(date_range)
-    days.where(date: date_range).sum(:client_hours)
-  end
-
-  def internal_hours_for_date_range(date_range)
-    days.where(date: date_range).sum(:internal_hours)
   end
 
   def timer_reminder_sent!(date: Date.current)

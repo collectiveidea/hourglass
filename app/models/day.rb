@@ -7,10 +7,6 @@ class Day < ActiveRecord::Base
     find_or_initialize_by(user: user, date: date).update!(attributes)
   end
 
-  def self.last_week
-    where(date: 1.week.ago.to_date.all_week).order(:date)
-  end
-
   def self.for_timer_reminder(date: Date.current)
     where(
       date: date,
@@ -19,5 +15,13 @@ class Day < ActiveRecord::Base
       pto: false,
       timer_reminder_sent: false
     )
+  end
+
+  def self.client_hours_for_date_range(date_range)
+    where(date: date_range).sum(:client_hours)
+  end
+
+  def self.internal_hours_for_date_range(date_range)
+    where(date: date_range).sum(:internal_hours)
   end
 end
