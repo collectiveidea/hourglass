@@ -6,13 +6,13 @@ class SlacksController < ApplicationController
                   when /yesterday/
                     Date.yesterday..Date.yesterday
                   when /this week/
-                    Date.current.all_week
+                    Date.this_week
                   when /last week/
-                    1.week.ago.to_date.all_week
+                    Date.last_week
                   when /this month/
-                    Date.current.all_month
+                    Date.this_month
                   when /last month/
-                    1.month.ago.to_date.all_month
+                    Date.last_month
                   else nil
                   end
 
