@@ -2,23 +2,17 @@ class SlacksController < ApplicationController
   def show
     @date_range = case params[:text]
                   when /today/
-                    today = Date.current
-                    today..today
+                    Date.current..Date.current
                   when /yesterday/
-                    yesterday = Date.yesterday
-                    yesterday..yesterday
+                    Date.yesterday..Date.yesterday
                   when /this week/
-                    today = Date.current
-                    today.monday..today.sunday
+                    Date.current.all_week
                   when /last week/
-                    a_week_ago = 1.week.ago.to_date
-                    a_week_ago.monday..a_week_ago.sunday
+                    1.week.ago.to_date.all_week
                   when /this month/
-                    today = Date.current
-                    today.beginning_of_month..today.end_of_month
+                    Date.current.all_month
                   when /last month/
-                    a_month_ago = 1.month.ago.to_date
-                    a_month_ago.beginning_of_month..a_month_ago.end_of_month
+                    1.month.ago.to_date.all_month
                   else nil
                   end
 
