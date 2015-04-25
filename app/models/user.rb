@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     inclusion: { in: ActiveSupport::TimeZone::MAPPING.keys }
 
   delegate :client_hours_for_date_range, :internal_hours_for_date_range,
-    to: :days
+    :pto_hours_for_date_range, to: :days
 
   def self.for_timer_reminder(date: Date.current)
     joins(:days).merge(Day.for_timer_reminder(date: date))

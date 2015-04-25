@@ -18,5 +18,13 @@ json.graph do
         json.value team_day.internal_hours.to_f
       end
     end
+    json.child! do
+      json.title "PTO"
+      json.color "red"
+      json.datapoints @team_days do |team_day|
+        json.title friendly_weekday(team_day.date)
+        json.value team_day.pto_hours.to_f
+      end
+    end
   end
 end

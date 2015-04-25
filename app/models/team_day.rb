@@ -1,10 +1,11 @@
 class TeamDay
-  attr_reader :date, :client_hours, :internal_hours
+  attr_reader :date, :client_hours, :internal_hours, :pto_hours
 
-  def initialize(date:, client_hours:, internal_hours:)
+  def initialize(date:, client_hours:, internal_hours:, pto_hours:)
     @date = date
     @client_hours = client_hours
     @internal_hours = internal_hours
+    @pto_hours = pto_hours
   end
 
   def self.for_date_range(date_range)
@@ -14,7 +15,8 @@ class TeamDay
       new(
         date: date,
         client_hours: date_days.sum(&:client_hours),
-        internal_hours: date_days.sum(&:internal_hours)
+        internal_hours: date_days.sum(&:internal_hours),
+        pto_hours: date_days.sum(&:pto_hours)
       )
     end
   end
