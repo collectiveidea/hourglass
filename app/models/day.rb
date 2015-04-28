@@ -3,6 +3,13 @@ class Day < ActiveRecord::Base
 
   validates :date, presence: true, date: true, uniqueness: { scope: :user_id }
 
+  scope :today, -> { where(date: Date.current) }
+  scope :yesterday, -> { where(date: Date.yesterday) }
+  scope :this_week, -> { where(date: Date.this_week) }
+  scope :last_week, -> { where(date: Date.last_week) }
+  scope :this_month, -> { where(date: Date.this_month) }
+  scope :last_month, -> { where(date: Date.last_month) }
+
   def self.ensure(user:, date:, **attributes)
     find_or_initialize_by(user: user, date: date).update!(attributes)
   end
