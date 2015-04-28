@@ -4,6 +4,9 @@ describe "Panic Status Board" do
       @original_statusboard_days = ENV["STATUSBOARD_DAYS"]
       ENV["STATUSBOARD_DAYS"] = "3"
 
+      @original_pto_day_hours = ENV["PTO_DAY_HOURS"]
+      ENV["PTO_DAY_HOURS"] = "6.4"
+
       Timecop.travel(Date.new(2015, 4, 6)) # Monday
       today = Date.current
 
@@ -16,6 +19,10 @@ describe "Panic Status Board" do
         date: today,
         client_hours: "0.04".to_d,
         internal_hours: "0.08".to_d
+      })
+      create(:day, {
+        date: today,
+        pto: true
       })
       create(:day, {
         date: (today - 1.day),
@@ -41,6 +48,7 @@ describe "Panic Status Board" do
 
     after do
       ENV["STATUSBOARD_DAYS"] = @original_statusboard_days
+      ENV["PTO_DAY_HOURS"] = @original_pto_day_hours
     end
 
     it "returns projects with this week's hours" do
@@ -68,6 +76,15 @@ describe "Panic Status Board" do
                 { "title" => "Saturday",  "value" => 1.28 },
                 { "title" => "Yesterday", "value" => 0.32 },
                 { "title" => "Today",     "value" => 0.10 }
+              ]
+            },
+            {
+              "title" => "PTO",
+              "color" => "red",
+              "datapoints" => [
+                { "title" => "Saturday",  "value" => 0.00 },
+                { "title" => "Yesterday", "value" => 0.00 },
+                { "title" => "Today",     "value" => 6.40 }
               ]
             }
           ]

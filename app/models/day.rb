@@ -24,4 +24,12 @@ class Day < ActiveRecord::Base
   def self.internal_hours_for_date_range(date_range)
     where(date: date_range).sum(:internal_hours)
   end
+
+  def self.pto_hours_for_date_range(date_range)
+    where(date: date_range, pto: true).count * ENV["PTO_DAY_HOURS"].to_d
+  end
+
+  def pto_hours
+    pto? ? ENV["PTO_DAY_HOURS"].to_d : 0.to_d
+  end
 end
