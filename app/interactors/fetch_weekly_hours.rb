@@ -3,9 +3,8 @@ class FetchWeeklyHours
 
   before do
     context.date ||= Date.current
-    context.from ||= context.date.monday
-    context.to ||= context.date.sunday
-    context.range ||= context.from..context.to
+    context.from ||= context.date.days_ago(6)
+    context.range ||= context.from..context.date
   end
 
   def call
