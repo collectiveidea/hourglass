@@ -61,6 +61,7 @@ describe "Panic Status Board" do
         "graph" => {
           "title" => "Time Tracking",
           "total" => true,
+          "type" => "bar",
           "datasequences" => [
             {
               "title" => "Client",
