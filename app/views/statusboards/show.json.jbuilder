@@ -7,7 +7,7 @@ json.graph do
       json.color "green"
       json.datapoints @team_days do |team_day|
         json.title friendly_weekday(team_day.date)
-        json.value team_day.client_hours.to_f
+        json.value team_day.client_hours.round
       end
     end
     json.child! do
@@ -15,7 +15,7 @@ json.graph do
       json.color "blue"
       json.datapoints @team_days do |team_day|
         json.title friendly_weekday(team_day.date)
-        json.value team_day.internal_hours.to_f
+        json.value team_day.internal_hours.round
       end
     end
     json.child! do
@@ -23,7 +23,7 @@ json.graph do
       json.color "red"
       json.datapoints @team_days do |team_day|
         json.title friendly_weekday(team_day.date)
-        json.value team_day.pto_hours.to_f
+        json.value team_day.pto_hours.round
       end
     end
   end

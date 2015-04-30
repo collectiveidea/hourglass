@@ -12,32 +12,34 @@ describe "Panic Status Board" do
 
       create(:day, {
         date: today,
-        client_hours: "0.01".to_d,
-        internal_hours: "0.02".to_d
+        client_hours: "1.10".to_d,
+        internal_hours: "2.20".to_d
       })
       create(:day, {
         date: today,
-        client_hours: "0.04".to_d,
-        internal_hours: "0.08".to_d
+        client_hours: "3.30".to_d,
+        internal_hours: "4.40".to_d
       })
       create(:day, {
         date: today,
+        client_hours: "0.00".to_d,
+        internal_hours: "0.00".to_d,
         pto: true
       })
       create(:day, {
         date: (today - 1.day),
-        client_hours: "0.16".to_d,
-        internal_hours: "0.32".to_d
+        client_hours: "5.50".to_d,
+        internal_hours: "6.60".to_d
       })
       create(:day, {
         date: (today - 2.days),
-        client_hours: "0.64".to_d,
-        internal_hours: "1.28".to_d
+        client_hours: "7.70".to_d,
+        internal_hours: "8.80".to_d
       })
       create(:day, {
         date: (today - 3.days),
-        client_hours: "2.56".to_d,
-        internal_hours: "5.12".to_d
+        client_hours: "9.90".to_d,
+        internal_hours: "11.00".to_d
       })
       create(:day, {
         date: (today + 1.day),
@@ -64,27 +66,27 @@ describe "Panic Status Board" do
               "title" => "Client",
               "color" => "green",
               "datapoints" => [
-                { "title" => "Saturday",  "value" => 0.64 },
-                { "title" => "Yesterday", "value" => 0.16 },
-                { "title" => "Today",     "value" => 0.05 }
+                { "title" => "Saturday",  "value" => 8 }, # 7.70
+                { "title" => "Yesterday", "value" => 6 }, # 5.50
+                { "title" => "Today",     "value" => 4 }  # 1.10 + 3.30
               ]
             },
             {
               "title" => "Internal",
               "color" => "blue",
               "datapoints" => [
-                { "title" => "Saturday",  "value" => 1.28 },
-                { "title" => "Yesterday", "value" => 0.32 },
-                { "title" => "Today",     "value" => 0.10 }
+                { "title" => "Saturday",  "value" => 9 }, # 8.80
+                { "title" => "Yesterday", "value" => 7 }, # 6.60
+                { "title" => "Today",     "value" => 7 }  # 2.20 + 4.40
               ]
             },
             {
               "title" => "PTO",
               "color" => "red",
               "datapoints" => [
-                { "title" => "Saturday",  "value" => 0.00 },
-                { "title" => "Yesterday", "value" => 0.00 },
-                { "title" => "Today",     "value" => 6.40 }
+                { "title" => "Saturday",  "value" => 0 },
+                { "title" => "Yesterday", "value" => 0 },
+                { "title" => "Today",     "value" => 6 }  # 6.40
               ]
             }
           ]
