@@ -18,16 +18,19 @@ class FetchDailyHours
           client_hours += time_entry.hours.to_d
         end
 
-        tracked_in_real_time = true if in_progress?(time_entry)
+        tracked_in_real_time ||= in_progress?(time_entry)
       end
 
-      Day.ensure(
+      attributes = {
         user: user,
         date: context.date,
         client_hours: client_hours,
-        internal_hours: internal_hours,
-        tracked_in_real_time: tracked_in_real_time
-      )
+        internal_hours: internal_hours
+      }
+
+      attributes[:tracked_in_real_time] = true if tracked_in_real_time
+
+      Day.ensure(attributes)
     end
   end
 

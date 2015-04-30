@@ -154,18 +154,19 @@ describe FetchDailyHours do
     day = Day.last
     expect(day).not_to be_tracked_in_real_time
 
-    time_entries << create(:harvest_time_entry)
-
+    time_entries.replace([create(:harvest_time_entry)])
     FetchDailyHours.call
 
-    day.reload
-    expect(day).not_to be_tracked_in_real_time
+    expect(day.reload).not_to be_tracked_in_real_time
 
-    time_entries << create(:harvest_time_entry, :in_progress)
-
+    time_entries.replace([create(:harvest_time_entry, :in_progress)])
     FetchDailyHours.call
 
-    day.reload
-    expect(day).to be_tracked_in_real_time
+    expect(day.reload).to be_tracked_in_real_time
+
+    time_entries.replace([create(:harvest_time_entry)])
+    FetchDailyHours.call
+
+    expect(day.reload).to be_tracked_in_real_time
   end
 end
