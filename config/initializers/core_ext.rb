@@ -14,4 +14,22 @@ Date.class_eval do
   def self.last_month
     current.prev_month.all_month
   end
+
+  # Convenience methods to fetch the last occurence of the given weekday,
+  # excluding today.
+  class << self
+    %i[
+      monday
+      tuesday
+      wednesday
+      thursday
+      friday
+      saturday
+      sunday
+    ].each do |weekday|
+      define_method weekday do
+        yesterday.beginning_of_week(weekday)
+      end
+    end
+  end
 end

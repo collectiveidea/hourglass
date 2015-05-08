@@ -3,7 +3,7 @@ describe "Slack Command" do
     let!(:user) { create(:user) }
 
     before do
-      Timecop.travel(Date.new(2015, 4, 10))
+      Timecop.travel(Date.new(2015, 4, 10)) # Friday
       today = Date.current
 
       create(:day, {
@@ -64,6 +64,18 @@ describe "Slack Command" do
 
     it "returns the user's hours for yesterday" do
       get "/slack", { text: "yesterday", user_id: user.slack_id }
+
+      expect(response.status).to eq(200)
+      expect(response.body).to eq(<<-MSG.strip_heredoc)
+        Hours for April 9
+        0.2 client
+        0.2 internal
+        0.4 total
+        MSG
+    end
+
+    it "returns the user's hours for a given weekday" do
+      get "/slack", { text: "thursday", user_id: user.slack_id }
 
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
