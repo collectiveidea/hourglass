@@ -39,4 +39,8 @@ class Month < ActiveRecord::Base
       User.all.each { |u| roll_up(user: u, year: year, number: number) }
     end
   end
+
+  def pto_hours
+    pto_hours * ENV["PTO_DAY_HOURS"].to_d
+  end
 end
