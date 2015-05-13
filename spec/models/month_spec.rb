@@ -199,5 +199,49 @@ describe Month do
 
       expect(Day.count).to eq(0)
     end
+
+    it "aggregates daily statistics" do
+      date = Date.new(2015, 9, 1)
+
+      create(:day, {
+        user: user,
+        date: date,
+        pto: false,
+        timer_reminder_sent: false,
+        tracked_in_real_time: false
+      })
+      create(:day, {
+        user: user,
+        date: date + 1,
+        pto: true,
+        timer_reminder_sent: false,
+        tracked_in_real_time: false
+      })
+      create(:day, {
+        user: user,
+        date: date + 2,
+        pto: true,
+        timer_reminder_sent: true,
+        tracked_in_real_time: false
+      })
+      create(:day, {
+        user: user,
+        date: date + 3,
+        pto: true,
+        timer_reminder_sent: true,
+        tracked_in_real_time: true
+      })
+
+      Month.roll_up(year: 2015, number: 9)
+
+      month = Month.last
+      expect(month.user).to eq(user)
+      expect(month.year).to eq(2015)
+      expect(month.number).to eq(9)
+      expect(month.day_count).to eq(4)
+      expect(month.pto_count).to eq(3)
+      expect(month.timer_reminder_sent_count).to eq(2)
+      expect(month.tracked_in_real_time_count).to eq(1)
+    end
   end
 end

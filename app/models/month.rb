@@ -10,21 +10,29 @@ class Month < ActiveRecord::Base
     if user
       unless where(user: user, number: number).exists?
         date_range = Date.new(year, number).all_month
-        days = Day.where(user: user, date: date_range)
+        days = Day.where(user: user, date: date_range).to_a
 
         if days.any?
-          client_hours = days.sum(:client_hours)
-          internal_hours = days.sum(:internal_hours)
+          client_hours = days.sum(&:client_hours)
+          internal_hours = days.sum(&:internal_hours)
+          day_count = days.count
+          pto_count = days.count(&:pto?)
+          timer_reminder_sent_count = days.count(&:timer_reminder_sent?)
+          tracked_in_real_time_count = days.count(&:tracked_in_real_time?)
 
           create!(
             user: user,
             year: year,
             number: number,
             client_hours: client_hours,
-            internal_hours: internal_hours
+            internal_hours: internal_hours,
+            day_count: day_count,
+            pto_count: pto_count,
+            timer_reminder_sent_count: timer_reminder_sent_count,
+            tracked_in_real_time_count: tracked_in_real_time_count
           )
 
-          days.delete_all
+          days.each(&:destroy)
         end
       end
     else
