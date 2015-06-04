@@ -18,6 +18,7 @@ class SlacksController < ApplicationController
 
       @client_hours = user.client_hours_for_date_range(@date_range)
       @internal_hours = user.internal_hours_for_date_range(@date_range)
+      @total_hours = @client_hours + @internal_hours
     else
       head :no_content
     end

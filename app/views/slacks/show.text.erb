@@ -1,4 +1,4 @@
 Hours for <%= friendly_date_range(@date_range) %>
-<%= number_with_precision(@client_hours, precision: 1) %> client
-<%= number_with_precision(@internal_hours, precision: 1) %> internal
-<%= number_with_precision(@client_hours + @internal_hours, precision: 1) %> total
+<%= number_with_precision(@client_hours, precision: 1) %> client (<%= number_to_percentage(@client_hours / @total_hours * 100, precision: 0) %>)
+<%= number_with_precision(@internal_hours, precision: 1) %> internal (<%= number_to_percentage(@internal_hours / @total_hours * 100, precision: 0) %>)
+<%= number_with_precision(@total_hours, precision: 1) %> total

@@ -9,43 +9,43 @@ describe "Slack Command" do
       create(:day, {
         user: user,
         date: today, # 2015-04-10
-        client_hours: 0.1,
+        client_hours: 0.0,
         internal_hours: 0.1
       })
       create(:day, {
         user: user,
         date: today - 1.day, # 2015-04-09
-        client_hours: 0.2,
+        client_hours: 0.1,
         internal_hours: 0.2
       })
       create(:day, {
         user: user,
         date: today.monday, # 2015-04-06
-        client_hours: 0.4,
+        client_hours: 0.2,
         internal_hours: 0.4
       })
       create(:day, {
         user: user,
         date: today.monday - 1.week, # 2015-03-30
-        client_hours: 0.8,
+        client_hours: 0.4,
         internal_hours: 0.8
       })
       create(:day, {
         user: user,
         date: today.beginning_of_month, # 2015-04-01
-        client_hours: 1.6,
+        client_hours: 0.8,
         internal_hours: 1.6
       })
       create(:day, {
         user: user,
         date: today.beginning_of_month - 1.month, # 2015-03-01
-        client_hours: 3.2,
+        client_hours: 1.6,
         internal_hours: 3.2
       })
       create(:day, {
         user: user,
         date: today.beginning_of_month - 1.month - 1.day, # 2015-02-28
-        client_hours: 6.4,
+        client_hours: 3.2,
         internal_hours: 6.4
       })
     end
@@ -56,9 +56,9 @@ describe "Slack Command" do
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
         Hours for April 10
-        0.1 client
-        0.1 internal
-        0.2 total
+        0.0 client (0%)
+        0.1 internal (100%)
+        0.1 total
         MSG
     end
 
@@ -68,9 +68,9 @@ describe "Slack Command" do
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
         Hours for April 9
-        0.2 client
-        0.2 internal
-        0.4 total
+        0.1 client (33%)
+        0.2 internal (67%)
+        0.3 total
         MSG
     end
 
@@ -80,9 +80,9 @@ describe "Slack Command" do
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
         Hours for April 9
-        0.2 client
-        0.2 internal
-        0.4 total
+        0.1 client (33%)
+        0.2 internal (67%)
+        0.3 total
         MSG
     end
 
@@ -92,9 +92,9 @@ describe "Slack Command" do
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
         Hours for April 6 – 12
-        0.7 client
-        0.7 internal
-        1.4 total
+        0.3 client (30%)
+        0.7 internal (70%)
+        1.0 total
         MSG
     end
 
@@ -104,9 +104,9 @@ describe "Slack Command" do
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
         Hours for March 30 – April 5
-        2.4 client
-        2.4 internal
-        4.8 total
+        1.2 client (33%)
+        2.4 internal (67%)
+        3.6 total
         MSG
     end
 
@@ -116,9 +116,9 @@ describe "Slack Command" do
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
         Hours for April 1 – 30
-        2.3 client
-        2.3 internal
-        4.6 total
+        1.1 client (32%)
+        2.3 internal (68%)
+        3.4 total
         MSG
     end
 
