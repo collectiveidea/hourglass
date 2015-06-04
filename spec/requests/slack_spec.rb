@@ -128,17 +128,18 @@ describe "Slack Command" do
       expect(response.status).to eq(200)
       expect(response.body).to eq(<<-MSG.strip_heredoc)
         Hours for March 1 – 31
-        4.0 client
-        4.0 internal
-        8.0 total
+        2.0 client (33%)
+        4.0 internal (67%)
+        6.0 total
         MSG
     end
 
-    it "returns nothing for an invalid command" do
+    it "returns help text for an invalid command" do
       get "/slack", { text: "tomorrow", user_id: user.slack_id }
 
-      expect(response.status).to eq(204)
-      expect(response.body).to be_blank
+      expect(response.status).to eq(400)
+      expect(response.body).to include("today")
+      expect(response.body).to include("yesterday")
     end
   end
 end

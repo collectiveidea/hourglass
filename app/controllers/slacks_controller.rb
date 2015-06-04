@@ -20,7 +20,7 @@ class SlacksController < ApplicationController
       @internal_hours = user.internal_hours_for_date_range(@date_range)
       @total_hours = @client_hours + @internal_hours
     else
-      head :no_content
+      render :help, status: :bad_request
     end
   end
 end
