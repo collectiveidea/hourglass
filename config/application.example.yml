@@ -12,7 +12,7 @@ HARVEST_SUBDOMAIN: "example"
 HARVEST_TIME_ZONE: "Eastern Time (US & Canada)" # rake time:zones:all
 HARVEST_USERNAME: "jane@example.com" # Must be an admin
 
-# Mandrill SMPT credentials and configuration
+# Mandrill SMTP credentials and configuration
 MANDRILL_DOMAIN: "example.com"
 MANDRILL_PASSWORD: "hTgvuxadFPSYJ4RMmapnoA" # Fake; must generate API key
 MANDRILL_USERNAME: "hourglass@example.com"
