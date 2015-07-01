@@ -2,6 +2,10 @@ class Day < ActiveRecord::Base
   belongs_to :user, inverse_of: :days, required: true
 
   validates :date, presence: true, date: true, uniqueness: { scope: :user_id }
+  validates :client_hours, :internal_hours, numericality: {
+    greater_than_or_equal_to: 0,
+    less_than: 100
+  }
 
   scope :today, -> { where(date: Date.current) }
   scope :yesterday, -> { where(date: Date.yesterday) }

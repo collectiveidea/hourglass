@@ -5,6 +5,10 @@ class Month < ActiveRecord::Base
     numericality: { only_integer: true, greater_than: 2000 }
   validates :number, presence: true, uniqueness: { scope: [:user_id, :year] },
     numericality: { only_integer: true, greater_than: 0, less_than: 13 }
+  validates :client_hours, :internal_hours, numericality: {
+    greater_than_or_equal_to: 0,
+    less_than: 1000
+  }
 
   def self.roll_up(user: nil, year: 2.months.ago.year, number: 2.months.ago.month)
     if user

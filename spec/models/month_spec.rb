@@ -19,6 +19,16 @@ describe Month do
         expect(month).not_to accept_values_for(:number, 4)
       end
     end
+
+    describe "client_hours" do
+      it { is_expected.to accept_values_for(:client_hours, 0, 1.23, "999.99") }
+      it { is_expected.not_to accept_values_for(:client_hours, -1, nil, 1000) }
+    end
+
+    describe "internal_hours" do
+      it { is_expected.to accept_values_for(:internal_hours, 0, 1.23, "999.99") }
+      it { is_expected.not_to accept_values_for(:internal_hours, -1, nil, 1000) }
+    end
   end
 
   describe ".roll_up" do
