@@ -218,28 +218,40 @@ describe Month do
         date: date,
         pto: false,
         timer_reminder_sent: false,
-        tracked_in_real_time: false
+        tracked_in_real_time: false,
+        workday: false
       })
       create(:day, {
         user: user,
         date: date + 1,
         pto: true,
         timer_reminder_sent: false,
-        tracked_in_real_time: false
+        tracked_in_real_time: false,
+        workday: false
       })
       create(:day, {
         user: user,
         date: date + 2,
         pto: true,
         timer_reminder_sent: true,
-        tracked_in_real_time: false
+        tracked_in_real_time: false,
+        workday: false
       })
       create(:day, {
         user: user,
         date: date + 3,
         pto: true,
         timer_reminder_sent: true,
-        tracked_in_real_time: true
+        tracked_in_real_time: true,
+        workday: false
+      })
+      create(:day, {
+        user: user,
+        date: date + 4,
+        pto: true,
+        timer_reminder_sent: true,
+        tracked_in_real_time: true,
+        workday: true
       })
 
       Month.roll_up(year: 2015, number: 9)
@@ -248,10 +260,11 @@ describe Month do
       expect(month.user).to eq(user)
       expect(month.year).to eq(2015)
       expect(month.number).to eq(9)
-      expect(month.day_count).to eq(4)
-      expect(month.pto_count).to eq(3)
-      expect(month.timer_reminder_sent_count).to eq(2)
-      expect(month.tracked_in_real_time_count).to eq(1)
+      expect(month.day_count).to eq(5)
+      expect(month.pto_count).to eq(4)
+      expect(month.timer_reminder_sent_count).to eq(3)
+      expect(month.tracked_in_real_time_count).to eq(2)
+      expect(month.workday_count).to eq(1)
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722142135) do
+ActiveRecord::Schema.define(version: 20150722143959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150722142135) do
     t.integer  "pto_count",                                          default: 0,   null: false
     t.integer  "timer_reminder_sent_count",                          default: 0,   null: false
     t.integer  "tracked_in_real_time_count",                         default: 0,   null: false
+    t.integer  "workday_count",                                      default: 0,   null: false
   end
 
   add_index "months", ["number"], name: "index_months_on_number", using: :btree

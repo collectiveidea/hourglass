@@ -23,6 +23,7 @@ class Month < ActiveRecord::Base
           pto_count = days.count(&:pto?)
           timer_reminder_sent_count = days.count(&:timer_reminder_sent?)
           tracked_in_real_time_count = days.count(&:tracked_in_real_time?)
+          workday_count = days.count(&:workday?)
 
           create!(
             user: user,
@@ -33,7 +34,8 @@ class Month < ActiveRecord::Base
             day_count: day_count,
             pto_count: pto_count,
             timer_reminder_sent_count: timer_reminder_sent_count,
-            tracked_in_real_time_count: tracked_in_real_time_count
+            tracked_in_real_time_count: tracked_in_real_time_count,
+            workday_count: workday_count
           )
 
           days.each(&:destroy)
