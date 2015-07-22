@@ -169,4 +169,20 @@ describe FetchDailyHours do
 
     expect(day.reload).to be_tracked_in_real_time
   end
+
+  it "doesn't fetch hours for inactive users" do
+    user_1 = create(:user, :active)
+    user_2 = create(:user, :inactive)
+
+    expect(harvest_time).to receive(:all) { [] }
+
+    expect {
+      FetchDailyHours.call
+    }.to change {
+      Day.count
+    }.from(0).to(1)
+
+    expect(user_1.days.count).to eq(1)
+    expect(user_2.days.count).to eq(0)
+  end
 end

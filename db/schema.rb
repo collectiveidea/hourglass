@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722143959) do
+ActiveRecord::Schema.define(version: 20150722152710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150722143959) do
     t.datetime "updated_at",                                        null: false
     t.string   "slack_id"
     t.string   "workdays",      default: ["1", "2", "3", "4", "5"], null: false, array: true
+    t.boolean  "active",        default: true,                      null: false
   end
 
   add_index "users", ["slack_id"], name: "index_users_on_slack_id", unique: true, using: :btree

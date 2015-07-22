@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   delegate :client_hours_for_date_range, :internal_hours_for_date_range,
     :pto_hours_for_date_range, to: :days
 
+  scope :active, -> { where(active: true) }
+
   def self.for_timer_reminder(date: Date.current)
     joins(:days).merge(Day.for_timer_reminder(date: date))
   end

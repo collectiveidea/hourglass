@@ -7,7 +7,7 @@ class FetchDailyHours
   end
 
   def call
-    User.all.each do |user|
+    User.active.each do |user|
       time_entries = harvest.time.all(context.date, user.harvest_id)
       client_hours, internal_hours, tracked_in_real_time = 0, 0, false
 
