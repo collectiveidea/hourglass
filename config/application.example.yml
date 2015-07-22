@@ -1,3 +1,8 @@
+# Optional HTTP basic authentication configuration
+BASIC_AUTH_NAME: "collectiveidea"
+BASIC_AUTH_PASSWORD: "secret"
+BASIC_AUTH_REALM: "Hourglass"
+
 # The address from which to send all application emails
 EMAIL_FROM: "Hourglass <hourglass@example.com>"
 
