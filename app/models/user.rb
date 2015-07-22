@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
   def timer_reminder_sent!(date: Date.current)
     days.find_by!(date: date).update!(timer_reminder_sent: true)
   end
+
+  def works_on?(date:)
+    workdays.include?(date.cwday.to_s)
+  end
 end

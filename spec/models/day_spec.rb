@@ -25,4 +25,28 @@ describe Day do
       it { is_expected.not_to accept_values_for(:internal_hours, -1, nil, 100) }
     end
   end
+
+  describe ".ensure" do
+    it "specifies whether the day is a workday for the given user" do
+      date = Date.new(2015, 7, 22) # Wednesday
+
+      user_1 = create(:user, workdays: %w(1 2 3 4 5)) # M, Tu, W, Th, F
+      user_2 = create(:user, workdays: %w(1 2 4 5 6)) # M, Tu, Th, F, Sa
+
+      expect {
+        Day.ensure(user: user_1, date: date)
+        Day.ensure(user: user_2, date: date)
+      }.to change {
+        Day.count
+      }.from(0).to(2)
+
+      day_1 = user_1.days.last
+      expect(day_1.date).to eq(date)
+      expect(day_1).to be_a_workday
+
+      day_2 = user_2.days.last
+      expect(day_2.date).to eq(date)
+      expect(day_2).not_to be_a_workday
+    end
+  end
 end

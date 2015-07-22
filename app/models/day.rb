@@ -15,6 +15,7 @@ class Day < ActiveRecord::Base
   scope :last_month, -> { where(date: Date.last_month) }
 
   def self.ensure(user:, date:, **attributes)
+    attributes[:workday] = user.works_on?(date: date)
     find_or_initialize_by(user: user, date: date).update!(attributes)
   end
 

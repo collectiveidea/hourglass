@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513143212) do
+ActiveRecord::Schema.define(version: 20150722142135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150513143212) do
     t.boolean  "pto",                                          default: false, null: false
     t.boolean  "timer_reminder_sent",                          default: false, null: false
     t.boolean  "tracked_in_real_time",                         default: false, null: false
+    t.boolean  "workday",                                      default: false, null: false
   end
 
   add_index "days", ["date"], name: "index_days_on_date", using: :btree
@@ -51,14 +52,15 @@ ActiveRecord::Schema.define(version: 20150513143212) do
   add_index "months", ["year"], name: "index_months_on_year", using: :btree
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",          null: false
-    t.string   "email",         null: false
-    t.string   "harvest_id",    null: false
-    t.string   "zenefits_name", null: false
-    t.string   "time_zone",     null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "name",                                              null: false
+    t.string   "email",                                             null: false
+    t.string   "harvest_id",                                        null: false
+    t.string   "zenefits_name",                                     null: false
+    t.string   "time_zone",                                         null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.string   "slack_id"
+    t.string   "workdays",      default: ["1", "2", "3", "4", "5"], null: false, array: true
   end
 
   add_index "users", ["slack_id"], name: "index_users_on_slack_id", unique: true, using: :btree
