@@ -68,4 +68,30 @@ describe SendTimerReminders do
       mailbox_for(user.email).size
     }
   end
+
+  it "doesn't send a reminder if it's not a workday for that user" do
+    user_1 = create(:user, email: "john@example.com")
+    user_2 = create(:user, email: "jane@example.com")
+    create(:day, {
+      user: user_1,
+      date: today,
+      client_hours: 0,
+      internal_hours: 0,
+      pto: false,
+      workday: true
+    })
+    create(:day, {
+      user: user_2,
+      date: today,
+      client_hours: 0,
+      internal_hours: 0,
+      pto: false,
+      workday: false
+    })
+
+    SendTimerReminders.call
+
+    expect(mailbox_for(user_1.email).size).to eq(1)
+    expect(mailbox_for(user_2.email).size).to eq(0)
+  end
 end

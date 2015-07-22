@@ -25,7 +25,8 @@ class Day < ActiveRecord::Base
       client_hours: 0,
       internal_hours: 0,
       pto: false,
-      timer_reminder_sent: false
+      timer_reminder_sent: false,
+      workday: true
     )
   end
 
