@@ -33,7 +33,7 @@ class SyncPTO
   end
 
   def users
-    @users ||= User.all
+    @users ||= User.active
   end
 
   def ensure_pto_day(user:, event:)
