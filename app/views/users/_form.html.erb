@@ -11,17 +11,17 @@
 <div class="form-group">
   <%= form.label :harvest_id, class: "control-label" %>
   <%= form.text_field :harvest_id, class: "form-control" %>
-  <p class="help-block">Visit <%= link_to "Harvest", "https://#{ENV["HARVEST_SUBDOMAIN"]}.harvestapp.com/people" %>, click the user, copy the ID from the URL.</p>
+  <p class="help-block">Visit <%= link_to "Harvest", "https://#{ENV["HARVEST_SUBDOMAIN"]}.harvestapp.com/people", target: "_blank" %>, click the user, copy the ID from the URL.</p>
 </div>
 <div class="form-group">
   <%= form.label :zenefits_name, class: "control-label" %>
   <%= form.text_field :zenefits_name, class: "form-control" %>
-  <p class="help-block">Visit <%= link_to "Zenefits", "https://secure.zenefits.com/dashboard/#/employee/directory" %>, copy the name exactly as it appears.</p>
+  <p class="help-block">Visit <%= link_to "Zenefits", "https://secure.zenefits.com/dashboard/#/employee/directory", target: "_blank" %>, copy the name exactly as it appears.</p>
 </div>
 <div class="form-group">
   <%= form.label :slack_id, class: "control-label" %>
   <%= form.text_field :slack_id, class: "form-control" %>
-  <p class="help-block">Visit <%= link_to "Slack", "https://#{ENV["SLACK_SUBDOMAIN"]}.slack.com/admin" %>, inspect the HTML, copy the value for the "data-member-id" attribute on the user's row.</p>
+  <p class="help-block">Visit <%= link_to "Slack", "https://#{ENV["SLACK_SUBDOMAIN"]}.slack.com/admin", target: "_blank" %>, inspect the HTML, copy the value for the "data-member-id" attribute on the user's row.</p>
 </div>
 <div class="form-group">
   <%= form.label :workdays, class: "control-label" %>
