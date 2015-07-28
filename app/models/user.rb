@@ -27,4 +27,8 @@ class User < ActiveRecord::Base
   def works_on?(date:)
     workdays.include?(date.cwday.to_s)
   end
+
+  def workdays=(values)
+    super(values.reject(&:blank?))
+  end
 end

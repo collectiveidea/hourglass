@@ -1,0 +1,39 @@
+<h1>Add User</h1>
+<div class="new-user">
+  <nav>
+    <%= link_to "Cancel", users_path %>
+  </nav>
+  <%= form_for @user, html: { class: "new-user-form user-form", id: nil } do |form| %>
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+    <div>
+      <%= form.label :email %>
+      <%= form.email_field :email %>
+    </div>
+    <div>
+      <%= form.label :harvest_id %>
+      <%= form.text_field :harvest_id %>
+    </div>
+    <div>
+      <%= form.label :zenefits_name %>
+      <%= form.text_field :zenefits_name %>
+    </div>
+    <div>
+      <%= form.label :time_zone %>
+      <%= form.time_zone_select :time_zone %>
+    </div>
+    <div>
+      <%= form.label :slack_id %>
+      <%= form.text_field :slack_id %>
+    </div>
+    <div>
+      <%= form.label :workdays %>
+      <%= form.select :workdays, [["Monday", 1], ["Tuesday", 2], ["Wednesday", 3], ["Thursday", 4], ["Friday", 5], ["Saturday", 6], ["Sunday", 7]], {}, multiple: true %>
+    </div>
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
