@@ -1,11 +1,25 @@
 source "https://rubygems.org"
 
+# Ruby
 ruby "2.2.2"
 
+# Rails
 gem "rails", "4.2.3"
 
+# Database
 gem "pg"
 
+# Server
+gem "puma"
+
+# Assets
+gem "bootstrap-sass"
+gem "coffee-rails"
+gem "jquery-rails"
+gem "sass-rails"
+gem "uglifier"
+
+# Runtime
 gem "date_validator"
 gem "email_validator"
 gem "figaro"
@@ -14,7 +28,6 @@ gem "honeybadger"
 gem "icalendar"
 gem "interactor"
 gem "jbuilder"
-gem "puma"
 
 group :production do
   gem "rails_12factor"
