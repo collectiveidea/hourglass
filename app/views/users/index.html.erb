@@ -5,7 +5,10 @@
         <nav class="pull-right">
           <%= link_to fa_icon("plus", text: "Add User"), new_user_path, class: "btn btn-primary" %>
         </nav>
-        <h1>Users</h1>
+        <h1>
+          <span class="user-list-count"><%= @users.size %></span>
+          <%= "User".pluralize(@users.size) %>
+        </h1>
       </div>
       <table class="user-table table table-striped">
         <thead>

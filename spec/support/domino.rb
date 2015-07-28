@@ -2,6 +2,8 @@ module DOM
   class UserList < Domino
     selector ".user-list"
 
+    attribute :count, ".user-list-count", &:to_i
+
     def add
       node.click_link("Add User")
     end
@@ -19,7 +21,7 @@ module DOM
     selector ".user-table"
 
     def rows
-      within_node { DOM::UserRow.all }
+      within(node) { DOM::UserRow.all }
     end
   end
 

@@ -5,7 +5,10 @@ feature "Users" do
   scenario "A visitor can see a list of all users" do
     visit users_path
 
-    dom_user_rows = DOM::UserRow.all
+    dom_user_list = DOM::UserList.find!
+    expect(dom_user_list.count).to eq(2)
+
+    dom_user_rows = dom_user_list.rows
     expect(dom_user_rows.count).to eq(2)
     expect(dom_user_rows[0].name).to eq("Jack")
     expect(dom_user_rows[0].email).to eq("jack@example.com")
