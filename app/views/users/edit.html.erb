@@ -1,9 +1,15 @@
-<h1>Edit User</h1>
-<div class="edit-user">
-  <nav>
-    <%= link_to "Cancel", users_path %>
-  </nav>
-  <%= form_for @user, html: { class: "edit-user-form user-form", id: nil } do |form| %>
-    <%= render form %>
-  <% end %>
+<div class="edit-user container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="page-header">
+        <nav class="pull-right">
+          <%= link_to fa_icon("arrow-left", text: "Cancel"), users_path, class: "btn btn-default" %>
+        </nav>
+        <h1>Edit User</h1>
+      </div>
+      <%= form_for @user, html: { class: "edit-user-form user-form" } do |form| %>
+        <%= render form %>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -1,31 +1,31 @@
-<div>
+<div class="form-group">
   <%= form.label :name %>
-  <%= form.text_field :name %>
+  <%= form.text_field :name, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= form.label :email %>
-  <%= form.email_field :email %>
+  <%= form.email_field :email, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= form.label :harvest_id %>
-  <%= form.text_field :harvest_id %>
+  <%= form.text_field :harvest_id, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= form.label :zenefits_name %>
-  <%= form.text_field :zenefits_name %>
+  <%= form.text_field :zenefits_name, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= form.label :time_zone %>
-  <%= form.time_zone_select :time_zone %>
+  <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { default: Time.zone.name }, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= form.label :slack_id %>
-  <%= form.text_field :slack_id %>
+  <%= form.text_field :slack_id, class: "form-control" %>
 </div>
-<div>
+<div class="form-group">
   <%= form.label :workdays %>
-  <%= form.select :workdays, [["Monday", 1], ["Tuesday", 2], ["Wednesday", 3], ["Thursday", 4], ["Friday", 5], ["Saturday", 6], ["Sunday", 7]], {}, multiple: true %>
+  <%= form.select :workdays, [["Monday", 1], ["Tuesday", 2], ["Wednesday", 3], ["Thursday", 4], ["Friday", 5], ["Saturday", 6], ["Sunday", 7]], {}, multiple: true, class: "form-control", size: 7 %>
 </div>
-<div>
-  <%= form.submit %>
+<div class="form-group">
+  <%= form.submit class: "btn btn-block btn-lg btn-primary" %>
 </div>
