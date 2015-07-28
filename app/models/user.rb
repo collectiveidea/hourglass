@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
   def workdays=(values)
     super(values.reject(&:blank?))
   end
+
+  def archive
+    update!(active: false)
+  end
 end

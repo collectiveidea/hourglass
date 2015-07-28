@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   resource :slack, only: [:show], defaults: { format: :text }
 
-  resources :users, only: [:index, :new, :create, :edit, :update]
+  resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
 end

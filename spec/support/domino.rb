@@ -2,7 +2,7 @@ module DOM
   class UserList < Domino
     selector ".user-list"
 
-    def add_user
+    def add
       node.click_link("Add User")
     end
 
@@ -29,8 +29,12 @@ module DOM
     attribute :name, ".user-row-name"
     attribute :email, ".user-row-email"
 
-    def edit_user
+    def edit
       node.click_link("Edit")
+    end
+
+    def archive
+      node.click_button("Archive")
     end
   end
 

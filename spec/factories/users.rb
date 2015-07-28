@@ -12,5 +12,9 @@ FactoryGirl.define do
     trait :inactive do
       active false
     end
+
+    trait :archived do
+      inactive
+    end
   end
 end

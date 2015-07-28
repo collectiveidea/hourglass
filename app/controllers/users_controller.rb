@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.order(:name)
+    @users = User.active.order(:name)
   end
 
   def new
@@ -29,6 +29,14 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+
+    @user.archive
+
+    redirect_to users_path
   end
 
   private

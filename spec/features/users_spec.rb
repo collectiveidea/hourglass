@@ -17,7 +17,7 @@ feature "Users" do
     visit users_path
 
     dom_user_list = DOM::UserList.find!
-    dom_user_list.add_user
+    dom_user_list.add
 
     dom_user_form = DOM::UserForm.find!
     dom_user_form.set(
@@ -56,7 +56,7 @@ feature "Users" do
     visit users_path
 
     dom_user_row = DOM::UserRow.find_by!(name: "Jack")
-    dom_user_row.edit_user
+    dom_user_row.edit
 
     dom_user_form = DOM::UserForm.find!
     dom_user_form.set(email: "new.jack@example.com")
@@ -72,5 +72,13 @@ feature "Users" do
     expect(jack.reload.email).to eq("new.jack@example.com")
   end
 
-  scenario "A visitor can archive a user"
+  scenario "A visitor can archive a user" do
+    visit users_path
+
+    dom_user_row = DOM::UserRow.find_by!(name: "Jack")
+    dom_user_row.archive
+
+    expect(current_path).to eq(users_path)
+    expect(DOM::UserRow.count).to eq(1)
+  end
 end
