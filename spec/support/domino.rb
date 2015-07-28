@@ -34,7 +34,7 @@ module DOM
     end
 
     def archive
-      node.click_button("Archive")
+      node.click_link("Archive")
     end
   end
 

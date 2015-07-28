@@ -1,6 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
-body {
-  padding-bottom: 50px;
-}
+@import "global";
+@import "user_list";
