@@ -1,0 +1,9 @@
+<h1>Edit User</h1>
+<div class="edit-user">
+  <nav>
+    <%= link_to "Cancel", users_path %>
+  </nav>
+  <%= form_for @user, html: { class: "edit-user-form user-form", id: nil } do |form| %>
+    <%= render form %>
+  <% end %>
+</div>

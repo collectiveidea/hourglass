@@ -28,6 +28,10 @@ module DOM
 
     attribute :name, ".user-row-name"
     attribute :email, ".user-row-email"
+
+    def edit_user
+      node.click_link("Edit")
+    end
   end
 
   class UserForm < Domino
@@ -97,7 +101,7 @@ module DOM
     end
 
     def submit
-      node.click_button("Create User")
+      node.find("[type=submit]").click
     end
   end
 end

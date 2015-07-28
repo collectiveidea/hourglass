@@ -52,7 +52,25 @@ feature "Users" do
     expect(jane.workdays).to eq(%w(1 2 3 4))
   end
 
-  scenario "A visitor can update a user"
+  scenario "A visitor can update a user" do
+    visit users_path
+
+    dom_user_row = DOM::UserRow.find_by!(name: "Jack")
+    dom_user_row.edit_user
+
+    dom_user_form = DOM::UserForm.find!
+    dom_user_form.set(email: "new.jack@example.com")
+    dom_user_form.submit
+
+    expect(current_path).to eq(users_path)
+
+    dom_user_rows = DOM::UserRow.all
+    expect(dom_user_rows.count).to eq(2)
+    expect(dom_user_rows[0].name).to eq("Jack")
+    expect(dom_user_rows[0].email).to eq("new.jack@example.com")
+
+    expect(jack.reload.email).to eq("new.jack@example.com")
+  end
 
   scenario "A visitor can archive a user"
 end
