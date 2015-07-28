@@ -25,6 +25,9 @@ MANDRILL_USERNAME: "hourglass@example.com"
 # The number of hours considered to be taken off during a PTO day
 PTO_DAY_HOURS: "8.0"
 
+# Slack subdomain, used for help in fetching users' Slack IDs
+SLACK_SUBDOMAIN: "example"
+
 # The number of days (including today) to display on the Panic Status Board
 STATUSBOARD_DAYS: "7"
 

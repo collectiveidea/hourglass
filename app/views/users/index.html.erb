@@ -10,8 +10,8 @@
       <table class="user-table table table-striped">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Email</th>
+            <th><%= User.human_attribute_name(:name) %></th>
+            <th><%= User.human_attribute_name(:email) %></th>
             <th></th>
           </tr>
         </thead>

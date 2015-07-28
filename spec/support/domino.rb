@@ -50,52 +50,53 @@ module DOM
     end
 
     def email
-      node.find_field("Email").value
+      node.find_field("Email Address").value
     end
 
     def email=(email)
-      node.fill_in("Email", with: email)
+      node.fill_in("Email Address", with: email)
     end
 
     def harvest_id
-      node.find_field("Harvest").value
+      node.find_field("Harvest ID").value
     end
 
     def harvest_id=(harvest_id)
-      node.fill_in("Harvest", with: harvest_id)
+      node.fill_in("Harvest ID", with: harvest_id)
     end
 
     def zenefits_name
-      node.find_field("Zenefits name").value
+      node.find_field("Name on Zenefits").value
     end
 
     def zenefits_name=(zenefits_name)
-      node.fill_in("Zenefits name", with: zenefits_name)
+      node.fill_in("Name on Zenefits", with: zenefits_name)
     end
 
     def time_zone
-      node.find_field("Time zone").value
+      node.find_field("Time Zone").value
     end
 
     def time_zone=(time_zone)
-      node.select(time_zone, from: "Time zone")
+      node.select(time_zone, from: "Time Zone")
     end
 
     def slack_id
-      node.find_field("Slack").value
+      node.find_field("Slack ID").value
     end
 
     def slack_id=(slack_id)
-      node.fill_in("Slack", with: slack_id)
+      node.fill_in("Slack ID", with: slack_id)
     end
 
     def workdays
-      node.find_field("Workdays").all("option").select(&:selected?).map(&:text)
+      node.find_field("Scheduled Workdays").all("option").select(&:selected?)
+        .map(&:text)
     end
 
     def workdays=(workdays)
-      self.workdays.each { |w| node.unselect(w, from: "Workdays") }
-      workdays.each { |w| node.select(w, from: "Workdays") }
+      self.workdays.each { |w| node.unselect(w, from: "Scheduled Workdays") }
+      workdays.each { |w| node.select(w, from: "Scheduled Workdays") }
     end
 
     def set(attributes)

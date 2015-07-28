@@ -25,3 +25,13 @@ en:
       subject: "Weekly Time Report"
     timer_reminder:
       subject: "Timer Reminder"
+  activerecord:
+    attributes:
+      user:
+        email: "Email Address"
+        harvest_id: "Harvest ID"
+        name: "Name"
+        slack_id: "Slack ID"
+        time_zone: "Time Zone"
+        workdays: "Scheduled Workdays"
+        zenefits_name: "Name on Zenefits"
