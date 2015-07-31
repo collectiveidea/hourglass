@@ -13,7 +13,7 @@
       <table class="user-table table table-striped">
         <thead>
           <tr>
-            <th><%= User.human_attribute_name(:name) %></th>
+            <th class="hidden-xs"><%= User.human_attribute_name(:name) %></th>
             <th><%= User.human_attribute_name(:email) %></th>
             <th></th>
           </tr>
@@ -21,11 +21,17 @@
         <tbody>
           <% @users.each do |user| %>
             <tr class="user-row">
-              <td class="user-row-name"><%= user.name %></td>
+              <td class="user-row-name hidden-xs"><%= user.name %></td>
               <td class="user-row-email"><%= user.email %></td>
               <td class="user-row-actions">
-                <%= link_to "Edit", edit_user_path(user), class: "btn btn-xs btn-default" %>
-                <%= link_to "Archive", user, method: :delete, class: "btn btn-xs btn-danger", data: { confirm: "Are you sure?" } %>
+                <%= link_to edit_user_path(user), class: "btn btn-xs btn-default" do %>
+                  <span class="visible-xs"><%= fa_icon("pencil") %></span>
+                  <span class="hidden-xs">Edit</span>
+                <% end %>
+                <%= link_to user, method: :delete, class: "btn btn-xs btn-danger", data: { confirm: "Are you sure?" } do %>
+                  <span class="visible-xs"><%= fa_icon("trash") %></span>
+                  <span class="hidden-xs">Archive</span>
+                <% end %>
               </td>
             </tr>
           <% end %>
