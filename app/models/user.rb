@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
     dependent: :restrict_with_exception
 
   validates :name, presence: true
-  validates :email, presence: true, email: true
+  validates :email, presence: true, email: true,
+    uniqueness: { case_sensitive: false, scope: :active, if: :active? }
   validates :harvest_id, :zenefits_name, :slack_id, presence: true,
     uniqueness: true
   validates :time_zone, presence: true,
