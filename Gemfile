@@ -14,6 +14,8 @@ gem "puma"
 
 # Assets
 gem "bootstrap-sass"
+gem "bootstrap-chosen-rails"
+gem "chosen-rails"
 gem "coffee-rails"
 gem "font-awesome-rails"
 gem "jquery-rails"

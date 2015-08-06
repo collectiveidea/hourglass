@@ -30,7 +30,7 @@ feature "Users" do
       zenefits_name: "Jane Doe",
       time_zone: "Eastern Time (US & Canada)",
       slack_id: "738YDH2IZJ",
-      workdays: %w(Monday Tuesday Wednesday Thursday)
+      workdays: %w(Mon Tue Wed Thu)
     )
     dom_user_form.submit
 
