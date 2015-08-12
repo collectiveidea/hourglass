@@ -38,6 +38,17 @@ describe User do
       end
     end
 
+    describe "slack_id" do
+      it { is_expected.to accept_values_for(:slack_id, "john-doe", "1234") }
+      it { is_expected.not_to accept_values_for(:slack_id, nil) }
+
+      it "requires a unique value" do
+        create(:user, slack_id: "john-doe")
+
+        expect(user).not_to accept_values_for(:slack_id, "john-doe")
+      end
+    end
+
     describe "zenefits_name" do
       it { is_expected.to accept_values_for(:zenefits_name, "John Doe") }
       it { is_expected.not_to accept_values_for(:zenefits_name, nil) }
