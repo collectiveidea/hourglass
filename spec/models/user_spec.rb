@@ -129,13 +129,14 @@ describe User do
     let(:day_values) { %w(1 2 3 4 5) }
 
     it "assigns the passed values as the user's workdays attribute" do
-      user.workdays=(day_values)
+      user.workdays = day_values
 
       expect(user.workdays).to eq(day_values)
     end
 
     it "rejects any blank values" do
       day_values_with_blank = %w(1 2 3 4 5) << nil
+      user.workdays = day_values_with_blank
 
       expect(user.workdays).to eq(day_values)
     end
@@ -147,7 +148,7 @@ describe User do
     it "sets a user's active attribute to false" do
       user.archive
 
-      expect(user.active).to be(false)
+      expect(user).not_to be_active
     end
   end
 end
