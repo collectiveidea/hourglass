@@ -68,43 +68,81 @@ describe User do
 
   describe ".for_timer_reminder" do
     let(:date) { Date.parse("Monday") }
+    let!(:user) { create(:user, workdays: %w(1 2)) }
+    let(:client_hours) { 0 }
+    let(:internal_hours) { 0 }
+    let(:pto) { false }
+    let(:timer_reminder_sent) { false }
+    let(:workday) { true }
 
-    before do
-      @user = create(:user, workdays: %w(1 2))
-      @other_user = create(:user, workdays: %w(4))
-      day = create(:day, date: date, user: @user, client_hours: 0,
-                   internal_hours: 0, pto: false,
-                   timer_reminder_sent: false, workday: true)
-    end
+    let!(:day) { create(:day, date: date, user: user, client_hours: client_hours,
+                       internal_hours: internal_hours, pto: pto,
+                       timer_reminder_sent: timer_reminder_sent, 
+                       workday: workday) }
+
 
     it "includes users that work that day and haven't started a timer" do
-      expect(User.for_timer_reminder(date: date)).to include(@user)
+      expect(User.for_timer_reminder(date: date)).to include(user)
     end
 
-    it "doesn't include other users" do
-      expect(User.for_timer_reminder(date: date)).not_to include(@other_user)
+    context "not working that day" do
+      let(:workday) { false }
+
+      it "doesn't include the user" do
+        expect(User.for_timer_reminder(date: date)).not_to include(user)
+      end
+    end
+
+    context "has client hours for that day" do
+      let(:client_hours) { 3 }
+
+      it "doesn't include the user" do
+        expect(User.for_timer_reminder(date: date)).not_to include(user)
+      end
+    end
+
+    context "has internal hours for that day" do
+      let(:internal_hours) { 2 }
+
+      it "doesn't include the user" do
+        expect(User.for_timer_reminder(date: date)).not_to include(user)
+      end
+    end
+
+    context "on PTO" do
+      let(:pto) { true }
+
+      it "doesn't include the user" do
+        expect(User.for_timer_reminder(date: date)).not_to include(user)
+      end
+    end
+
+    context "timer_reminder_sent" do
+      let(:timer_reminder_sent) { true }
+
+      it "doesn't include the user" do
+        expect(User.for_timer_reminder(date: date)).not_to include(user)
+      end
     end
   end
 
   describe "#timer_reminder_sent!" do
-    before do
-      @user = create(:user)
-      @tomorrow_day = create(:day, date: Date.tomorrow, user: @user)
-      @today_day = create(:day, date: Date.current, user: @user)
-    end
+    let(:user) { create(:user) }
+    let!(:tomorrow_day) { create(:day, date: Date.tomorrow, user: user) }
+    let!(:today_day) { create(:day, date: Date.current, user: user) }
 
     it "sets the day's timer_reminder_sent to true when date passed" do
-      @user.timer_reminder_sent!(date: Date.tomorrow)
-      @tomorrow_day.reload
+      user.timer_reminder_sent!(date: Date.tomorrow)
+      tomorrow_day.reload
 
-      expect(@tomorrow_day.timer_reminder_sent).to eq(true)
+      expect(tomorrow_day.timer_reminder_sent).to eq(true)
     end
 
     it "sets today's timer_reminder_sent to true when no date passed" do
-      @user.timer_reminder_sent!
-      @today_day.reload
+      user.timer_reminder_sent!
+      today_day.reload
 
-      expect(@today_day.timer_reminder_sent).to eq(true)
+      expect(today_day.timer_reminder_sent).to eq(true)
     end
   end
 
