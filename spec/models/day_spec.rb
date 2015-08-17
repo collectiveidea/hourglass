@@ -51,11 +51,10 @@ describe Day do
   end
 
   describe ".client_hours_for_date_range" do
-    before do
-      first_day = create(:day, date: Date.today, client_hours: 6)
-      second_day = create(:day, date: Date.tomorrow, client_hours: 5)
-      third_day = create(:day, date: 2.days.from_now.to_date, client_hours: 6)
-    end
+    let!(:first_day) { create(:day, date: Date.today, client_hours: 6) }
+    let!(:second_day) { create(:day, date: Date.tomorrow, client_hours: 5) }
+    let!(:third_day) { create(:day, date: 2.days.from_now.to_date, 
+      client_hours: 6) }
 
     it "correctly sums the client hours for a date range" do
       three_day_date_range = Date.today..2.days.from_now.to_date
@@ -67,11 +66,9 @@ describe Day do
   end
 
   describe ".internal_hours_for_date_range" do
-    before do
-      first_day = create(:day, date: Date.today, internal_hours: 8)
-      second_day = create(:day, date: Date.tomorrow, internal_hours: 7)
-      third_day = create(:day, date: 2.days.from_now.to_date, internal_hours: 8)
-    end
+    let!(:first_day) { create(:day, date: Date.today, internal_hours: 8) }
+    let!(:second_day) { create(:day, date: Date.tomorrow, internal_hours: 7) }
+    let!(:third_day) { create(:day, date: 2.days.from_now.to_date, internal_hours: 8) }
 
     it "correctly sums the internal hours for a date range" do
       three_day_date_range = Date.today..2.days.from_now.to_date
