@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     inclusion: { in: ActiveSupport::TimeZone::MAPPING.keys }
 
   delegate :client_hours_for_date_range, :internal_hours_for_date_range,
-    :pto_hours_for_date_range, to: :days
+    to: :days
 
   scope :active, -> { where(active: true) }
 
