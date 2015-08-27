@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     joins(:days).merge(Day.for_timer_reminder(date: date))
   end
 
+  def self.time_zones
+    pluck("DISTINCT time_zone")
+  end
+
   def timer_reminder_sent!(date: Date.current)
     days.find_by!(date: date).update!(timer_reminder_sent: true)
   end

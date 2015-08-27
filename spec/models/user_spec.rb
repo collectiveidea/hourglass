@@ -54,4 +54,16 @@ describe User do
       it { is_expected.not_to accept_values_for(:time_zone, nil, "Foo Bar") }
     end
   end
+
+  context "scopes" do
+    describe "time_zones" do
+      it "returns an array of every unique time zone represented in the users table" do
+        create(:user, time_zone: "Cairo")
+        create(:user, time_zone: "Alaska")
+        create(:user, time_zone: "Alaska")
+
+        expect(User.time_zones).to eq(%w(Cairo Alaska))
+      end
+    end
+  end
 end
