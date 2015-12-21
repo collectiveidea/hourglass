@@ -13,6 +13,7 @@ class Day < ActiveRecord::Base
   scope :last_week, -> { where(date: Date.last_week) }
   scope :this_month, -> { where(date: Date.this_month) }
   scope :last_month, -> { where(date: Date.last_month) }
+  scope :future, -> { where("date > ?", Date.current) }
 
   def self.ensure(user:, date:, **attributes)
     attributes[:workday] = user.works_on?(date: date)
@@ -40,6 +41,10 @@ class Day < ActiveRecord::Base
 
   def self.pto_hours_for_date_range(date_range)
     where(date: date_range, pto: true).count * ENV["PTO_DAY_HOURS"].to_d
+  end
+
+  def self.clear_future
+    future.delete_all
   end
 
   def pto_hours

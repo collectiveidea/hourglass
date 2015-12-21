@@ -6,6 +6,8 @@ class SyncPTO
   end
 
   def call
+    clear_future_pto
+
     events.each do |event|
       if holiday?(event)
         users.each do |user|
@@ -18,6 +20,10 @@ class SyncPTO
   end
 
   private
+
+  def clear_future_pto
+    Day.clear_future
+  end
 
   def events
     Icalendar.parse(open(ENV["ZENEFITS_PTO_CALENDAR_URL"])).first.events

@@ -49,4 +49,20 @@ describe Day do
       expect(day_2).not_to be_a_workday
     end
   end
+
+  describe ".clear_future" do
+    it "deletes all days set in the future" do
+      create(:day, date: Date.yesterday)
+      create(:day, date: Date.current)
+      create(:day, date: Date.tomorrow)
+
+      expect {
+        Day.clear_future
+      }.to change {
+        Day.count
+      }.from(3).to(2)
+
+      expect(Day.pluck(:date)).to match_array([Date.yesterday, Date.current])
+    end
+  end
 end

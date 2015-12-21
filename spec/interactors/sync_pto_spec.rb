@@ -30,8 +30,8 @@ describe SyncPTO do
   end
 
   it "marks existing days as PTO for holidays for all users" do
-    monday_1 = create(:day, user: user_1, date: holiday, pto: false)
-    monday_2 = create(:day, user: user_2, date: holiday, pto: false)
+    create(:day, user: user_1, date: holiday, pto: false)
+    create(:day, user: user_2, date: holiday, pto: false)
 
     expect {
       SyncPTO.call
@@ -39,8 +39,7 @@ describe SyncPTO do
       Day.count
     }.from(2).to(3)
 
-    expect(monday_1.reload).to be_pto
-    expect(monday_2.reload).to be_pto
+    expect(Day.where(date: holiday)).to be_all(&:pto?)
   end
 
   it "ignores events earlier than one month ago" do
