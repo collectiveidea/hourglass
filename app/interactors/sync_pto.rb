@@ -24,7 +24,7 @@ class SyncPTO
   end
 
   def holiday?(event)
-    event.description == "Holiday"
+    event.uid.include?("holiday-item")
   end
 
   def user_for_personal_event(event)
