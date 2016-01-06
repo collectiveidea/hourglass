@@ -4,7 +4,7 @@ source "https://rubygems.org"
 ruby "2.2.2"
 
 # Rails
-gem "rails", "4.2.3"
+gem "rails", "4.2.5"
 
 # Database
 gem "pg"
@@ -15,7 +15,7 @@ gem "puma"
 # Assets
 gem "bootstrap-sass"
 gem "bootstrap-chosen-rails"
-gem "chosen-rails"
+gem "chosen-rails", ">= 1.4.3" # FIXME Avoids compass-rails incompatibility
 gem "coffee-rails"
 gem "font-awesome-rails"
 gem "jquery-rails"
