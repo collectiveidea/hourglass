@@ -27,10 +27,10 @@ namespace :hourglass do
 
   desc "Send reminder emails to users who haven't started timers yet today"
   task :send_timer_reminders => :environment do
-    # Weekdays on or after 10am
-    User.time_zones.each do |tz|
-      if Date.current.cwday <= 5 && Time.current.in_time_zone(tz).hour >= 10
-        SendTimerReminders.call!(time_zone: tz)
+    # Workdays on or after 10am in the user's time zone
+    User.time_zones.each do |time_zone|
+      if Time.current.in_time_zone(time_zone).hour >= 10
+        SendTimerReminders.call!(time_zone: time_zone)
       end
     end
   end
