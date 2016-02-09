@@ -47,6 +47,10 @@ class Month < ActiveRecord::Base
   end
 
   def pto_hours
-    pto_hours * ENV["PTO_DAY_HOURS"].to_d
+    pto_count * ENV["PTO_DAY_HOURS"].to_d
+  end
+
+  def total_hours
+    client_hours + internal_hours + pto_hours
   end
 end

@@ -39,4 +39,10 @@ namespace :hourglass do
   task :sync_pto => :environment do
     SyncPTO.call!
   end
+
+  desc "Generate a CSV time tracking report for a given month"
+  task :report, [:date] => :environment do |_, args|
+    date = args[:date] ? Date.parse(args[:date]) : Date.current.last_month
+    puts GenerateReport.call!(date: date).output
+  end
 end

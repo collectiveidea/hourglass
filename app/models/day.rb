@@ -50,4 +50,8 @@ class Day < ActiveRecord::Base
   def pto_hours
     pto? ? ENV["PTO_DAY_HOURS"].to_d : 0.to_d
   end
+
+  def total_hours
+    client_hours + internal_hours + pto_hours
+  end
 end
