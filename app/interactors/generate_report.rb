@@ -21,7 +21,7 @@ class GenerateReport
   end
 
   def call
-    User.where(active: false).order(:email).each do |user|
+    User.active.order(:email).each do |user|
       if (days = user.days.where(date: context.range).to_a).any?
         context.output << [
           user.email,
