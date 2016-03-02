@@ -35,12 +35,23 @@
                 <td>Total</td>
                 <td><%= pluralize_hours(@total_hours) %></td>
               </tr>
+              <tr>
+                <td>Expected</td>
+                <td><%= pluralize_hours(@expected_total_hours) %></td>
+              </tr>
+              <tr>
+                <td colspan=2><hr/></td>
+              </tr>
+              <tr>
+                <td>Missing</td>
+                <td><%= pluralize_hours(@missing_hours) %></td>
+              </tr>
             </table>
           </p>
         </td>
 
         <td>
-          <img src="https://chart.googleapis.com/chart?cht=p&chd=t:<%= @client_hours %>,<%= @internal_hours %>|<%= @expected_client_hours %>,<%= @expected_internal_hours %>&chs=360x360&chdl=Client|Internal&chdlp=b&cht=pc&chdls=000000,24&chco=66cc00,004876,d9f2cc,bfd1dd" width="180" height="180" />
+          <img src="https://chart.googleapis.com/chart?cht=p&chd=t:<%= @client_hours %>,<%= @missing_hours %>,<%= @internal_hours %>|<%= @expected_client_hours %>,0,<%= @expected_internal_hours %>&chs=360x360&chdl=Client||Internal&chdlp=b&cht=pc&chdls=000000,24&chco=66cc00,ffffff,004876,d9f2cc,ffffff,bfd1dd" width="180" height="180" />
         </td>
       </tr>
 
@@ -48,7 +59,8 @@
         <td>
           <p>
             Happy tracking,<br/>
-            Hourglass ⏳
+            <br/>
+            Hourglass ⌛️
           </p>
         </td>
       </tr>

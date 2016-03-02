@@ -14,6 +14,9 @@ class Notifier < ActionMailer::Base
 
     @expected_client_hours = ENV["EXPECTED_WEEKLY_CLIENT_HOURS"].to_d
     @expected_internal_hours = ENV["EXPECTED_WEEKLY_INTERNAL_HOURS"].to_d
+    @expected_total_hours = @expected_client_hours + @expected_internal_hours
+
+    @missing_hours = [@expected_total_hours - @total_hours, 0].max
 
     mail to: user.email
   end
