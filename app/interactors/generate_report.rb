@@ -14,7 +14,7 @@ class GenerateReport
       "Workdays",
       "Hours per Workday",
       "Timer Reminder Sent",
-      "Time Reminder %",
+      "Timer Reminder %",
       "Tracked in Real Time",
       "Real Time %"
     ].to_csv
