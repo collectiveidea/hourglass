@@ -1,4 +1,4 @@
-class GenerateReport
+class GenerateMonthlyReport
   include Interactor
 
   before do
