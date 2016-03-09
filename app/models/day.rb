@@ -40,7 +40,7 @@ class Day < ActiveRecord::Base
   end
 
   def self.pto_hours_for_date_range(date_range)
-    where(date: date_range, pto: true).count * ENV["PTO_DAY_HOURS"].to_d
+    where(date: date_range, pto: true, workday: true).count * ENV["PTO_DAY_HOURS"].to_d
   end
 
   def self.clear_future
@@ -48,7 +48,7 @@ class Day < ActiveRecord::Base
   end
 
   def pto_hours
-    pto? ? ENV["PTO_DAY_HOURS"].to_d : 0.to_d
+    pto? && workday? ? ENV["PTO_DAY_HOURS"].to_d : 0.to_d
   end
 
   def total_hours
