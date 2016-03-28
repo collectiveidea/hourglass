@@ -20,6 +20,12 @@
 
           <p>
             <table width="50%">
+              <% if @pto_hours.nonzero? %>
+                <tr>
+                  <td>PTO</td>
+                  <td><%= pluralize_hours(@pto_hours) %></td>
+                </tr>
+              <% end %>
               <tr>
                 <td>Client</td>
                 <td><%= pluralize_hours(@client_hours) %></td>
@@ -51,7 +57,11 @@
         </td>
 
         <td>
-          <img src="https://chart.googleapis.com/chart?cht=p&chd=t:<%= @client_hours %>,<%= @missing_hours %>,<%= @internal_hours %>|<%= @expected_client_hours %>,0,<%= @expected_internal_hours %>&chs=360x360&chdl=Client||Internal&chdlp=b&cht=pc&chdls=000000,24&chco=66cc00,ffffff,004876,d9f2cc,ffffff,bfd1dd" width="180" height="180" />
+          <% if @pto_hours.nonzero? %>
+            <img src="https://chart.googleapis.com/chart?cht=p&chd=t:<%= @pto_hours %>,<%= @client_hours %>,<%= @missing_hours %>,<%= @internal_hours %>|<%= @pto_hours %>,<%= @expected_client_hours %>,0,<%= @expected_internal_hours %>&chs=360x360&chdl=PTO|Client||Internal&chdlp=b&cht=pc&chdls=000000,24&chco=bb1e10,66cc00,ffffff,004876,f2bfbf,d9f2cc,ffffff,bfd1dd" width="180" height="180" />
+          <% else %>
+            <img src="https://chart.googleapis.com/chart?cht=p&chd=t:<%= @client_hours %>,<%= @missing_hours %>,<%= @internal_hours %>|<%= @expected_client_hours %>,0,<%= @expected_internal_hours %>&chs=360x360&chdl=Client||Internal&chdlp=b&cht=pc&chdls=000000,24&chco=66cc00,ffffff,004876,d9f2cc,ffffff,bfd1dd" width="180" height="180" />
+          <% end %>
         </td>
       </tr>
 

@@ -10,11 +10,16 @@ class Notifier < ActionMailer::Base
     @user = user
     @client_hours = user.client_hours_for_date_range(last_week)
     @internal_hours = user.internal_hours_for_date_range(last_week)
-    @total_hours = @client_hours + @internal_hours
+    @pto_hours = user.pto_hours_for_date_range(last_week)
+    @total_hours = @client_hours + @internal_hours + @pto_hours
 
     @expected_client_hours = ENV["EXPECTED_WEEKLY_CLIENT_HOURS"].to_d
     @expected_internal_hours = ENV["EXPECTED_WEEKLY_INTERNAL_HOURS"].to_d
     @expected_total_hours = @expected_client_hours + @expected_internal_hours
+
+    pto_multiplier = 1.to_d - @pto_hours / @expected_total_hours
+    @expected_client_hours *= pto_multiplier
+    @expected_internal_hours *= pto_multiplier
 
     @missing_hours = [@expected_total_hours - @total_hours, 0].max
 
