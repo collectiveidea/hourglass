@@ -17,10 +17,10 @@ HARVEST_SUBDOMAIN: "example"
 HARVEST_TIME_ZONE: "Eastern Time (US & Canada)" # rake time:zones:all
 HARVEST_USERNAME: "jane@example.com" # Must be an admin
 
-# Mandrill SMTP credentials and configuration
-MANDRILL_DOMAIN: "example.com"
-MANDRILL_PASSWORD: "hTgvuxadFPSYJ4RMmapnoA" # Fake; must generate API key
-MANDRILL_USERNAME: "hourglass@example.com"
+# SendGrid SMTP credentials and configuration
+SENDGRID_DOMAIN: "example.com"
+SENDGRID_PASSWORD: "hTgvuxadFPSYJ4RMmapnoA" # Fake; must generate API key
+SENDGRID_USERNAME: "hourglass@example.com"
 
 # The number of hours considered to be taken off during a PTO day
 PTO_DAY_HOURS: "8.0"
