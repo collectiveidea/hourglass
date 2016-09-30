@@ -22,6 +22,9 @@ gem "jquery-rails"
 gem "sass-rails"
 gem "uglifier"
 
+# Helper for dynamic jquery nested attributes forms
+gem "cocoon"
+
 # Runtime
 gem "date_validator"
 gem "email_validator"

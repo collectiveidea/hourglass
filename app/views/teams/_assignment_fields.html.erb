@@ -1,0 +1,13 @@
+<div class="form-group assignment-row row nested-fields">
+  <div class="col-xs-6">
+    <%= f.label :user, class: "control-label" %>
+    <%= f.collection_select :user_id, User.active, :id, :name, {prompt: true}, {class: "form-control chosen"} %>
+  </div>
+  <div class="col-xs-4">
+    <%= f.label :hours, class: "control-label" %>
+    <%= f.text_field :hours, class: "form-control col-xs-4" %>
+  </div>
+  <div class="col-xs-2">
+    <%= link_to_remove_association fa_icon("trash"), f, {class: "btn btn-danger"} %>
+  </div>
+</div>

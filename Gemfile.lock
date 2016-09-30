@@ -59,6 +59,7 @@ GEM
       coffee-rails (>= 3.2)
       railties (>= 3.0)
       sass-rails (>= 3.2)
+    cocoon (1.2.9)
     codeclimate-test-reporter (0.6.0)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
@@ -247,6 +248,7 @@ DEPENDENCIES
   bootstrap-sass
   capybara
   chosen-rails
+  cocoon
   codeclimate-test-reporter
   coffee-rails
   database_cleaner

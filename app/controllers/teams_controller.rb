@@ -45,7 +45,8 @@ class TeamsController < ApplicationController
   def team_attributes
     params.require(:team).permit(
       :name,
-      :hours
+      :hours,
+      assignments_attributes: [:id, :user_id, :hours, :_destroy]
     )
   end
 end

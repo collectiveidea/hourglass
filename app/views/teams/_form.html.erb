@@ -1,3 +1,4 @@
+<h5>Team Details</h5>
 <div class="form-group">
   <%= form.label :name, class: "control-label" %>
   <%= form.text_field :name, class: "form-control" %>
@@ -7,6 +8,22 @@
   <%= form.text_field :hours, class: "form-control" %>
   <p class="help-block">Total weekly hours available for the team.</p>
 </div>
+
+<hr>
+
+<h5>Assignments</h5>
+
+<div class="assignment-rows" id="assignments">
+  <%= form.fields_for :assignments do |assignments_f| %>
+    <%= render 'assignment_fields', f: assignments_f %>
+  <% end %>
+
+  <div class="form-group">
+    <%= link_to_add_association "Add Another Assignment", form, :assignments %>
+  </div>
+</div>
+
+
 <div class="form-group">
   <%= button_tag fa_icon("check", text: "Save Team"), class: "btn btn-block btn-lg btn-primary", data: { disable: true } %>
 </div>

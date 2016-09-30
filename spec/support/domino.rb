@@ -177,6 +177,11 @@ module DOM
       end
     end
 
+    def add_user(name:, hours:)
+      node.select(name, from: "User")
+      node.fill_in("Hours", with: hours)
+    end
+
     def submit
       node.find("[type=submit]").click
     end

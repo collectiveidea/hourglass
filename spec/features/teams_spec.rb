@@ -59,7 +59,26 @@ feature "Teams" do
     expect(team.reload.name).to eq("Jump Team")
   end
 
-  scenario "A visitor can add a user to the team"
+  xscenario "A visitor can add a user to the team" do
+    jack = create(:user, name: "Jack", email: "jack@example.com")
+    team = create(:team, name: "News Team", hours: 40)
+
+    visit teams_path
+
+    dom_team_row = DOM::TeamRow.find_by!(name: "News Team")
+    dom_team_row.edit
+
+    dom_team_form = DOM::TeamForm.find!
+    dom_team_form.add_user(name: "Jack", hours: 20)
+    dom_team_form.submit
+
+    expect(current_path).to eq(teams_path)
+
+    team.reload
+    expect(team.assignments.count).to eq(1)
+    expect(team.assignments[0].user).to eq(jack)
+    expect(team.assignments[0].hours).to eq(20)
+  end
 
   scenario "A visitor can archive a team" do
     create(:team, name: "News Team", hours: 40)
