@@ -26,7 +26,7 @@ class SyncPTO
   end
 
   def events
-    Icalendar.parse(open(ENV["ZENEFITS_PTO_CALENDAR_URL"])).first.events
+    Icalendar::Calendar.parse(open(ENV["ZENEFITS_PTO_CALENDAR_URL"])).first.events
   end
 
   def holiday?(event)

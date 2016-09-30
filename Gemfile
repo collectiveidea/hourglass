@@ -4,7 +4,7 @@ source "https://rubygems.org"
 ruby "2.3.1"
 
 # Rails
-gem "rails", "4.2.5.1"
+gem "rails", "4.2.7.1"
 
 # Database
 gem "pg"
