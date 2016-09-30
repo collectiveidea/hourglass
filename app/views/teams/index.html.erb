@@ -1,0 +1,40 @@
+<div class="team-list">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="page-header">
+        <nav class="pull-right">
+          <%= link_to fa_icon("plus", text: "Add Team"), new_team_path, class: "btn btn-primary" %>
+        </nav>
+        <h1>
+          <span class="team-list-count"><%= @teams.size %></span>
+          <%= "Team".pluralize(@teams.size) %>
+        </h1>
+      </div>
+      <table class="team-table table table-striped">
+        <thead>
+          <tr>
+            <th class="hidden-xs"><%= Team.human_attribute_name(:name) %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @teams.each do |team| %>
+            <tr class="team-row">
+              <td class="team-row-name"><%= team.name %></td>
+              <td class="team-row-actions">
+                <%= link_to edit_team_path(team), class: "btn btn-xs btn-default" do %>
+                  <span class="visible-xs"><%= fa_icon("pencil") %></span>
+                  <span class="hidden-xs">Edit</span>
+                <% end %>
+                <%= link_to team, method: :delete, class: "btn btn-xs btn-danger", data: { confirm: "Are you sure?" } do %>
+                  <span class="visible-xs"><%= fa_icon("trash") %></span>
+                  <span class="hidden-xs">Archive</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

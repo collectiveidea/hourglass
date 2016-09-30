@@ -1,0 +1,12 @@
+<div class="form-group">
+  <%= form.label :name, class: "control-label" %>
+  <%= form.text_field :name, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= form.label :hours, class: "control-label" %>
+  <%= form.text_field :hours, class: "form-control" %>
+  <p class="help-block">Total weekly hours available for the team.</p>
+</div>
+<div class="form-group">
+  <%= button_tag fa_icon("check", text: "Save Team"), class: "btn btn-block btn-lg btn-primary", data: { disable: true } %>
+</div>
