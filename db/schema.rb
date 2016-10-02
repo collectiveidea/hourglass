@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930150835) do
+ActiveRecord::Schema.define(version: 20161002200246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,11 +61,13 @@ ActiveRecord::Schema.define(version: 20160930150835) do
   add_index "months", ["year"], name: "index_months_on_year", using: :btree
 
   create_table "teams", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.integer  "hours",                     null: false
-    t.boolean  "active",     default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",                        null: false
+    t.integer  "hours",                       null: false
+    t.boolean  "active",       default: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "project_id"
+    t.string   "project_name"
   end
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|

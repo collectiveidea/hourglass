@@ -13,7 +13,8 @@
       <table class="team-table table table-striped">
         <thead>
           <tr>
-            <th class="hidden-xs"><%= Team.human_attribute_name(:name) %></th>
+            <th><%= Team.human_attribute_name(:name) %></th>
+            <th><%= Team.human_attribute_name(:project_id) %></th>
             <th></th>
           </tr>
         </thead>
@@ -21,6 +22,7 @@
           <% @teams.each do |team| %>
             <tr class="team-row">
               <td class="team-row-name"><%= team.name %></td>
+              <td class="team-row-project-name"><%= team.project_name %></td>
               <td class="team-row-actions">
                 <%= link_to edit_team_path(team), class: "btn btn-xs btn-default" do %>
                   <span class="visible-xs"><%= fa_icon("pencil") %></span>

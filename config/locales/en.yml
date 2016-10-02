@@ -35,3 +35,6 @@ en:
         time_zone: "Time Zone"
         workdays: "Scheduled Workdays"
         zenefits_name: "Name on Zenefits"
+      team:
+        hours: "Budgeted Hours"
+        project_id: "Harvest Project"

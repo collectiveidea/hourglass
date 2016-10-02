@@ -1,9 +1,13 @@
 class Team < ActiveRecord::Base
+  include HasHarvest
+
   validates :name, presence: true
   validates :hours, numericality: { greater_than_or_equal_to: 0 }
 
   has_many :assignments
   has_many :users, through: :assignments
+
+  before_save :set_harvest_project_name
 
   scope :active, -> { where(active: true) }
 
@@ -11,5 +15,13 @@ class Team < ActiveRecord::Base
 
   def archive
     update!(active: false)
+  end
+
+  protected
+
+  def set_harvest_project_name
+    if self.project_id.present?
+      self.project_name = harvest.projects.find(project_id).name
+    end
   end
 end

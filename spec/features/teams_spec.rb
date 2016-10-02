@@ -1,4 +1,9 @@
 feature "Teams" do
+  before do
+    stub_request(:get, "https://collectiveidea.harvestapp.com/projects").
+      to_return(status: 200, body: "", headers: {})
+  end
+
   scenario "A visitor can see the list of teams" do
     create(:team, name: "Test Team", hours: 80)
     create(:team, name: "News Team", hours: 40)
@@ -59,6 +64,7 @@ feature "Teams" do
     expect(team.reload.name).to eq("Jump Team")
   end
 
+  # Needs Javascript
   xscenario "A visitor can add a user to the team" do
     jack = create(:user, name: "Jack", email: "jack@example.com")
     team = create(:team, name: "News Team", hours: 40)

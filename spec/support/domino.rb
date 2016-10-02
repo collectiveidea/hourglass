@@ -164,11 +164,11 @@ module DOM
     end
 
     def hours
-      node.find_field("Hours").value
+      node.find_field("Budgeted Hours").value
     end
 
     def hours=(hours)
-      node.fill_in("Hours", with: hours)
+      node.fill_in("Budgeted Hours", with: hours)
     end
 
     def set(attributes)
