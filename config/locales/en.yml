@@ -25,6 +25,8 @@ en:
       subject: "Weekly Time Report"
     timer_reminder:
       subject: "Timer Reminder"
+    team_reminder:
+      subject: "Weekly Hours Update for %{team_name}"
   activerecord:
     attributes:
       user:

@@ -20,7 +20,7 @@ class Team < ActiveRecord::Base
   protected
 
   def set_harvest_project_name
-    if self.project_id.present?
+    if self.project_id.present? && self.project_name.blank?
       self.project_name = harvest.projects.find(project_id).name
     end
   end

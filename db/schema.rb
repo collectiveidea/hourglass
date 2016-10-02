@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20161002200246) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "team_id"
-    t.integer  "user_id"
+    t.uuid     "user_id"
     t.integer  "hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

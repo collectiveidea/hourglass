@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <body>
+    <table>
+      <tr>
+        <td>
+          <p>
+            <%= @team.name %> Team,
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="70%" height="180px" style="vertical-align: top;">
+          <p>
+            For the week of <%= friendly_date_range(Date.this_week) %>, you have used <%= @billed_hours %> of <%= @team.hours %> budgeted hours.
+          </p>
+
+          <p>
+            <table width="50%">
+              <thead>
+                <tr>
+                  <td></td>
+                  <td>Budgeted</td>
+                  <td>Hours</td>
+                </tr>
+              </thead>
+              <% @hours_by_user.each do |(_, details)| %>
+                <tr>
+                  <td><%= details[:user_email] %></td>
+                  <td><%= details[:expected_hours].round(2) %></td>
+                  <td><%= details[:user_hours].round(2) %></td>
+                </tr>
+              <% end %>
+              <tr>
+                <td colspan=3><hr/></td>
+              </tr>
+              <tr>
+                <td>Remaining:</td>
+                <td></td>
+                <td><%= (@team.hours - @billed_hours).round(2) %></td>
+              </tr>
+            </table>
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>
+            Happy tracking,<br/>
+            <br/>
+            Hourglass ⌛️
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
