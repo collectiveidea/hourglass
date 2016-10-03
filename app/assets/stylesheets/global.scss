@@ -17,15 +17,3 @@ body {
     }
   }
 }
-
-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  font-size: 120%;
-  margin-top: 1em;
-
-  div {
-    margin: 4px;
-  }
-}
