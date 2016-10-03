@@ -7,7 +7,6 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
-    @harvest_projects = harvest_projects_list
   end
 
   def create
@@ -16,14 +15,12 @@ class TeamsController < ApplicationController
     if @team.save
       redirect_to teams_path
     else
-      @harvest_projects = harvest_projects_list
       render :new
     end
   end
 
   def edit
     @team = Team.find(params[:id])
-    @harvest_projects = harvest_projects_list
   end
 
   def update
@@ -32,7 +29,6 @@ class TeamsController < ApplicationController
     if @team.update(team_attributes)
       redirect_to teams_path
     else
-      @harvest_projects = harvest_projects_list
       render :edit
     end
   end
@@ -47,9 +43,22 @@ class TeamsController < ApplicationController
 
   private
 
-  def harvest_projects_list
-    harvest.projects.all.select {|p| p.active? }
+  def harvest_projects
+    @harvest_projects ||= begin
+      clients = harvest.clients.all.group_by(&:id)
+      harvest.projects.all.select(&:active?).group_by { |project|
+        clients[project.client_id].first.name
+      }.sort_by { |client_name, _| client_name }
+    end
   end
+
+  helper_method :harvest_projects
+
+  def users
+    @users ||= User.active.order(:email)
+  end
+
+  helper_method :users
 
   def team_attributes
     params.require(:team).permit(

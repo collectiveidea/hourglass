@@ -178,7 +178,7 @@ module DOM
     end
 
     def add_user(email:, hours:)
-      click_link "Add Another Assignment"
+      click_link "Add Assignment"
 
       select = page.find_field("User", visible: :hidden)
       chosen = page.find(:xpath, "#{select.path}/following-sibling::div[contains(@class, 'chosen-container')]")

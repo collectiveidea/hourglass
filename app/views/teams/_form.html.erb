@@ -1,4 +1,3 @@
-<h5>Team Details</h5>
 <div class="form-group">
   <%= form.label :name, class: "control-label" %>
   <%= form.text_field :name, class: "form-control" %>
@@ -6,31 +5,33 @@
 
 <div class="form-group">
   <%= form.label :project_id, class: "control-label" %>
-  <%= form.collection_select :project_id, @harvest_projects, :id, :name, {prompt: true}, {class: "form-control chosen"} %>
+  <%= form.grouped_collection_select :project_id, harvest_projects, :last, :first, :id, :name, { prompt: true }, { class: "form-control chosen" } %>
 </div>
 
 <div class="form-group">
   <%= form.label :hours, class: "control-label" %>
-  <%= form.text_field :hours, class: "form-control" %>
+  <%= form.number_field :hours, class: "form-control" %>
   <p class="help-block">Total weekly hours budgeted for the team.</p>
 </div>
 
 <hr>
 
-<h5>Assignments</h5>
-
-<p>Users assigned here will receive regular emails showing the weekly progress of the team's budgeted hours.</p>
+<div class="form-group">
+  <label>Assignments</label>
+  <p class="help-block">Assigned users receive emails reporting the team's budgeted/spent time for the week.</p>
+</div>
 
 <div class="assignment-rows" id="assignments">
-  <%= form.fields_for :assignments do |assignments_f| %>
-    <%= render 'assignment_fields', f: assignments_f %>
+  <%= form.fields_for :assignments do |assignment_fields| %>
+    <%= render "assignment_fields", f: assignment_fields %>
   <% end %>
 
   <div class="form-group">
-    <%= link_to_add_association "Add Another Assignment", form, :assignments %>
+    <%= link_to_add_association fa_icon("plus", text: "Add Assignment"), form, :assignments, class: "btn btn-default" %>
   </div>
 </div>
 
+<hr>
 
 <div class="form-group">
   <%= button_tag fa_icon("check", text: "Save Team"), class: "btn btn-block btn-lg btn-primary", data: { disable: true } %>
