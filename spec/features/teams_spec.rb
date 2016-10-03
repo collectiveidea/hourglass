@@ -64,8 +64,7 @@ feature "Teams" do
     expect(team.reload.name).to eq("Jump Team")
   end
 
-  # Needs Javascript
-  xscenario "A visitor can add a user to the team" do
+  scenario "A visitor can add a user to the team", :js do
     jack = create(:user, name: "Jack", email: "jack@example.com")
     team = create(:team, name: "News Team", hours: 40)
 
@@ -75,7 +74,7 @@ feature "Teams" do
     dom_team_row.edit
 
     dom_team_form = DOM::TeamForm.find!
-    dom_team_form.add_user(name: "Jack", hours: 20)
+    dom_team_form.add_user(email: "jack@example.com", hours: 20)
     dom_team_form.submit
 
     expect(current_path).to eq(teams_path)

@@ -52,4 +52,5 @@ group :development, :test do
   gem "rspec-rails"
   gem "timecop"
   gem "webmock", require: false
+  gem "poltergeist"
 end

@@ -177,8 +177,14 @@ module DOM
       end
     end
 
-    def add_user(name:, hours:)
-      node.select(name, from: "User")
+    def add_user(email:, hours:)
+      click_link "Add Another Assignment"
+
+      select = page.find_field("User", visible: :hidden)
+      chosen = page.find(:xpath, "#{select.path}/following-sibling::div[contains(@class, 'chosen-container')]")
+      chosen.click
+      chosen.find(".chosen-results li", text: email).click
+
       node.fill_in("Hours", with: hours)
     end
 
