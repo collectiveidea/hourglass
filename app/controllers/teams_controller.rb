@@ -2,7 +2,7 @@ class TeamsController < ApplicationController
   include HasHarvest
 
   def index
-    @teams = Team.active
+    @teams = Team.active.order(:name)
   end
 
   def new

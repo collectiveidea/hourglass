@@ -4,7 +4,7 @@ feature "Teams" do
       to_return(status: 200, body: "", headers: {})
   end
 
-  scenario "A visitor can see the list of teams" do
+  scenario "A visitor can see the list of teams (alphabetical)" do
     create(:team, name: "Test Team", hours: 80)
     create(:team, name: "News Team", hours: 40)
 
@@ -15,8 +15,8 @@ feature "Teams" do
 
     dom_team_rows = dom_team_list.rows
     expect(dom_team_rows.count).to eq(2)
-    expect(dom_team_rows[0].name).to eq("Test Team")
-    expect(dom_team_rows[1].name).to eq("News Team")
+    expect(dom_team_rows[0].name).to eq("News Team")
+    expect(dom_team_rows[1].name).to eq("Test Team")
   end
 
   scenario "A visitor can create a team" do
