@@ -1,6 +1,6 @@
 feature "Teams" do
   before do
-    stub_request(:get, "https://collectiveidea.harvestapp.com/projects").
+    stub_request(:get, "https://example.harvestapp.com/projects").
       to_return(status: 200, body: "", headers: {})
   end
 

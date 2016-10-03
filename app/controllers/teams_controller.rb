@@ -16,6 +16,7 @@ class TeamsController < ApplicationController
     if @team.save
       redirect_to teams_path
     else
+      @harvest_projects = harvest_projects_list
       render :new
     end
   end
@@ -31,6 +32,7 @@ class TeamsController < ApplicationController
     if @team.update(team_attributes)
       redirect_to teams_path
     else
+      @harvest_projects = harvest_projects_list
       render :edit
     end
   end

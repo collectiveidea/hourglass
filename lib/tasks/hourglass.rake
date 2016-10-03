@@ -49,7 +49,7 @@ namespace :hourglass do
   desc "Send report on current weekly team hours usage"
   task :team_hours_update => :environment do
     if Date.current.wednesday? || Date.current.friday?
-      SendTeamHoursUpdate.call
+      SendTeamHoursUpdate.call!
     end
   end
 end
