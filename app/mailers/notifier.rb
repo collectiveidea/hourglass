@@ -35,7 +35,7 @@ class Notifier < ActionMailer::Base
     mail to: user.email
   end
 
-  def team_reminder(team, project_hours)
+  def team_hours_update(team, project_hours)
     @team = team
 
     @hours_by_user = @team.assignments.includes(:user).inject({}) do |memo, assignment|

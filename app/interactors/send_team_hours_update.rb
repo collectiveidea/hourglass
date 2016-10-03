@@ -1,4 +1,4 @@
-class SendTeamUpdates
+class SendTeamHoursUpdate
   include Interactor
   include HasHarvest
 
@@ -9,7 +9,7 @@ class SendTeamUpdates
 
       time_entries = harvest.reports.time_by_project(team.project_id, from, to, billable: true)
 
-      Notifier.team_reminder(team, time_entries).deliver_now
+      Notifier.team_hours_update(team, time_entries).deliver_now
     end
   end
 end
