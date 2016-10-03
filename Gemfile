@@ -51,6 +51,6 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails"
   gem "timecop"
-  gem "webmock", require: false
+  gem "webmock"
   gem "poltergeist"
 end

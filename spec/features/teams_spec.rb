@@ -1,6 +1,8 @@
 feature "Teams" do
   before do
-    stub_request(:get, "https://example.harvestapp.com/projects").
+    stub_request(:get, "https://#{ENV["HARVEST_SUBDOMAIN"]}.harvestapp.com/clients").
+      to_return(status: 200, body: "", headers: {})
+    stub_request(:get, "https://#{ENV["HARVEST_SUBDOMAIN"]}.harvestapp.com/projects").
       to_return(status: 200, body: "", headers: {})
   end
 
