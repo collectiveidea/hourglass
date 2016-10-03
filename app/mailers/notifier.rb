@@ -35,7 +35,7 @@ class Notifier < ActionMailer::Base
     mail to: user.email
   end
 
-  def team_reminder(user, team, project_hours)
+  def team_reminder(team, project_hours)
     @team = team
 
     @hours_by_user = @team.assignments.includes(:user).inject({}) do |memo, assignment|
@@ -65,7 +65,7 @@ class Notifier < ActionMailer::Base
       @billed_hours += time_entry.hours
     end
 
-    mail to: user.email, subject: I18n.t("notifier.team_reminder.subject", team_name: @team.name)
+    mail to: team.users.map(&:email), subject: I18n.t("notifier.team_reminder.subject", team_name: @team.name)
   end
 
   private

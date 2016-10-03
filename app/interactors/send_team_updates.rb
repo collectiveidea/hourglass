@@ -9,9 +9,7 @@ class SendTeamUpdates
 
       time_entries = harvest.reports.time_by_project(team.project_id, from, to, billable: true)
 
-      team.users.each do |user|
-        Notifier.team_reminder(user, team, time_entries).deliver_now
-      end
+      Notifier.team_reminder(team, time_entries).deliver_now
     end
   end
 end
