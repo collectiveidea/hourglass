@@ -1,0 +1,13 @@
+<%= @team.name %> Team,
+
+For the week of <%= friendly_date_range(Date.this_week) %>, you have used <%= @billed_hours.round(2) %> of <%= @team.hours %> budgeted hours.
+
+<% @hours_by_user.each do |(_, details)| %>
+<%= details[:user_email] %> :: <%= details[:user_hours].round(2) %> / <%= details[:expected_hours].round(2) %>
+<% end %>
+
+Total hours left this week: <%= (@team.hours - @billed_hours).round(2) %>.
+
+Happy tracking,
+
+Hourglass

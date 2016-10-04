@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :user do
     name "John"
     email { "john.#{SecureRandom.hex}@example.com" }
-    harvest_id { SecureRandom.uuid }
+    harvest_id { SecureRandom.random_number(1_000_000) }
     zenefits_name { %(John "#{SecureRandom.uuid}" Doe) }
     time_zone "UTC"
     slack_id { "U#{SecureRandom.random_number(10_000_000_000)}" }

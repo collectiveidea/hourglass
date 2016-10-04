@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <body>
+    <table>
+      <tr>
+        <td>
+          <p>
+            <%= @team.name %> Team,
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="800px" height="180px" style="vertical-align: top;">
+          <p>
+            For the week of <%= friendly_date_range(Date.this_week) %>, you have used <%= @billed_hours.round(2) %> of <%= @team.hours %> budgeted hours.
+          </p>
+
+          <p>
+            <table width="100%">
+              <thead>
+                <tr>
+                  <td></td>
+                  <td>Hours</td>
+                  <td width="400px"></td>
+                  <td>Budgeted</td>
+                </tr>
+              </thead>
+              <% @hours_by_user.each do |(_, details)| %>
+                <tr>
+                  <td><%= details[:user_email] %></td>
+                  <td><%= details[:user_hours].round(2) %></td>
+                  <td valign="middle">
+                    <% if details[:expected_hours] > 0 %>
+                      <img src="https://chart.googleapis.com/chart?cht=bhs:nda&chco=4D89F9,C6D9FD&chd=t:<%= (details[:user_hours] / details[:expected_hours]) * 100 %>|100&chs=400x40" width="100%"/>
+                    <% end %>
+                  </td>
+                  <td><%= details[:expected_hours].round(2) %></td>
+                </tr>
+              <% end %>
+              <tr>
+                <td colspan="4"><hr/></td>
+              </tr>
+              <tr>
+                <td>Remaining:</td>
+                <td><%= (@team.hours - @billed_hours).round(2) %></td>
+                <td colspan="2"></td>
+              </tr>
+            </table>
+          </p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>
+            Happy tracking,<br/>
+            <br/>
+            Hourglass ⌛️
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

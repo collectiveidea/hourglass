@@ -1,0 +1,15 @@
+<div class="edit-team container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="page-header">
+        <nav class="pull-right">
+          <%= link_to fa_icon("arrow-left", text: "Cancel"), teams_path, class: "btn btn-default" %>
+        </nav>
+        <h1>Edit Team</h1>
+      </div>
+      <%= form_for @team, html: { class: "edit-team-form team-form" } do |form| %>
+        <%= render form %>
+      <% end %>
+    </div>
+  </div>
+</div>

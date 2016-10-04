@@ -45,4 +45,11 @@ namespace :hourglass do
     date = args[:date] ? Date.parse(args[:date]) : Date.current.last_month
     puts GenerateMonthlyReport.call!(date: date).output
   end
+
+  desc "Send report on current weekly team hours usage"
+  task :team_hours_update => :environment do
+    if Date.current.wednesday? || Date.current.friday?
+      SendTeamHoursUpdate.call!
+    end
+  end
 end

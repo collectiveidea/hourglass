@@ -25,6 +25,8 @@ en:
       subject: "Weekly Time Report"
     timer_reminder:
       subject: "Timer Reminder"
+    team_reminder:
+      subject: "Weekly Hours Update for %{team_name}"
   activerecord:
     attributes:
       user:
@@ -35,3 +37,6 @@ en:
         time_zone: "Time Zone"
         workdays: "Scheduled Workdays"
         zenefits_name: "Name on Zenefits"
+      team:
+        hours: "Budgeted Hours"
+        project_id: "Harvest Project"

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resource :slack, only: [:show], defaults: { format: :text }
 
   resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :teams
 
   root to: redirect("users", status: 302)
 end

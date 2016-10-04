@@ -2,6 +2,9 @@ class Notifier < ActionMailer::Base
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::NumberHelper
 
+  include ApplicationHelper
+  helper_method :friendly_date_range
+
   default from: ENV["EMAIL_FROM"]
 
   def weekly_report(user)
@@ -30,6 +33,39 @@ class Notifier < ActionMailer::Base
     @user = user
 
     mail to: user.email
+  end
+
+  def team_hours_update(team, project_hours)
+    @team = team
+
+    @hours_by_user = @team.assignments.includes(:user).inject({}) do |memo, assignment|
+      memo[assignment.user.harvest_id.to_i] = {
+        user_email: assignment.user.email,
+        user_hours: 0,
+        expected_hours: assignment.hours,
+      }
+      memo
+    end
+
+    @hours_by_user[:unassigned] = {
+      user_email: "unassigned",
+      user_hours: 0,
+      expected_hours: 0,
+    }
+
+    @billed_hours = 0
+    project_hours.each do |time_entry|
+      details = @hours_by_user[time_entry.user_id]
+      if details
+        details[:user_hours] += time_entry.hours
+      else
+        @hours_by_user[:unassigned][:user_hours] += time_entry.hours
+      end
+
+      @billed_hours += time_entry.hours
+    end
+
+    mail to: team.users.map(&:email), subject: I18n.t("notifier.team_reminder.subject", team_name: @team.name)
   end
 
   private

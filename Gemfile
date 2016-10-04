@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 
 # Ruby
-ruby "2.3.0"
+ruby "2.3.1"
 
 # Rails
-gem "rails", "4.2.5.1"
+gem "rails", "4.2.7.1"
 
 # Database
 gem "pg"
@@ -21,6 +21,9 @@ gem "font-awesome-rails"
 gem "jquery-rails"
 gem "sass-rails"
 gem "uglifier"
+
+# Helper for dynamic jquery nested attributes forms
+gem "cocoon"
 
 # Runtime
 gem "date_validator"
@@ -48,5 +51,6 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails"
   gem "timecop"
-  gem "webmock", require: false
+  gem "webmock"
+  gem "poltergeist"
 end

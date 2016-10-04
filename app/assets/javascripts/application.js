@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require chosen-jquery
+//= require cocoon
+//= require bootstrap/collapse
 //= require_tree .

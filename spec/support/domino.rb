@@ -111,4 +111,85 @@ module DOM
       node.find("[type=submit]").click
     end
   end
+
+  class TeamList < Domino
+    selector ".team-list"
+
+    attribute :count, ".team-list-count", &:to_i
+
+    def add
+      node.click_link("Add Team")
+    end
+
+    def table
+      within(node) { DOM::TeamTable.find! }
+    end
+
+    def rows
+      table.rows
+    end
+  end
+
+  class TeamTable < Domino
+    selector ".team-table"
+
+    def rows
+      within(node) { DOM::TeamRow.all }
+    end
+  end
+
+  class TeamRow < Domino
+    selector ".team-row"
+
+    attribute :name, ".team-row-name"
+
+    def edit
+      node.click_link("Edit")
+    end
+
+    def archive
+      node.click_link("Archive")
+    end
+  end
+
+  class TeamForm < Domino
+    selector ".team-form"
+
+    def name
+      node.find_field("Name").value
+    end
+
+    def name=(name)
+      node.fill_in("Name", with: name)
+    end
+
+    def hours
+      node.find_field("Budgeted Hours").value
+    end
+
+    def hours=(hours)
+      node.fill_in("Budgeted Hours", with: hours)
+    end
+
+    def set(attributes)
+      attributes.each do |key, value|
+        send("#{key}=", value)
+      end
+    end
+
+    def add_user(email:, hours:)
+      click_link "Add Assignment"
+
+      select = page.find_field("User", visible: :hidden)
+      chosen = page.find(:xpath, "#{select.path}/following-sibling::div[contains(@class, 'chosen-container')]")
+      chosen.click
+      chosen.find(".chosen-results li", text: email).click
+
+      node.fill_in("Hours", with: hours)
+    end
+
+    def submit
+      node.find("[type=submit]").click
+    end
+  end
 end
