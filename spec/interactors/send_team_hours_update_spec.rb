@@ -3,6 +3,7 @@ describe SendTeamHoursUpdate do
     team = create(:team, name: "Test Team", hours: 20, project_name: "Test Project")
     user_1 = create(:user, name: "Jason")
     user_2 = create(:user, name: "Chris")
+    user_3 = create(:user, email: "user3@test.com")
 
     team.assignments.create(user: user_1, hours: 10)
     team.assignments.create(user: user_2, hours: 10)
@@ -24,6 +25,7 @@ describe SendTeamHoursUpdate do
       [
         create(:harvest_time_entry, :client, hours: 1.0, user_id: user_1.harvest_id.to_i),
         create(:harvest_time_entry, :client, hours: 4.0, user_id: user_2.harvest_id.to_i),
+        create(:harvest_time_entry, :client, hours: 12.0),
       ]
     }
 
@@ -36,6 +38,11 @@ describe SendTeamHoursUpdate do
     expect(current_email).to have_subject(I18n.t("notifier.team_reminder.subject", team_name: "Test Team"))
 
     expect(current_email).to have_body_text("20 budgeted hours")
+
+    # Don't include details of users who have hours on the project
+    # that aren't members of the team
+    expect(current_email).to_not have_body_text("12")
+    expect(current_email).to_not have_body_text(user_3.email)
   end
 
 end

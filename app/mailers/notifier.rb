@@ -47,22 +47,13 @@ class Notifier < ActionMailer::Base
       memo
     end
 
-    @hours_by_user[:unassigned] = {
-      user_email: "unassigned",
-      user_hours: 0,
-      expected_hours: 0,
-    }
-
     @billed_hours = 0
     project_hours.each do |time_entry|
       details = @hours_by_user[time_entry.user_id]
       if details
         details[:user_hours] += time_entry.hours
-      else
-        @hours_by_user[:unassigned][:user_hours] += time_entry.hours
+        @billed_hours += time_entry.hours
       end
-
-      @billed_hours += time_entry.hours
     end
 
     mail to: team.users.map(&:email), subject: I18n.t("notifier.team_reminder.subject", team_name: @team.name)
