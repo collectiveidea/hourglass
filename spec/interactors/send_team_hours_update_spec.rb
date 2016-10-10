@@ -1,8 +1,8 @@
 describe SendTeamHoursUpdate do
   it "sends an email to all team members of the current hours for the week" do
     team = create(:team, name: "Test Team", hours: 20, project_name: "Test Project")
-    user_1 = create(:user, name: "Jason")
-    user_2 = create(:user, name: "Chris")
+    user_1 = create(:user, name: "Jason", email: "jason@test.com")
+    user_2 = create(:user, name: "Chris", email: "chris@test.com")
     user_3 = create(:user, email: "user3@test.com")
 
     team.assignments.create(user: user_1, hours: 10)
