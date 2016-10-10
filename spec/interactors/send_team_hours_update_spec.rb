@@ -1,8 +1,8 @@
 describe SendTeamHoursUpdate do
   it "sends an email to all team members of the current hours for the week" do
     team = create(:team, name: "Test Team", hours: 20, project_name: "Test Project")
-    user_1 = create(:user, name: "Jason")
-    user_2 = create(:user, name: "Chris")
+    user_1 = create(:user, name: "Jason", email: "jason@test.com")
+    user_2 = create(:user, name: "Chris", email: "chris@test.com")
     user_3 = create(:user, email: "user3@test.com")
 
     team.assignments.create(user: user_1, hours: 10)
@@ -29,7 +29,7 @@ describe SendTeamHoursUpdate do
       ]
     }
 
-    SendTeamHoursUpdate.call
+    SendTeamHoursUpdate.call(week: Date.this_week)
 
     open_last_email_for(user_1.email)
     expect(current_email).to have_subject(I18n.t("notifier.team_reminder.subject", team_name: "Test Team"))

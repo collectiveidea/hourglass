@@ -3,8 +3,9 @@ class SendTeamHoursUpdate
   include HasHarvest
 
   def call
-    from = Date.this_week.first
-    to = Date.this_week.last
+    week = context.week || Date.this_week
+    from = week.first
+    to = week.last
 
     Team.active.each do |team|
       time_entries = harvest.reports.time_by_project(team.project_id, from, to, billable: true)
