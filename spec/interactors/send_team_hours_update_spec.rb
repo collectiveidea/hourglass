@@ -29,7 +29,7 @@ describe SendTeamHoursUpdate do
       ]
     }
 
-    SendTeamHoursUpdate.call
+    SendTeamHoursUpdate.call(week: Date.this_week)
 
     open_last_email_for(user_1.email)
     expect(current_email).to have_subject(I18n.t("notifier.team_reminder.subject", team_name: "Test Team"))
