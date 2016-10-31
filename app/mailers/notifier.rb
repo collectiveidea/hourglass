@@ -35,8 +35,9 @@ class Notifier < ActionMailer::Base
     mail to: user.email
   end
 
-  def team_hours_update(team, project_hours)
+  def team_hours_update(team, week_range, project_hours)
     @team = team
+    @week_range = week_range
 
     @hours_by_user = @team.assignments.includes(:user).inject({}) do |memo, assignment|
       memo[assignment.user.harvest_id.to_i] = {

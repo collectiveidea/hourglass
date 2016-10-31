@@ -17,7 +17,7 @@
       <tr>
         <td width="800px" height="180px" style="vertical-align: top;">
           <p>
-            For the week of <%= friendly_date_range(Date.this_week) %>, you have used <%= @billed_hours.round(2) %> of <%= @team.hours %> budgeted hours.
+            For the week of <%= friendly_date_range(@week_range) %>, you have used <%= @billed_hours.round(2) %> of <%= @team.hours %> budgeted hours.
           </p>
 
           <p>
