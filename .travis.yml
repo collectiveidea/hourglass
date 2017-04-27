@@ -1,18 +1,8 @@
-before_install:
-  - gem update bundler rake
-before_script:
-  - bin/setup
-branches:
-  only:
-    - master
+after_success: bundle exec codeclimate-test-reporter
+before_install: gem update bundler rake
+before_script: bin/setup
+branches: master
 cache: bundler
-env:
-  global:
-    - secure: | # CODECLIMATE_REPO_TOKEN
-        NdnxBR6jx3ZX5XCe1rzitbpbBj0HIO+Zo/FuYe1GU5RoKaBG58pBhKxLJJIE
-        E8/M0C7Q7vymdMaHbQC+yxLtNgthKcs2bEFK43CII347Smaw85gW3U0JV2ig
-        RwgppkyKB4o2Yd4xtCdR31XblBje2IRH2k5AHprEqgSBh4scFNw=
 language: ruby
-rvm:
-  - 2.4.1
+rvm: 2.4.1
 sudo: false

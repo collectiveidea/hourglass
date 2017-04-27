@@ -43,7 +43,7 @@ end
 group :development, :test do
   gem "accept_values_for"
   gem "capybara"
-  gem "codeclimate-test-reporter", require: false
+  gem "codeclimate-test-reporter"
   gem "database_cleaner"
   gem "domino"
   gem "email_spec"

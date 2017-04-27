@@ -1,6 +1,6 @@
 if ENV["CODECLIMATE_REPO_TOKEN"]
-  require "codeclimate-test-reporter"
-  CodeClimate::TestReporter.start
+  require "simplecov"
+  SimpleCov.start
 end
 
 ENV["RAILS_ENV"] ||= "test"
