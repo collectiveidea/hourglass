@@ -1,10 +1,11 @@
 source "https://rubygems.org"
 
 # Ruby
-ruby "2.3.1"
+ruby "2.4.1"
 
 # Rails
-gem "rails", "4.2.7.1"
+# TODO: Upgrade to Rails 5
+gem "rails", "4.2.8"
 
 # Database
 gem "pg"
@@ -42,7 +43,7 @@ end
 group :development, :test do
   gem "accept_values_for"
   gem "capybara"
-  gem "codeclimate-test-reporter", require: false
+  gem "codeclimate-test-reporter"
   gem "database_cleaner"
   gem "domino"
   gem "email_spec"
