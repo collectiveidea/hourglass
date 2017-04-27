@@ -4,7 +4,8 @@ source "https://rubygems.org"
 ruby "2.4.1"
 
 # Rails
-gem "rails", "4.2.7.1"
+# TODO: Upgrade to Rails 5
+gem "rails", "4.2.8"
 
 # Database
 gem "pg"
