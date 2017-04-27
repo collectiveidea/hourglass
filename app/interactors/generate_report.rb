@@ -1,9 +1,9 @@
-class GenerateMonthlyReport
+class GenerateReport
   include Interactor
 
   before do
     context.date ||= Date.current.last_month
-    context.range = context.date.all_month
+    context.range ||= context.date.all_month
 
     context.output = [
       "Email",
