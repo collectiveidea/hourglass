@@ -42,14 +42,18 @@ namespace :hourglass do
 
   desc "Generate a CSV time tracking report for a given month"
   task :monthly_report, [:date] => :environment do |_, args|
-    date = args[:date] ? Date.parse(args[:date]) : Date.current.last_month
-    puts GenerateReport.call!(range: date.all_month).output
+    Rails.logger.silence do
+      date = args[:date] ? Date.parse(args[:date]) : Date.current.last_month
+      puts GenerateReport.call!(range: date.all_month).output
+    end
   end
 
   desc "Generate a CSV time tracking report for a given week"
   task :weekly_report, [:date] => :environment do |_, args|
-    date = args[:date] ? Date.parse(args[:date]) : Date.current.last_week
-    puts GenerateReport.call!(range: date.all_week).output
+    Rails.logger.silence do
+      date = args[:date] ? Date.parse(args[:date]) : Date.current.last_week
+      puts GenerateReport.call!(range: date.all_week).output
+    end
   end
 
   desc "Send report on current weekly team hours usage"
