@@ -41,4 +41,12 @@ class User < ActiveRecord::Base
   def archive
     update!(active: false)
   end
+
+  def comma_separated_tags
+    tags.sort.join(", ")
+  end
+
+  def comma_separated_tags=(value)
+    self.tags = value.to_s.strip.split(/\s*,\s*/)
+  end
 end

@@ -30,6 +30,7 @@ en:
   activerecord:
     attributes:
       user:
+        comma_separated_tags: "Tags"
         email: "Email Address"
         harvest_id: "Harvest ID"
         name: "Name"
