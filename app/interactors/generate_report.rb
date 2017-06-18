@@ -4,6 +4,7 @@ class GenerateReport
   before do
     context.date ||= Date.current.last_month
     context.range ||= context.date.all_month
+    context.tags ||= []
 
     context.output = [
       "Email",
@@ -21,7 +22,9 @@ class GenerateReport
   end
 
   def call
-    User.active.order(:email).each do |user|
+    context.users = load_users
+
+    context.users.each do |user|
       if (days = user.days.where(date: context.range).to_a).any?
         total_hours = days.sum(&:total_hours)
         workdays = days.count(&:workday?)
@@ -60,5 +63,13 @@ class GenerateReport
         ].to_csv
       end
     end
+  end
+
+  private
+
+  def load_users
+    users = User.active.order(:email)
+    users = users.with_tags(context.tags) if context.tags.any?
+    users.to_a
   end
 end

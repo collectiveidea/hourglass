@@ -44,7 +44,8 @@ namespace :hourglass do
   task :monthly_report, [:date] => :environment do |_, args|
     Rails.logger.silence do
       date = args[:date] ? Date.parse(args[:date]) : Date.current.last_month
-      puts GenerateReport.call!(range: date.all_month).output
+      tags = (ENV["TAGS"] || ENV["TAG"]).to_s.split(",")
+      puts GenerateReport.call!(range: date.all_month, tags: tags).output
     end
   end
 
@@ -52,7 +53,8 @@ namespace :hourglass do
   task :weekly_report, [:date] => :environment do |_, args|
     Rails.logger.silence do
       date = args[:date] ? Date.parse(args[:date]) : Date.current.last_week
-      puts GenerateReport.call!(range: date.all_week).output
+      tags = (ENV["TAGS"] || ENV["TAG"]).to_s.split(",")
+      puts GenerateReport.call!(range: date.all_week, tags: tags).output
     end
   end
 

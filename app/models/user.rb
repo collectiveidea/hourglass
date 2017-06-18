@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
     :pto_hours_for_date_range, to: :days
 
   scope :active, -> { where(active: true) }
+  scope :with_tags, -> (tags) { where("tags @> ARRAY[?]", tags) }
 
   def self.for_timer_reminder(date: Date.current)
     joins(:days).merge(Day.for_timer_reminder(date: date))
