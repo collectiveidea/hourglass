@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     pluck("DISTINCT time_zone")
   end
 
+  def self.tags
+    order("tag ASC").pluck("DISTINCT UNNEST(tags) AS tag")
+  end
+
   def timer_reminder_sent!(date: Date.current)
     days.find_by!(date: date).update!(timer_reminder_sent: true)
   end
@@ -42,11 +46,7 @@ class User < ActiveRecord::Base
     update!(active: false)
   end
 
-  def comma_separated_tags
-    tags.sort.join(", ")
-  end
-
-  def comma_separated_tags=(value)
-    self.tags = value.to_s.strip.split(/\s*,\s*/)
+  def tags=(values)
+    super(values.reject(&:blank?))
   end
 end

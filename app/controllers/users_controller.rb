@@ -43,13 +43,13 @@ class UsersController < ApplicationController
 
   def user_attributes
     params.require(:user).permit(
-      :comma_separated_tags,
       :email,
       :harvest_id,
       :name,
       :slack_id,
       :time_zone,
       :zenefits_name,
+      tags: [],
       workdays: []
     )
   end
