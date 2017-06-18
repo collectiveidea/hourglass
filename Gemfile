@@ -14,8 +14,8 @@ gem "pg"
 gem "puma"
 
 # Assets
-gem "bootstrap-sass"
 gem "bootstrap-chosen-rails"
+gem "bootstrap-sass"
 gem "chosen-rails"
 gem "coffee-rails"
 gem "font-awesome-rails"
@@ -49,9 +49,9 @@ group :development, :test do
   gem "email_spec"
   gem "factory_girl_rails"
   gem "foreman"
+  gem "poltergeist"
   gem "pry-rails"
   gem "rspec-rails"
   gem "timecop"
   gem "webmock"
-  gem "poltergeist"
 end
