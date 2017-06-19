@@ -45,9 +45,9 @@ describe SendTeamHoursUpdate do
 
     expect(current_email).to have_body_text(friendly_date_range(time_range))
 
-    # Don't include details of users who have hours on the project
-    # that aren't members of the team
-    expect(current_email).to_not have_body_text("12")
+    # Don't include details of users who have hours on the project that aren't
+    # members of the team.
+    expect(current_email).to_not have_body_text("12.0")
     expect(current_email).to_not have_body_text(user_3.email)
   end
 
