@@ -41,18 +41,18 @@ namespace :hourglass do
   end
 
   desc "Generate a CSV time tracking report for a given month"
-  task :monthly_report, [:date] => :environment do |_, args|
+  task :monthly_report => :environment do
     Rails.logger.silence do
-      date = args[:date] ? Date.parse(args[:date]) : Date.current.last_month
+      date = ENV["DATE"] ? Date.parse(ENV["DATE"]) : Date.current.last_month
       tags = (ENV["TAGS"] || ENV["TAG"]).to_s.split(",")
       puts GenerateReport.call!(range: date.all_month, tags: tags).output
     end
   end
 
   desc "Generate a CSV time tracking report for a given week"
-  task :weekly_report, [:date] => :environment do |_, args|
+  task :weekly_report => :environment do
     Rails.logger.silence do
-      date = args[:date] ? Date.parse(args[:date]) : Date.current.last_week
+      date = ENV["DATE"] ? Date.parse(ENV["DATE"]) : Date.current.last_week
       tags = (ENV["TAGS"] || ENV["TAG"]).to_s.split(",")
       puts GenerateReport.call!(range: date.all_week, tags: tags).output
     end
