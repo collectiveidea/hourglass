@@ -14,13 +14,12 @@ gem "pg"
 gem "puma"
 
 # Assets
-gem "bootstrap-chosen-rails"
 gem "bootstrap-sass"
-gem "chosen-rails"
 gem "coffee-rails"
 gem "font-awesome-rails"
 gem "jquery-rails"
 gem "sass-rails"
+gem "select2-rails"
 gem "uglifier"
 
 # Helper for dynamic jquery nested attributes forms

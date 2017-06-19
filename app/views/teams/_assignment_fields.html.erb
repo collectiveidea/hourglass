@@ -1,7 +1,7 @@
 <div class="assignment-row row nested-fields">
   <div class="col-xs-8 form-group">
     <%= f.label :user_id, class: "control-label" %>
-    <%= f.collection_select :user_id, users, :id, :email, {prompt: true}, {data: "user_select", class: "form-control chosen"} %>
+    <%= f.collection_select :user_id, users, :id, :email, { prompt: true }, data: "user_select", class: "form-control select2" %>
   </div>
   <div class="col-xs-2 form-group">
     <%= f.label :hours, class: "control-label" %>
@@ -9,6 +9,6 @@
   </div>
   <div class="col-xs-2 form-group">
     <label class="invisible">Remove</label>
-    <%= link_to_remove_association fa_icon("trash"), f, {class: "btn btn-danger"} %>
+    <%= link_to_remove_association fa_icon("trash"), f, class: "btn btn-danger" %>
   </div>
 </div>

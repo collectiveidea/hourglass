@@ -1,4 +1,4 @@
 $ ->
-  $("#assignments").on("cocoon:after-insert", (e, inserted) ->
-    $(".chosen", inserted).chosen(width: "100%")
-  )
+  $("#assignments").on "cocoon:after-insert", (_, inserted) ->
+    $(".select2", inserted).select2
+      theme: "bootstrap"

@@ -55,15 +55,48 @@ describe User do
     end
   end
 
-  context "scopes" do
-    describe "time_zones" do
-      it "returns an array of every unique time zone represented in the users table" do
-        create(:user, time_zone: "Cairo")
-        create(:user, time_zone: "Alaska")
-        create(:user, time_zone: "Alaska")
+  describe ".with_tags" do
+    it "returns users with any of the provided tags" do
+      user_1 = create(:user, tags: %w(foo bar))
+      user_2 = create(:user, tags: %w(foo baz))
+      user_3 = create(:user, tags: %w(hello world))
+      user_4 = create(:user, tags: [])
 
-        expect(User.time_zones).to eq(%w(Cairo Alaska))
-      end
+      users = User.with_tags(%w(hello baz))
+
+      expect(users).to include(user_2, user_3)
+      expect(users).not_to include(user_1, user_4)
+    end
+
+    it "returns all users if no tags are provided" do
+      user_1 = create(:user, tags: %w(foo bar))
+      user_2 = create(:user, tags: %w(foo baz))
+      user_3 = create(:user, tags: %w(hello world))
+      user_4 = create(:user, tags: [])
+
+      users = User.with_tags([])
+
+      expect(users).to include(user_1, user_2, user_3, user_4)
+    end
+  end
+
+  describe ".time_zones" do
+    it "returns an array of every unique time zone represented in the users table" do
+      create(:user, time_zone: "Cairo")
+      create(:user, time_zone: "Alaska")
+      create(:user, time_zone: "Alaska")
+
+      expect(User.time_zones).to eq(%w(Cairo Alaska))
+    end
+  end
+
+  describe ".tags" do
+    it "returns a sorted array of every unique tag represented in the users table" do
+      create(:user, tags: %w(foo bar))
+      create(:user, tags: %w(foo baz))
+      create(:user, tags: [])
+
+      expect(User.tags).to eq(%w(bar baz foo))
     end
   end
 end

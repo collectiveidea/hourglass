@@ -1,6 +1,6 @@
 feature "Users" do
-  let!(:jack) { create(:user, name: "Jack", email: "jack@example.com") }
-  let!(:jill) { create(:user, name: "Jill", email: "jill@example.com") }
+  let!(:jack) { create(:user, name: "Jack", email: "jack@example.com", tags: %w(local design)) }
+  let!(:jill) { create(:user, name: "Jill", email: "jill@example.com", tags: %w(remote development)) }
 
   scenario "A visitor can see a list of all users" do
     visit users_path
@@ -30,7 +30,8 @@ feature "Users" do
       zenefits_name: "Jane Doe",
       time_zone: "Eastern Time (US & Canada)",
       slack_id: "738YDH2IZJ",
-      workdays: %w(Mon Tue Wed Thu)
+      workdays: %w(Mon Tue Wed Thu),
+      tags: %w(local development)
     )
     dom_user_form.submit
 
@@ -53,6 +54,7 @@ feature "Users" do
     expect(jane.time_zone).to eq("Eastern Time (US & Canada)")
     expect(jane.slack_id).to eq("738YDH2IZJ")
     expect(jane.workdays).to eq(%w(1 2 3 4))
+    expect(jane.tags).to match_array(%w(local development))
   end
 
   scenario "A visitor can update a user" do

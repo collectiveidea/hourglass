@@ -25,12 +25,16 @@
 </div>
 <div class="form-group">
   <%= form.label :workdays, class: "control-label" %>
-  <%= form.select :workdays, [["Mon", 1], ["Tue", 2], ["Wed", 3], ["Thu", 4], ["Fri", 5], ["Sat", 6], ["Sun", 7]], {}, multiple: true, class: "form-control chosen", size: 7, data: { placeholder: "Select Days of the Week" } %>
+  <%= form.select :workdays, [["Mon", 1], ["Tue", 2], ["Wed", 3], ["Thu", 4], ["Fri", 5], ["Sat", 6], ["Sun", 7]], {}, multiple: true, class: "form-control select2", size: 7, data: { placeholder: "Select Days of the Week" } %>
   <p class="help-block">Days (excluding PTO) this user is expected to work.</p>
 </div>
 <div class="form-group">
   <%= form.label :time_zone, class: "control-label" %>
-  <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { default: Time.zone.name }, class: "form-control chosen" %>
+  <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { default: Time.zone.name }, class: "form-control select2" %>
+</div>
+<div class="form-group">
+  <%= form.label :tags, class: "control-label" %>
+  <%= form.select :tags, User.tags, {}, class: "form-control select2", multiple: true, data: { placeholder: "design, development", tags: true } %>
 </div>
 <div class="form-group">
   <%= button_tag fa_icon("check", text: "Save User"), class: "btn btn-block btn-lg btn-primary", data: { disable: true } %>

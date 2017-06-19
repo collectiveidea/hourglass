@@ -17,12 +17,20 @@ class User < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
 
+  def self.with_tags(tags)
+    tags.any? ? where("tags && ARRAY[?]", tags) : all
+  end
+
   def self.for_timer_reminder(date: Date.current)
     joins(:days).merge(Day.for_timer_reminder(date: date))
   end
 
   def self.time_zones
     pluck("DISTINCT time_zone")
+  end
+
+  def self.tags
+    order("tag ASC").pluck("DISTINCT UNNEST(tags) AS tag")
   end
 
   def timer_reminder_sent!(date: Date.current)
@@ -34,10 +42,14 @@ class User < ActiveRecord::Base
   end
 
   def workdays=(values)
-    super(values.reject(&:blank?))
+    super(values.reject(&:blank?).sort)
   end
 
   def archive
     update!(active: false)
+  end
+
+  def tags=(values)
+    super(values.reject(&:blank?).sort)
   end
 end

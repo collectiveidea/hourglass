@@ -49,6 +49,7 @@ class UsersController < ApplicationController
       :slack_id,
       :time_zone,
       :zenefits_name,
+      tags: [],
       workdays: []
     )
   end
