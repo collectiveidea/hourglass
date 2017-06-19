@@ -55,6 +55,31 @@ describe User do
     end
   end
 
+  describe ".with_tags" do
+    it "returns users with any of the provided tags" do
+      user_1 = create(:user, tags: %w(foo bar))
+      user_2 = create(:user, tags: %w(foo baz))
+      user_3 = create(:user, tags: %w(hello world))
+      user_4 = create(:user, tags: [])
+
+      users = User.with_tags(%w(hello baz))
+
+      expect(users).to include(user_2, user_3)
+      expect(users).not_to include(user_1, user_4)
+    end
+
+    it "returns all users if no tags are provided" do
+      user_1 = create(:user, tags: %w(foo bar))
+      user_2 = create(:user, tags: %w(foo baz))
+      user_3 = create(:user, tags: %w(hello world))
+      user_4 = create(:user, tags: [])
+
+      users = User.with_tags([])
+
+      expect(users).to include(user_1, user_2, user_3, user_4)
+    end
+  end
+
   describe ".time_zones" do
     it "returns an array of every unique time zone represented in the users table" do
       create(:user, time_zone: "Cairo")
