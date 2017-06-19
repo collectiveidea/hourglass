@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def workdays=(values)
-    super(values.reject(&:blank?))
+    super(values.reject(&:blank?).sort)
   end
 
   def archive
@@ -50,6 +50,6 @@ class User < ActiveRecord::Base
   end
 
   def tags=(values)
-    super(values.reject(&:blank?))
+    super(values.reject(&:blank?).sort)
   end
 end

@@ -101,6 +101,15 @@ module DOM
       workdays.each { |w| node.select(w, from: "Scheduled Workdays") }
     end
 
+    def tags
+      node.find_field("Tags").all("option").select(&:selected?).map(&:text)
+    end
+
+    def tags=(tags)
+      self.tags.each { |t| node.unselect(t, from: "Tags") }
+      tags.each { |t| node.select(t, from: "Tags") }
+    end
+
     def set(attributes)
       attributes.each do |key, value|
         send("#{key}=", value)
