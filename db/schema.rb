@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618001302) do
+ActiveRecord::Schema.define(version: 20170620012523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,9 +36,11 @@ ActiveRecord::Schema.define(version: 20170618001302) do
     t.boolean  "timer_reminder_sent",                          default: false, null: false
     t.boolean  "tracked_in_real_time",                         default: false, null: false
     t.boolean  "workday",                                      default: false, null: false
+    t.jsonb    "hours",                                        default: {},    null: false
   end
 
   add_index "days", ["date"], name: "index_days_on_date", using: :btree
+  add_index "days", ["hours"], name: "index_days_on_hours", using: :gin
   add_index "days", ["user_id"], name: "index_days_on_user_id", using: :btree
 
   create_table "months", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
