@@ -13,6 +13,7 @@ class TeamsController < ApplicationController
     @team = Team.new(team_attributes)
 
     if @team.save
+      @team.update_project_name
       redirect_to teams_path
     else
       render :new
@@ -27,6 +28,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
 
     if @team.update(team_attributes)
+      @team.update_project_name
       redirect_to teams_path
     else
       render :edit
