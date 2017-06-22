@@ -38,6 +38,17 @@ en:
         time_zone: "Time Zone"
         workdays: "Scheduled Workdays"
         zenefits_name: "Name on Zenefits"
+      responsibility:
+        adjective: "As an Adjective"
+        default: "Catch-All"
+        harvest_client_ids: "Harvest Clients"
+        title: "Title"
       team:
         hours: "Budgeted Hours"
         project_id: "Harvest Project"
+    errors:
+      models:
+        responsibility:
+          attributes:
+            base:
+              multiple_defaults: "Another responsibility is already the catch-all. Please edit that responsibility first so it's no longer the catch-all."

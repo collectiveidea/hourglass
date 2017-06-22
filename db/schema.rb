@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170620012523) do
+ActiveRecord::Schema.define(version: 20170622005608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,19 @@ ActiveRecord::Schema.define(version: 20170620012523) do
   add_index "months", ["number"], name: "index_months_on_number", using: :btree
   add_index "months", ["user_id"], name: "index_months_on_user_id", using: :btree
   add_index "months", ["year"], name: "index_months_on_year", using: :btree
+
+  create_table "responsibilities", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "title"
+    t.string   "adjective"
+    t.text     "harvest_client_ids", default: [],    null: false, array: true
+    t.boolean  "default",            default: false, null: false
+    t.integer  "position"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "responsibilities", ["harvest_client_ids"], name: "index_responsibilities_on_harvest_client_ids", using: :gin
+  add_index "responsibilities", ["position"], name: "index_responsibilities_on_position", using: :btree
 
   create_table "teams", force: :cascade do |t|
     t.string   "name",                        null: false

@@ -12,6 +12,7 @@ EXPECTED_WEEKLY_INTERNAL_HOURS: "8"
 
 # Harvest credentials and configuration
 HARVEST_INTERNAL_CLIENT: "Internal" # The client in Harvest to consider internal
+HARVEST_INTERNAL_CLIENT_ID: "1234567"
 HARVEST_PASSWORD: "secret"
 HARVEST_SUBDOMAIN: "example"
 HARVEST_TIME_ZONE: "Eastern Time (US & Canada)" # rake time:zones:all
