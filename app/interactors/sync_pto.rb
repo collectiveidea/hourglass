@@ -5,6 +5,10 @@ class SyncPTO
     context.after ||= 1.month.ago.to_date
   end
 
+  after do
+    sanitize_and_cache_calendar
+  end
+
   def call
     clear_future_pto
 
@@ -25,8 +29,15 @@ class SyncPTO
     Day.clear_future
   end
 
+  def calendar
+    @calendar ||= begin
+      source = open(ENV["ZENEFITS_PTO_CALENDAR_URL"])
+      Icalendar::Calendar.parse(source)
+    end
+  end
+
   def events
-    Icalendar::Calendar.parse(open(ENV["ZENEFITS_PTO_CALENDAR_URL"])).first.events
+    @events ||= calendar.first.events
   end
 
   def holiday?(event)
@@ -51,5 +62,22 @@ class SyncPTO
 
   def dates_for_event(event)
     (event.dtstart.to_date...event.dtend.to_date).to_a
+  end
+
+  def sanitize_and_cache_calendar
+    sanitized_calendar = Icalendar::Calendar.new
+    sanitized_calendar.x_wr_calname = "Hourglass PTO"
+
+    events.each do |event|
+      sanitized_calendar.event do |sanitized_event|
+        sanitized_event.summary = event.summary
+        sanitized_event.dtstart = event.dtstart
+        sanitized_event.dtend = event.dtend
+      end
+    end
+
+    sanitized_calendar.publish
+
+    Rails.cache.write("pto.ics", sanitized_calendar.to_ical)
   end
 end
