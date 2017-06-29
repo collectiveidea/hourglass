@@ -6,5 +6,9 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :teams
 
+  scope controller: "calendars", format: "ics" do
+    get :pto
+  end
+
   root to: redirect("users", status: 302)
 end
