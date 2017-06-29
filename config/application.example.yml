@@ -33,3 +33,7 @@ STATUSBOARD_DAYS: "7"
 
 # A secure URL to the PTO calendar provided by Zenefits
 ZENEFITS_PTO_CALENDAR_URL: "https://secure.zenefits.com/pto_calendar/784045?token=WLltlFOzjp" # Fake
+
+# The basic authentication username (password is irrelevant) needed to access
+# any endpoint in the calendars controller
+CALENDAR_PASSWORD: "07i5qbznyp63lxqd7osjt99g"

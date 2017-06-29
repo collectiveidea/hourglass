@@ -25,6 +25,9 @@ gem "uglifier"
 # Helper for dynamic jquery nested attributes forms
 gem "cocoon"
 
+# Caching
+gem "dalli"
+
 # Runtime
 gem "date_validator"
 gem "email_validator"
