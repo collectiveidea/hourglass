@@ -69,6 +69,7 @@ GEM
     concurrent-ruby (1.0.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    dalli (2.7.6)
     database_cleaner (1.6.1)
     date_validator (0.9.0)
       activemodel
@@ -253,6 +254,7 @@ DEPENDENCIES
   cocoon
   codeclimate-test-reporter
   coffee-rails
+  dalli
   database_cleaner
   date_validator
   domino
