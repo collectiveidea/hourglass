@@ -16,6 +16,10 @@ class Responsibility < ActiveRecord::Base
     find(id).update!(sort_order_position: position)
   end
 
+  def harvest_client_ids=(values)
+    super(values.reject(&:blank?))
+  end
+
   private
 
   def only_one_default_may_exist
