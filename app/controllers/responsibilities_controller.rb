@@ -2,7 +2,7 @@ class ResponsibilitiesController < ApplicationController
   include HasHarvest
 
   def index
-    @responsibilities = Responsibility.ordered # TODO: .active
+    @responsibilities = Responsibility.active.ordered
   end
 
   def new
@@ -36,9 +36,7 @@ class ResponsibilitiesController < ApplicationController
   end
 
   def destroy
-    @responsibility = Responsibility.find(params[:id])
-
-    @responsibility.archive
+    Responsibility.archive(params[:id])
 
     redirect_to responsibilities_path
   end

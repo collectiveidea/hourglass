@@ -1,12 +1,17 @@
 class Responsibility < ActiveRecord::Base
   include RankedModel
+  include CanArchive
 
   ranks :sort_order
 
   scope :ordered, -> { rank(:sort_order) }
 
   validates :title, :adjective, presence: true,
-    uniqueness: { allow_blank: true }
+    uniqueness: {
+      allow_blank: true,
+      scope: :active,
+      if: :active?
+    }
   validates :harvest_client_ids, presence: true, unless: :default?
   validate :only_one_default_may_exist, if: [:default?, :default_changed?]
 

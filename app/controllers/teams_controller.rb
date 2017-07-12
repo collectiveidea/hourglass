@@ -34,9 +34,7 @@ class TeamsController < ApplicationController
   end
 
   def destroy
-    @team = Team.find(params[:id])
-
-    @team.archive
+    Team.archive(params[:id])
 
     redirect_to teams_path
   end
