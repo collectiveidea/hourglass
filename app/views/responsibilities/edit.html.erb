@@ -1,0 +1,16 @@
+<div class="edit-responsibility container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= render "layouts/flash" %>
+      <div class="page-header">
+        <nav class="pull-right">
+          <%= link_to fa_icon("arrow-left", text: "Cancel"), responsibilities_path, class: "btn btn-default" %>
+        </nav>
+        <h1>Edit Responsibility</h1>
+      </div>
+      <%= form_for @responsibility, html: { class: "edit-responsibility-form responsibility-form" } do |form| %>
+        <%= render form %>
+      <% end %>
+    </div>
+  </div>
+</div>

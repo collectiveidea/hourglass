@@ -14,16 +14,16 @@
         <thead>
           <tr>
             <th><%= Team.human_attribute_name(:name) %></th>
-            <th><%= Team.human_attribute_name(:project_id) %></th>
-            <th></th>
+            <th class="hidden-xs"><%= Team.human_attribute_name(:project_id) %></th>
+            <th class="text-right"></th>
           </tr>
         </thead>
         <tbody>
           <% @teams.each do |team| %>
             <tr class="team-row">
               <td class="team-row-name"><%= team.name %></td>
-              <td class="team-row-project-name"><%= team.project_name %></td>
-              <td class="team-row-actions">
+              <td class="team-row-project-name hidden-xs"><%= team.project_name %></td>
+              <td class="team-row-actions text-right text-nowrap">
                 <%= link_to edit_team_path(team), class: "btn btn-xs btn-default" do %>
                   <span class="visible-xs"><%= fa_icon("pencil") %></span>
                   <span class="hidden-xs">Edit</span>

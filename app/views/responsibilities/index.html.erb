@@ -18,7 +18,8 @@
           <tr>
             <th></th>
             <th><%= Responsibility.human_attribute_name(:title) %></th>
-            <th></th>
+            <th class="text-center"><%= Responsibility.human_attribute_name(:default) %></th>
+            <th class="text-right"></th>
           </tr>
         </thead>
         <tbody>
@@ -26,7 +27,8 @@
             <tr class="responsibility-row" data-id="<%= responsibility.id %>">
               <td class="responsibility-row-drag"><%= fa_icon "bars", class: "responsibility-row-drag-handle", title: "Drag to reorder" %></td>
               <td class="responsibility-row-title"><%= responsibility.title %></td>
-              <td class="responsibility-row-actions">
+              <td class="responsibility-row-default text-center"><%= fa_icon("check") if responsibility.default? %></td>
+              <td class="responsibility-row-actions text-right text-nowrap">
                 <%= link_to edit_responsibility_path(responsibility), class: "btn btn-xs btn-default" do %>
                   <span class="visible-xs"><%= fa_icon("pencil") %></span>
                   <span class="hidden-xs">Edit</span>

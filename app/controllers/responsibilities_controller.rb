@@ -1,42 +1,46 @@
 class ResponsibilitiesController < ApplicationController
+  include HasHarvest
+
   def index
     @responsibilities = Responsibility.ordered # TODO: .active
   end
 
   def new
-    @user = User.new
+    @responsibility = Responsibility.new
   end
 
   def create
-    @user = User.new(user_attributes)
+    @responsibility = Responsibility.new(responsibility_attributes)
 
-    if @user.save
-      redirect_to users_path
+    if @responsibility.save
+      redirect_to responsibilities_path
     else
       render :new
     end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @responsibility = Responsibility.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    @responsibility = Responsibility.find(params[:id])
 
-    if @user.update(user_attributes)
-      redirect_to users_path
+    if @responsibility.update(responsibility_attributes)
+      redirect_to responsibilities_path
     else
+      base_errors = @responsibility.errors.full_messages_for(:base)
+      flash.now[:alert] = base_errors.join(" ") if base_errors.present?
       render :edit
     end
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @responsibility = Responsibility.find(params[:id])
 
-    @user.archive
+    @responsibility.archive
 
-    redirect_to users_path
+    redirect_to responsibilities_path
   end
 
   def reorder
@@ -47,16 +51,18 @@ class ResponsibilitiesController < ApplicationController
 
   private
 
-  def user_attributes
-    params.require(:user).permit(
-      :email,
-      :harvest_id,
-      :name,
-      :slack_id,
-      :time_zone,
-      :zenefits_name,
-      tags: [],
-      workdays: []
+  def harvest_clients
+    @harvest_clients ||= harvest.clients.all
+  end
+
+  helper_method :harvest_clients
+
+  def responsibility_attributes
+    params.require(:responsibility).permit(
+      :title,
+      :adjective,
+      :default,
+      harvest_client_ids: [],
     )
   end
 end

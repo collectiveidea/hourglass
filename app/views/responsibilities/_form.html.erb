@@ -1,0 +1,27 @@
+<div class="form-group">
+  <%= form.label :title, class: "control-label" %>
+  <%= form.text_field :title, class: "form-control" %>
+  <p class="help-block">For example: "Client" or "Internal"</p>
+</div>
+<div class="form-group form-inline">
+  Time tracked here is called
+    <%= form.label :adjective, class: "control-label sr-only" %>
+    <%= form.text_field :adjective, class: "form-control" %>
+    time.
+  <p class="help-block">Must be unique.</p>
+</div>
+<div class="form-group">
+  <%= form.label :harvest_client_ids, class: "control-label" %>
+  <%= form.collection_select :harvest_client_ids, harvest_clients, :id, :name, {}, class: "form-control select2", multiple: true %>
+</div>
+<div class="form-group">
+  <div class="checkbox">
+    <%= form.label :default do %>
+      <%= form.check_box :default %>
+      This is the catch-all for tracked time that doesn't fall under another responsibility.
+    <% end %>
+  </div>
+</div>
+<div class="form-group">
+  <%= button_tag fa_icon("check", text: "Save Responsibility"), class: "btn btn-block btn-lg btn-primary", data: { disable: true } %>
+</div>
