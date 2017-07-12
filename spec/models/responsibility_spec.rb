@@ -28,7 +28,7 @@ describe Responsibility do
 
     describe "harvest_client_ids" do
       it { is_expected.to accept_values_for(:harvest_client_ids, %w(1 2 3)) }
-      it { is_expected.not_to accept_values_for(:harvest_client_ids, nil, []) }
+      it { is_expected.not_to accept_values_for(:harvest_client_ids, nil, [], [""]) }
     end
 
     describe "#only_one_default_may_exist" do

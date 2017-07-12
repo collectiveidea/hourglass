@@ -22,7 +22,7 @@ class Responsibility < ActiveRecord::Base
   end
 
   def harvest_client_ids=(values)
-    super(values.reject(&:blank?))
+    super(values.try(:reject, &:blank?))
   end
 
   private
