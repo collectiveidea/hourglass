@@ -1,0 +1,45 @@
+<div class="responsibility-list container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="page-header">
+        <nav class="pull-right">
+          <%= link_to new_responsibility_path, class: "btn btn-primary" do %>
+            <%= fa_icon "plus" %>
+            <span class="hidden-xs hidden-md">Add Responsibility</span>
+          <% end %>
+        </nav>
+        <h1>
+          <span class="responsibility-list-count"><%= @responsibilities.size %></span>
+          <%= "Responsibility".pluralize(@responsibilities.size) %>
+        </h1>
+      </div>
+      <table class="responsibility-table table">
+        <thead>
+          <tr>
+            <th></th>
+            <th><%= Responsibility.human_attribute_name(:title) %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @responsibilities.each do |responsibility| %>
+            <tr class="responsibility-row" data-id="<%= responsibility.id %>">
+              <td class="responsibility-row-drag"><%= fa_icon "bars", class: "responsibility-row-drag-handle", title: "Drag to reorder" %></td>
+              <td class="responsibility-row-title"><%= responsibility.title %></td>
+              <td class="responsibility-row-actions">
+                <%= link_to edit_responsibility_path(responsibility), class: "btn btn-xs btn-default" do %>
+                  <span class="visible-xs"><%= fa_icon("pencil") %></span>
+                  <span class="hidden-xs">Edit</span>
+                <% end %>
+                <%= link_to responsibility, method: :delete, class: "btn btn-xs btn-danger", data: { confirm: "Are you sure?" } do %>
+                  <span class="visible-xs"><%= fa_icon("trash") %></span>
+                  <span class="hidden-xs">Archive</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

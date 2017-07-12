@@ -11,6 +11,9 @@
     </div>
     <div class="collapse navbar-collapse" id="top-nav">
       <ul class="nav navbar-nav navbar-right">
+        <%= content_tag :li, class: ("active" if params[:controller] == "responsibilities") do %>
+          <%= link_to fa_icon("id-badge", text: "Responsibilities"), responsibilities_path %>
+        <% end %>
         <%= content_tag :li, class: ("active" if params[:controller] == "users") do %>
           <%= link_to fa_icon("user", text: "Users"), users_path %>
         <% end %>

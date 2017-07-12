@@ -3,8 +3,11 @@ Rails.application.routes.draw do
 
   resource :slack, only: [:show], defaults: { format: :text }
 
-  resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
-  resources :teams
+  resources :responsibilities, except: [:show] do
+    put :reorder, on: :member
+  end
+  resources :users, except: [:show]
+  resources :teams, except: [:show]
 
   scope controller: "calendars", format: "ics" do
     get :pto

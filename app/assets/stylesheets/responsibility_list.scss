@@ -1,0 +1,30 @@
+.responsibility-row.ui-sortable-helper {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 0 5px 2px, rgba(0, 0, 0, 0.15) 0 0 2px;
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.responsibility-row-drag {
+  width: 1%;
+}
+
+.responsibility-row-drag-handle {
+  opacity: 0.2;
+  cursor: -webkit-grab;
+  cursor: grab;
+
+  .ui-sortable-helper &, &:hover {
+    opacity: 0.4;
+  }
+
+  .ui-sortable-helper & {
+    cursor: -webkit-grabbing !important;
+    cursor: grabbing !important;
+  }
+}
+
+.responsibility-row-actions {
+  text-align: right;
+  white-space: nowrap;
+}

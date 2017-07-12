@@ -6,6 +6,10 @@ class Responsibility < ActiveRecord::Base
 
   before_save :clear_harvest_client_ids, if: :default?
 
+  def self.reorder(id, position)
+    find(id).update!(sort_order_position: position)
+  end
+
   private
 
   def only_one_default_may_exist
