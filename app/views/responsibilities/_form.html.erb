@@ -1,18 +1,19 @@
 <div class="form-group">
   <%= form.label :title, class: "control-label" %>
   <%= form.text_field :title, class: "form-control" %>
-  <p class="help-block">For example: "Client" or "Internal"</p>
+  <p class="help-block">Must be unique. For example: "Client" or "Internal"</p>
 </div>
 <div class="form-group form-inline">
   Time tracked here is called
     <%= form.label :adjective, class: "control-label sr-only" %>
     <%= form.text_field :adjective, class: "form-control" %>
     time.
-  <p class="help-block">Must be unique.</p>
+  <p class="help-block">Must be unique. For example: "client" or "internal"</p>
 </div>
 <div class="form-group">
   <%= form.label :harvest_client_ids, class: "control-label" %>
   <%= form.collection_select :harvest_client_ids, harvest_clients, :id, :name, {}, class: "form-control select2", multiple: true %>
+  <p class="help-block">Required if not the catch-all (see below).</p>
 </div>
 <div class="form-group">
   <div class="checkbox">
