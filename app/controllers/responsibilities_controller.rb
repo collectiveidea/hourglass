@@ -1,6 +1,6 @@
 class ResponsibilitiesController < ApplicationController
   def index
-    @responsibilities = Responsibility.all # TODO: active.ordered
+    @responsibilities = Responsibility.ordered # TODO: .active
   end
 
   def new

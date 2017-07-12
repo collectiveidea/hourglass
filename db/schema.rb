@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622005608) do
+ActiveRecord::Schema.define(version: 20170712135751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,10 +70,12 @@ ActiveRecord::Schema.define(version: 20170622005608) do
     t.integer  "position"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.integer  "sort_order"
   end
 
   add_index "responsibilities", ["harvest_client_ids"], name: "index_responsibilities_on_harvest_client_ids", using: :gin
   add_index "responsibilities", ["position"], name: "index_responsibilities_on_position", using: :btree
+  add_index "responsibilities", ["sort_order"], name: "index_responsibilities_on_sort_order", using: :btree
 
   create_table "teams", force: :cascade do |t|
     t.string   "name",                        null: false

@@ -1,4 +1,10 @@
 class Responsibility < ActiveRecord::Base
+  include RankedModel
+
+  ranks :sort_order
+
+  scope :ordered, -> { rank(:sort_order) }
+
   validates :title, :adjective, presence: true,
     uniqueness: { allow_blank: true }
   validates :harvest_client_ids, presence: true, unless: :default?
