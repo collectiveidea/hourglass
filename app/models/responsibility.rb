@@ -21,8 +21,18 @@ class Responsibility < ActiveRecord::Base
     find(id).update!(sort_order_position: position)
   end
 
+  def self.for_harvest_client_id(harvest_client_id, responsibilities = active.ordered.to_a)
+    responsibilities
+      .detect { |r| r.harvest_client_ids.include?(harvest_client_id.to_s) } ||
+    responsibilities.detect(&:default?)
+  end
+
   def harvest_client_ids=(values)
-    super(values.try(:reject, &:blank?))
+    if values.is_a?(Array)
+      super(values.reject(&:blank?).map(&:to_s).uniq)
+    else
+      super
+    end
   end
 
   private
