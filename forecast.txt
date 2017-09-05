@@ -1,0 +1,7 @@
+$ curl \
+  -H "Content-Type: application/json; charset=UTF-8" \
+  -H "Forecast-Account-ID: 89104" \
+  -H "Authorization: Bearer 9690.at.oEYJNhWbrmPTiVnqTeyKWLo0fsR9F2cnUKZO7TtEhRsPECUYOaDPRvM5srSxpVskXDrz4jdhEBhWjCjNtmPvIQ" \
+  -X POST \
+  -d '{"assignment":{"start_date":"2017-06-22","end_date":"2017-06-22","person_id":2509,"project_id":5896}}' \
+  https://api.forecastapp.com/assignments

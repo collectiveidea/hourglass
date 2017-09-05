@@ -1,6 +1,7 @@
 describe FetchDailyHours do
   let(:harvest) { double(Harvest::HardyClient) }
   let(:harvest_time) { double(Harvest::API::Time) }
+  let(:harvest_projects) { double(Harvest::API::Projects) }
 
   before do
     allow(Harvest).to receive(:hardy_client).with(
@@ -10,29 +11,39 @@ describe FetchDailyHours do
     ) { harvest }
 
     allow(harvest).to receive(:time).with(no_args) { harvest_time }
+    allow(harvest).to receive(:projects).with(no_args) { harvest_projects }
+
+    allow(harvest_projects).to receive(:all).with(no_args) {
+      [
+        create(:harvest_project, id: 1, client_id: 100),
+        create(:harvest_project, id: 2, client_id: 200)
+      ]
+    }
   end
 
   it "creates a day with today's hours for every user" do
     today = Date.current
     user_1, user_2 = create_pair(:user)
+    responsibility_1 = create(:responsibility, harvest_client_ids: [100])
+    responsibility_2 = create(:responsibility, harvest_client_ids: [200])
 
     expect(harvest_time).to receive(:all).
       with(today, user_1.harvest_id) {
         [
-          create(:harvest_time_entry, :client,   hours: 1.0),
-          create(:harvest_time_entry, :internal, hours: 2.0),
-          create(:harvest_time_entry, :client,   hours: 4.0),
-          create(:harvest_time_entry, :internal, hours: 8.0)
+          create(:harvest_time_entry, hours: 1.0, project_id: "1"),
+          create(:harvest_time_entry, hours: 2.0, project_id: "2"),
+          create(:harvest_time_entry, hours: 4.0, project_id: "1"),
+          create(:harvest_time_entry, hours: 8.0, project_id: "2")
         ]
       }
 
     expect(harvest_time).to receive(:all).
       with(today, user_2.harvest_id) {
         [
-          create(:harvest_time_entry, :client,   hours: 0.1),
-          create(:harvest_time_entry, :internal, hours: 0.2),
-          create(:harvest_time_entry, :client,   hours: 0.4),
-          create(:harvest_time_entry, :internal, hours: 0.8)
+          create(:harvest_time_entry, hours: 0.1, project_id: "1"),
+          create(:harvest_time_entry, hours: 0.2, project_id: "2"),
+          create(:harvest_time_entry, hours: 0.4, project_id: "1"),
+          create(:harvest_time_entry, hours: 0.8, project_id: "2")
         ]
       }
 
@@ -44,13 +55,23 @@ describe FetchDailyHours do
 
     day_1 = user_1.days.last
     expect(day_1.date).to eq(today)
-    expect(day_1.client_hours).to eq("5.0".to_d)
-    expect(day_1.internal_hours).to eq("10.0".to_d)
+    expect(day_1.hours).to be_a(Hash)
+    expect(day_1.hours.keys).to contain_exactly(
+      responsibility_1.id,
+      responsibility_2.id,
+    )
+    expect(day_1.hours[responsibility_1.id]).to eq(5.0)
+    expect(day_1.hours[responsibility_2.id]).to eq(10.0)
 
     day_2 = user_2.days.last
     expect(day_2.date).to eq(today)
-    expect(day_2.client_hours).to eq("0.5".to_d)
-    expect(day_2.internal_hours).to eq("1.0".to_d)
+    expect(day_2.hours).to be_a(Hash)
+    expect(day_2.hours.keys).to contain_exactly(
+      responsibility_1.id,
+      responsibility_2.id,
+    )
+    expect(day_2.hours[responsibility_1.id]).to eq(0.5)
+    expect(day_2.hours[responsibility_2.id]).to eq(1.0)
   end
 
   it "updates existing days' hours for today" do
