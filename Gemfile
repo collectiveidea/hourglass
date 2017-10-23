@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Ruby
-ruby "2.4.1"
+ruby "2.4.2"
 
 # Rails
 # TODO: Upgrade to Rails 5
