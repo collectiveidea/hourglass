@@ -4,7 +4,7 @@ class Team < ActiveRecord::Base
   validates :name, presence: true
   validates :hours, numericality: { greater_than_or_equal_to: 0 }
 
-  has_many :assignments
+  has_many :assignments, -> { joins(:user).order("users.email") }
   has_many :users, through: :assignments
 
   before_save :set_harvest_project_name

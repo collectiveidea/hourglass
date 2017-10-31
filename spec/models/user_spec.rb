@@ -86,7 +86,7 @@ describe User do
       create(:user, time_zone: "Alaska")
       create(:user, time_zone: "Alaska")
 
-      expect(User.time_zones).to eq(%w(Cairo Alaska))
+      expect(User.time_zones).to match_array(%w(Cairo Alaska))
     end
   end
 
