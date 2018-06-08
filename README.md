@@ -7,7 +7,6 @@ the organization in such a way as to promote better time management.
 [![Build Status](https://travis-ci.org/collectiveidea/hourglass.svg?branch=master)](https://travis-ci.org/collectiveidea/hourglass)
 [![Code Climate](https://codeclimate.com/github/collectiveidea/hourglass/badges/gpa.svg)](https://codeclimate.com/github/collectiveidea/hourglass)
 [![Test Coverage](https://codeclimate.com/github/collectiveidea/hourglass/badges/coverage.svg)](https://codeclimate.com/github/collectiveidea/hourglass)
-[![Dependency Status](https://gemnasium.com/collectiveidea/hourglass.svg)](https://gemnasium.com/collectiveidea/hourglass)
 
 ## Local Setup
 
