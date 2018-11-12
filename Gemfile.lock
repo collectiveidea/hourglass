@@ -106,7 +106,7 @@ GEM
       json
     hashdiff (0.3.4)
     hashie (3.5.5)
-    honeybadger (3.1.2)
+    honeybadger (4.1.0)
     htmlentities (4.3.4)
     httparty (0.15.5)
       multi_xml (>= 0.5.2)
