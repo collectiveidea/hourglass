@@ -7,8 +7,6 @@ class Team < ActiveRecord::Base
   has_many :assignments, -> { joins(:user).order("users.email") }
   has_many :users, through: :assignments
 
-  before_save :set_harvest_project_name
-
   scope :active, -> { where(active: true) }
 
   accepts_nested_attributes_for :assignments, reject_if: -> (attr) { attr['user_id'].blank? }, allow_destroy: true
@@ -17,11 +15,7 @@ class Team < ActiveRecord::Base
     update!(active: false)
   end
 
-  protected
-
-  def set_harvest_project_name
-    if self.project_id.present? && self.project_name.blank?
-      self.project_name = harvest.projects.find(project_id).name
-    end
+  def update_project_name
+    update!(project_name: harvest.projects.find(project_id).name)
   end
 end
